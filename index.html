@@ -1,27 +1,35 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
   <title>Шина 77 — грузовые и легкогрузовые шины</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #05060a;
       --bg-alt: #0b0d13;
       --accent: #f6c21a;
       --accent-soft: rgba(246, 194, 26, 0.12);
+      --accent-orange: #f97316;
       --text: #f5f5f5;
       --muted: #9ca3af;
       --radius: 14px;
       --shadow-soft: 0 18px 40px rgba(0,0,0,0.55);
       --transition: 0.25s ease;
-      --font-main: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+      --font-display: 'Barlow Condensed', sans-serif;
+      --font-body: 'Barlow', sans-serif;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
+    html { scroll-behavior: smooth; }
+
     body {
-      font-family: var(--font-main);
+      font-family: var(--font-body);
       background: radial-gradient(circle at top, #111827 0, #020617 45%, #000 100%);
       color: var(--text);
       line-height: 1.5;
@@ -31,28 +39,21 @@
     a { color: inherit; text-decoration: none; }
     img { max-width: 100%; display: block; }
 
-    .page {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
+    .page { min-height: 100vh; display: flex; flex-direction: column; }
+    .container { width: 100%; max-width: 1180px; margin: 0 auto; padding: 0 16px; }
 
-    .container {
-      width: 100%;
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 0 16px;
+    /* фикс для якорных ссылок */
+    #catalog, #popular, #benefits, #reviews, #contacts {
+      scroll-margin-top: 85px;
     }
-
-    /* HEADER */
 
     header {
       position: sticky;
       top: 0;
       z-index: 50;
       backdrop-filter: blur(18px);
-      background: linear-gradient(to bottom, rgba(5,6,10,0.96), rgba(5,6,10,0.82), transparent);
-      border-bottom: 1px solid rgba(148,163,184,0.18);
+      background: linear-gradient(to bottom, rgba(5,6,10,0.97), rgba(5,6,10,0.85), transparent);
+      border-bottom: 1px solid rgba(148,163,184,0.15);
     }
 
     .header-inner {
@@ -63,246 +64,170 @@
       gap: 18px;
     }
 
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
+    .logo { display: flex; align-items: center; gap: 10px; cursor: pointer; }
     .logo-mark {
-      width: 34px;
-      height: 34px;
+      width: 36px;
+      height: 36px;
       border-radius: 999px;
       background: radial-gradient(circle at 30% 20%, #fef9c3, #facc15 40%, #b45309 100%);
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 0 0 1px rgba(248,250,252,0.12), 0 12px 30px rgba(0,0,0,0.7);
+      box-shadow: 0 0 0 1px rgba(248,250,252,0.12), 0 8px 24px rgba(250,204,21,0.4);
+      font-family: var(--font-display);
       font-weight: 800;
-      font-size: 18px;
-      letter-spacing: 0.04em;
+      font-size: 17px;
+      letter-spacing: 0.02em;
       color: #111827;
     }
+    .logo-text { display: flex; flex-direction: column; gap: 1px; }
+    .logo-title { font-family: var(--font-display); font-weight: 700; font-size: 20px; letter-spacing: 0.06em; text-transform: uppercase; }
+    .logo-sub { font-size: 10px; text-transform: uppercase; color: var(--muted); letter-spacing: 0.16em; }
 
-    .logo-text { display: flex; flex-direction: column; gap: 2px; }
-
-    .logo-title {
-      font-weight: 700;
-      font-size: 18px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .logo-sub {
-      font-size: 11px;
-      text-transform: uppercase;
-      color: var(--muted);
-      letter-spacing: 0.16em;
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      gap: 22px;
-      font-size: 14px;
-      color: var(--muted);
-    }
-
-    .nav a {
-      position: relative;
-      padding-bottom: 2px;
-    }
-
-    .nav a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 0;
-      height: 2px;
-      background: linear-gradient(90deg, #facc15, #f97316);
-      border-radius: 999px;
-      transition: width var(--transition);
-    }
-
+    .nav { display: flex; align-items: center; gap: 22px; font-size: 14px; color: var(--muted); }
+    .nav a { position: relative; padding-bottom: 2px; transition: color var(--transition); }
+    .nav a::after { content: ""; position: absolute; left: 0; bottom: 0; width: 0; height: 2px; background: linear-gradient(90deg, #facc15, #f97316); border-radius: 999px; transition: width var(--transition); }
     .nav a:hover { color: #e5e7eb; }
     .nav a:hover::after { width: 100%; }
 
-    .header-right {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
+    .header-right { display: flex; align-items: center; gap: 16px; }
+    .phone { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; }
+    .phone-main { font-family: var(--font-display); font-weight: 600; font-size: 17px; letter-spacing: 0.04em; }
+    .phone-sub { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.12em; }
 
-    .phone {
-      display: flex;
+    .burger {
+      display: none;
       flex-direction: column;
-      align-items: flex-end;
-      gap: 2px;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
     }
+    .burger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+    .burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .burger.open span:nth-child(2) { opacity: 0; }
+    .burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-    .phone-main { font-weight: 600; font-size: 15px; }
-    .phone-sub {
-      font-size: 11px;
-      color: var(--muted);
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(2,6,23,0.97);
+      z-index: 49;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.08em;
     }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { color: var(--muted); transition: color 0.2s; }
+    .mobile-menu a:hover { color: var(--accent); }
 
     .btn {
       border-radius: 999px;
       border: none;
       cursor: pointer;
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.06em;
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      padding: 10px 18px;
+      padding: 10px 20px;
       display: inline-flex;
       align-items: center;
       gap: 8px;
       transition: transform var(--transition), box-shadow var(--transition), background var(--transition), color var(--transition);
       white-space: nowrap;
     }
+    .btn-primary { background: linear-gradient(135deg, #facc15, #f97316); color: #111827; box-shadow: 0 10px 28px rgba(250,204,21,0.3); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 36px rgba(250,204,21,0.45); }
+    .btn-outline { background: transparent; color: var(--text); border: 1px solid rgba(148,163,184,0.45); }
+    .btn-outline:hover { background: rgba(15,23,42,0.9); border-color: rgba(249,250,251,0.65); }
+    .btn-ghost { background: rgba(255,255,255,0.06); color: var(--muted); border: 1px solid rgba(148,163,184,0.2); }
+    .btn-ghost:hover { background: rgba(255,255,255,0.1); color: var(--text); }
 
-    .btn-primary {
-      background: linear-gradient(135deg, #facc15, #f97316);
-      color: #111827;
-      box-shadow: 0 14px 30px rgba(250, 204, 21, 0.35);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 18px 40px rgba(250, 204, 21, 0.45);
-    }
-
-    .btn-outline {
-      background: transparent;
-      color: var(--text);
-      border: 1px solid rgba(148,163,184,0.5);
-    }
-
-    .btn-outline:hover {
-      background: rgba(15,23,42,0.9);
-      border-color: rgba(249,250,251,0.7);
-    }
-
-    /* HERO */
-
-    .hero { padding: 32px 0 40px; }
-
+    .hero { padding: 36px 0 44px; }
     .hero-inner {
       display: grid;
       grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
       gap: 32px;
       align-items: center;
     }
-
     .eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 4px 10px;
+      padding: 4px 12px;
       border-radius: 999px;
       background: rgba(15,23,42,0.9);
-      border: 1px solid rgba(148,163,184,0.4);
+      border: 1px solid rgba(148,163,184,0.35);
       color: var(--muted);
       font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.16em;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
     }
-
-    .eyebrow-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 999px;
-      background: #22c55e;
-      box-shadow: 0 0 0 4px rgba(34,197,94,0.25);
-    }
-
+    .eyebrow-dot { width: 6px; height: 6px; border-radius: 999px; background: #22c55e; box-shadow: 0 0 0 4px rgba(34,197,94,0.25); animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100% { box-shadow: 0 0 0 4px rgba(34,197,94,0.25); } 50% { box-shadow: 0 0 0 8px rgba(34,197,94,0.1); } }
     .hero-title {
-      font-size: clamp(30px, 4vw, 40px);
+      font-family: var(--font-display);
+      font-size: clamp(32px, 4.5vw, 52px);
       font-weight: 800;
       letter-spacing: 0.02em;
-      margin-bottom: 12px;
+      line-height: 1.1;
+      margin-bottom: 14px;
+      text-transform: uppercase;
     }
-
     .hero-title span { color: var(--accent); }
-
-    .hero-subtitle {
-      font-size: 14px;
-      color: var(--muted);
-      max-width: 460px;
-      margin-bottom: 20px;
-    }
-
-    .hero-cta {
+    .hero-subtitle { font-size: 15px; color: var(--muted); max-width: 460px; margin-bottom: 24px; line-height: 1.6; }
+    .hero-cta { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px; }
+    .hero-stats {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 18px;
+      gap: 20px;
     }
-
-    .hero-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 18px;
-      font-size: 12px;
-      color: var(--muted);
-    }
-
-    .hero-meta-item {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .hero-meta-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 999px;
-      background: var(--accent);
-    }
-
+    .hero-stat { display: flex; flex-direction: column; gap: 2px; }
+    .hero-stat-num { font-family: var(--font-display); font-size: 22px; font-weight: 800; color: var(--accent); letter-spacing: 0.04em; }
+    .hero-stat-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; }
+    .hero-card-header { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 12px; }
+    .hero-tag-inline { padding: 4px 10px; border-radius: 999px; background: rgba(239,68,68,0.15); border: 1px solid rgba(239,68,68,0.5); color: #fca5a5; font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; font-family: var(--font-display); font-weight: 700; }
     .hero-card {
       position: relative;
       border-radius: 26px;
       background: radial-gradient(circle at top left, #1f2937 0, #020617 55%, #000 100%);
-      padding: 18px 18px 16px;
+      padding: 20px 20px 18px;
       box-shadow: var(--shadow-soft);
       overflow: hidden;
-      border: 1px solid rgba(148,163,184,0.35);
+      border: 1px solid rgba(148,163,184,0.3);
       isolation: isolate;
     }
-
-    .hero-tag {
-      position: absolute;
-      top: 14px;
-      right: 16px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: rgba(15,23,42,0.9);
-      border: 1px solid rgba(148,163,184,0.5);
-      font-size: 11px;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-    }
-
     .hero-wheel {
       position: relative;
-      width: 210px;
-      height: 210px;
-      margin: 0 auto 8px;
+      width: 190px;
+      height: 190px;
+      margin: 10px auto 10px;
       border-radius: 999px;
       background: radial-gradient(circle at 30% 20%, #f9fafb 0, #e5e7eb 30%, #111827 65%, #020617 100%);
       display: flex;
       align-items: center;
       justify-content: center;
       box-shadow: 0 26px 60px rgba(0,0,0,0.9);
+      animation: spin 18s linear infinite;
     }
-
+    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
     .hero-wheel-inner {
       width: 62%;
       height: 62%;
@@ -314,357 +239,192 @@
       justify-content: center;
       position: relative;
       overflow: hidden;
+      animation: counter-spin 18s linear infinite;
     }
-
-    .hero-wheel-inner::before {
-      content: "";
-      position: absolute;
-      inset: 18%;
-      border-radius: inherit;
-      border: 2px solid rgba(148,163,184,0.6);
-    }
-
-    .hero-wheel-inner::after {
-      content: "";
-      width: 18px;
-      height: 18px;
-      border-radius: 999px;
-      background: radial-gradient(circle at 30% 20%, #facc15, #b45309);
-      box-shadow: 0 0 0 4px rgba(250,204,21,0.35);
-    }
-
-    .hero-wheel-glow {
-      position: absolute;
-      inset: 18%;
-      border-radius: 999px;
-      background: radial-gradient(circle at 50% 0, rgba(250,204,21,0.35), transparent 60%);
-      mix-blend-mode: screen;
-    }
-
-    .hero-price {
-      display: flex;
-      align-items: baseline;
-      justify-content: center;
-      gap: 6px;
-      margin-bottom: 4px;
-    }
-
-    .hero-price-main { font-size: 22px; font-weight: 700; }
+    @keyframes counter-spin { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
+    .hero-wheel-inner::before { content: ""; position: absolute; inset: 18%; border-radius: inherit; border: 2px solid rgba(148,163,184,0.5); }
+    .hero-wheel-inner::after { content: ""; width: 18px; height: 18px; border-radius: 999px; background: radial-gradient(circle at 30% 20%, #facc15, #b45309); box-shadow: 0 0 0 5px rgba(250,204,21,0.35); }
+    .hero-wheel-glow { position: absolute; inset: 18%; border-radius: 999px; background: radial-gradient(circle at 50% 0, rgba(250,204,21,0.35), transparent 60%); mix-blend-mode: screen; }
+    .hero-price { display: flex; align-items: baseline; justify-content: center; gap: 6px; margin-bottom: 4px; }
+    .hero-price-main { font-family: var(--font-display); font-size: 26px; font-weight: 800; letter-spacing: 0.02em; }
     .hero-price-sub { font-size: 11px; color: var(--muted); }
+    .hero-note { font-size: 11px; color: var(--muted); text-align: center; margin-bottom: 12px; line-height: 1.5; }
+    .hero-card-footer { display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: 11px; color: var(--muted); }
+    .hero-badge { padding: 4px 8px; border-radius: 999px; background: rgba(22,163,74,0.12); color: #bbf7d0; border: 1px solid rgba(34,197,94,0.5); display: inline-flex; align-items: center; gap: 6px; }
+    .hero-badge-dot { width: 6px; height: 6px; border-radius: 999px; background: #22c55e; }
 
-    .hero-note {
-      font-size: 11px;
-      color: var(--muted);
-      text-align: center;
-      margin-bottom: 10px;
-    }
-
-    .hero-card-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      font-size: 11px;
-      color: var(--muted);
-    }
-
-    .hero-badge {
-      padding: 4px 8px;
-      border-radius: 999px;
-      background: rgba(22,163,74,0.12);
-      color: #bbf7d0;
-      border: 1px solid rgba(34,197,94,0.5);
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .hero-badge-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 999px;
-      background: #22c55e;
-    }
-
-    /* SECTIONS */
-
-    section { padding: 10px 0 26px; }
-
-    .section-header {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 14px;
-    }
-
-    .section-title { font-size: 18px; font-weight: 600; }
+    section { padding: 12px 0 30px; }
+    .section-header { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
+    .section-title { font-family: var(--font-display); font-size: 22px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; }
     .section-sub { font-size: 12px; color: var(--muted); }
 
-    /* CATEGORIES */
-
-    .categories-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-    }
-
+    .categories-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
     .category-card {
       border-radius: var(--radius);
       background: radial-gradient(circle at top left, #111827 0, #020617 60%, #000 100%);
-      padding: 12px 12px 10px;
-      border: 1px solid rgba(148,163,184,0.35);
+      padding: 16px 14px 12px;
+      border: 1px solid rgba(148,163,184,0.3);
       box-shadow: 0 14px 30px rgba(0,0,0,0.7);
       position: relative;
       overflow: hidden;
       cursor: pointer;
       transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition), background var(--transition);
     }
-
-    .category-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.9);
-      border-color: rgba(250,204,21,0.7);
-      background: radial-gradient(circle at top left, #1f2937 0, #020617 60%, #000 100%);
-    }
-
-    .category-title { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
-    .category-sub { font-size: 11px; color: var(--muted); margin-bottom: 8px; }
-
-    .category-meta {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 11px;
-      color: var(--muted);
-    }
-
-    .category-chip {
-      padding: 3px 8px;
-      border-radius: 999px;
-      background: var(--accent-soft);
-      color: #facc15;
-      border: 1px solid rgba(250,204,21,0.5);
-    }
-
-    /* FILTER */
+    .category-card:hover { transform: translateY(-4px); box-shadow: 0 24px 44px rgba(0,0,0,0.9); border-color: rgba(250,204,21,0.6); }
+    .category-card:hover .cat-icon { transform: scale(1.1); }
+    .cat-icon { font-size: 28px; margin-bottom: 10px; display: block; transition: transform 0.3s ease; }
+    .category-title { font-family: var(--font-display); font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 5px; }
+    .category-sub { font-size: 12px; color: var(--muted); margin-bottom: 10px; line-height: 1.5; }
+    .category-meta { display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: var(--muted); }
+    .category-chip { padding: 3px 8px; border-radius: 999px; background: var(--accent-soft); color: #facc15; border: 1px solid rgba(250,204,21,0.4); font-size: 10px; font-family: var(--font-display); font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
 
     .filter-panel {
       border-radius: var(--radius);
       background: #020617;
       border: 1px solid rgba(31,41,55,0.9);
-      padding: 12px 12px 10px;
-      margin-bottom: 14px;
+      padding: 14px;
+      margin-bottom: 16px;
       display: grid;
       grid-template-columns: repeat(6, minmax(0, 1fr));
       gap: 10px;
       align-items: end;
-      font-size: 12px;
     }
-
-    .filter-field {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .filter-label {
-      color: var(--muted);
-      font-size: 11px;
-    }
-
+    .filter-field { display: flex; flex-direction: column; gap: 5px; }
+    .filter-label { color: var(--muted); font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; }
     .filter-select {
-      border-radius: 999px;
+      border-radius: 8px;
       border: 1px solid rgba(55,65,81,0.9);
-      background: #020617;
+      background: rgba(15,23,42,0.8);
       color: #e5e7eb;
-      padding: 7px 10px;
-      font-size: 12px;
-      outline: none;
-    }
-
-    .filter-select:focus {
-      border-color: rgba(250,204,21,0.8);
-    }
-
-    .filter-btn {
-      width: 100%;
-      justify-content: center;
-      font-size: 11px;
       padding: 8px 10px;
+      font-family: var(--font-body);
+      font-size: 13px;
+      outline: none;
+      transition: border-color var(--transition);
+      appearance: none;
+      cursor: pointer;
     }
+    .filter-select:focus { border-color: rgba(250,204,21,0.8); }
+    .filter-select option { background: #0b0d1a; }
+    .filter-actions { display: flex; gap: 6px; }
+    .filter-btn { flex: 1; justify-content: center; font-size: 12px; padding: 8px 12px; }
 
-    /* PRODUCTS */
-
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 14px;
-    }
-
+    .products-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
     .product-card {
       border-radius: var(--radius);
       background: #020617;
       border: 1px solid rgba(31,41,55,0.9);
-      padding: 10px 10px 9px;
+      padding: 12px;
       display: flex;
       flex-direction: column;
-      gap: 6px;
-      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition), background var(--transition);
+      gap: 8px;
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
       cursor: pointer;
+      position: relative;
+      overflow: hidden;
     }
-
-    .product-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 18px 36px rgba(0,0,0,0.9);
-      border-color: rgba(250,204,21,0.7);
-    }
-
-    .product-top {
-      display: flex;
-      justify-content: space-between;
-      gap: 6px;
-      align-items: flex-start;
-    }
-
-    .product-name { font-size: 12px; font-weight: 500; }
+    .product-card::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at top left, rgba(250,204,21,0.04) 0, transparent 60%); opacity: 0; transition: opacity var(--transition); pointer-events: none; }
+    .product-card:hover { transform: translateY(-3px); box-shadow: 0 18px 36px rgba(0,0,0,0.9); border-color: rgba(250,204,21,0.5); }
+    .product-card:hover::before { opacity: 1; }
+    .product-top { display: flex; justify-content: space-between; gap: 6px; align-items: flex-start; }
+    .product-name { font-size: 12px; font-weight: 600; line-height: 1.4; }
     .product-tag {
-      font-size: 10px;
-      padding: 2px 6px;
-      border-radius: 999px;
-      background: rgba(15,23,42,0.9);
-      border: 1px solid rgba(148,163,184,0.6);
-      color: var(--muted);
-      text-transform: uppercase;
+      flex-shrink: 0;
+      font-family: var(--font-display);
+      font-size: 9px;
+      font-weight: 700;
       letter-spacing: 0.12em;
+      padding: 3px 7px;
+      border-radius: 999px;
+      text-transform: uppercase;
     }
-
+    .product-tag.tag-sale { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.4); }
+    .product-tag.tag-hit { background: rgba(250,204,21,0.15); color: #fde68a; border: 1px solid rgba(250,204,21,0.4); }
+    .product-tag.tag-new { background: rgba(59,130,246,0.15); color: #93c5fd; border: 1px solid rgba(59,130,246,0.4); }
+    .product-tag.tag-stock { background: rgba(34,197,94,0.12); color: #86efac; border: 1px solid rgba(34,197,94,0.4); }
+    .product-tag.tag-fleet { background: rgba(168,85,247,0.15); color: #d8b4fe; border: 1px solid rgba(168,85,247,0.4); }
     .product-specs { font-size: 11px; color: var(--muted); }
-
-    .product-bottom {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 6px;
-      margin-top: 4px;
-    }
-
+    .product-divider { height: 1px; background: rgba(31,41,55,0.8); }
+    .product-bottom { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
     .product-price { display: flex; flex-direction: column; gap: 2px; }
-    .product-price-main { font-size: 14px; font-weight: 600; }
+    .product-price-main { font-family: var(--font-display); font-size: 16px; font-weight: 700; letter-spacing: 0.02em; }
     .product-price-sub { font-size: 10px; color: var(--muted); }
+    .product-price-old { text-decoration: line-through; color: var(--muted); font-size: 11px; }
+    .product-btn { font-size: 11px; padding: 7px 12px; }
+    .products-empty { margin-top: 8px; font-size: 13px; color: var(--muted); padding: 24px; text-align: center; border: 1px dashed rgba(55,65,81,0.7); border-radius: var(--radius); }
+    .products-count { font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+    .products-count-num { color: var(--accent); font-family: var(--font-display); font-weight: 700; font-size: 14px; }
 
-    .product-btn { font-size: 11px; padding: 6px 10px; }
-
-    .products-empty {
-      margin-top: 6px;
-      font-size: 12px;
-      color: var(--muted);
-    }
-
-    /* BENEFITS */
-
-    .benefits-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-    }
-
+    .benefits-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
     .benefit-card {
       border-radius: var(--radius);
       background: #020617;
       border: 1px solid rgba(31,41,55,0.9);
-      padding: 10px 11px 9px;
-      font-size: 12px;
-      color: var(--muted);
-    }
-
-    .benefit-title {
+      padding: 16px;
       font-size: 13px;
-      font-weight: 600;
-      margin-bottom: 4px;
-      color: #e5e7eb;
+      color: var(--muted);
+      line-height: 1.6;
+      transition: border-color var(--transition), transform var(--transition);
     }
+    .benefit-card:hover { border-color: rgba(250,204,21,0.4); transform: translateY(-2px); }
+    .benefit-icon { font-size: 26px; margin-bottom: 10px; }
+    .benefit-title { font-family: var(--font-display); font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 6px; color: #e5e7eb; }
 
-    /* STEPS */
-
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-    }
-
+    .steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; position: relative; }
+    .steps::before { content: ""; position: absolute; top: 22px; left: calc(33% + 10px); right: calc(33% + 10px); height: 1px; background: linear-gradient(90deg, rgba(250,204,21,0.5), rgba(250,204,21,0.5)); pointer-events: none; }
     .step-card {
       border-radius: var(--radius);
       background: #020617;
       border: 1px solid rgba(31,41,55,0.9);
-      padding: 10px 11px 9px;
-      font-size: 12px;
+      padding: 16px;
+      font-size: 13px;
       color: var(--muted);
+      line-height: 1.6;
+      transition: border-color var(--transition), transform var(--transition);
     }
-
+    .step-card:hover { border-color: rgba(250,204,21,0.4); transform: translateY(-2px); }
     .step-number {
-      width: 22px;
-      height: 22px;
+      width: 30px;
+      height: 30px;
       border-radius: 999px;
-      background: var(--accent-soft);
-      border: 1px solid rgba(250,204,21,0.6);
-      color: #facc15;
+      background: linear-gradient(135deg, #facc15, #f97316);
+      color: #111827;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 11px;
-      margin-bottom: 4px;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 14px;
+      margin-bottom: 10px;
+      box-shadow: 0 6px 16px rgba(250,204,21,0.35);
     }
+    .step-title { font-family: var(--font-display); font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 6px; color: #e5e7eb; }
 
-    .step-title {
-      font-size: 13px;
-      font-weight: 600;
-      margin-bottom: 4px;
-      color: #e5e7eb;
-    }
-
-    /* REVIEWS */
-
-    .reviews-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-    }
-
+    .reviews-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
     .review-card {
       border-radius: var(--radius);
       background: #020617;
       border: 1px solid rgba(31,41,55,0.9);
-      padding: 10px 11px 9px;
-      font-size: 12px;
-      color: var(--muted);
-    }
-
-    .review-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 4px;
-    }
-
-    .review-name {
+      padding: 16px;
       font-size: 13px;
-      font-weight: 600;
-      color: #e5e7eb;
+      color: var(--muted);
+      line-height: 1.6;
+      position: relative;
     }
-
-    .review-rating { font-size: 11px; color: #facc15; }
-
-    /* CONTACTS */
+    .review-card::before { content: '"'; position: absolute; top: 10px; right: 16px; font-size: 60px; color: rgba(250,204,21,0.08); line-height: 1; font-family: Georgia, serif; }
+    .review-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+    .review-avatar { width: 32px; height: 32px; border-radius: 999px; background: linear-gradient(135deg, #374151, #1f2937); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 800; font-size: 13px; color: #facc15; }
+    .review-meta { flex: 1; margin-left: 10px; }
+    .review-name { font-family: var(--font-display); font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: #e5e7eb; }
+    .review-date { font-size: 10px; color: var(--muted); }
+    .review-rating { font-size: 13px; color: #facc15; letter-spacing: 1px; }
 
     .contacts-grid {
       display: grid;
       grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
       gap: 14px;
     }
-
-    .contacts-card,
-    .map-card {
+    .contacts-card, .map-card {
       border-radius: var(--radius);
       background: #020617;
       border: 1px solid rgba(31,41,55,0.9);
@@ -672,88 +432,207 @@
       font-size: 12px;
       color: var(--muted);
     }
-
     .contacts-row {
       display: flex;
       justify-content: space-between;
       gap: 10px;
       margin-bottom: 4px;
     }
-
     .contacts-label { color: #6b7280; }
     .contacts-value { color: #e5e7eb; }
 
-    .map-placeholder {
+    .pickup-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .pickup-point {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
       border-radius: 10px;
-      background: radial-gradient(circle at top, #111827 0, #020617 60%, #000 100%);
-      border: 1px dashed rgba(75,85,99,0.8);
-      padding: 18px;
-      text-align: center;
-      font-size: 12px;
-      color: var(--muted);
+      border: 1px solid rgba(31,41,55,0.9);
+      background: rgba(15,23,42,0.5);
+      cursor: pointer;
+      transition: all 0.2s;
     }
-
-    /* FOOTER */
-
-    footer {
-      border-top: 1px solid rgba(31,41,55,0.9);
-      padding: 12px 0 16px;
-      margin-top: auto;
-      font-size: 11px;
-      color: var(--muted);
+    .pickup-point:hover {
+      border-color: rgba(250,204,21,0.5);
+      background: rgba(250,204,21,0.04);
     }
+    .pickup-point.active {
+      border-color: rgba(250,204,21,0.7);
+      background: rgba(250,204,21,0.08);
+    }
+    .pickup-num {
+      flex-shrink: 0;
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #facc15, #f97316);
+      color: #111827;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .pickup-info { flex: 1; }
+    .pickup-name { font-size: 13px; font-weight: 600; color: #e5e7eb; margin-bottom: 2px; }
+    .pickup-addr { font-size: 12px; color: var(--muted); }
+    .pickup-arrow { color: var(--muted); font-size: 18px; }
 
-    .footer-inner {
+    .map-full-card {
+      border-radius: var(--radius);
+      border: none;
+      overflow: hidden;
+      background: #020617;
+    }
+    .map-full-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 10px;
-      flex-wrap: wrap;
+      padding: 12px 16px;
+      border-bottom: 1px solid rgba(31,41,55,0.9);
     }
+    .map-full-title { font-family: var(--font-display); font-size: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; }
 
-    .footer-links {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .footer-links a { color: var(--muted); }
+    footer { border-top: 1px solid rgba(31,41,55,0.9); padding: 16px 0; margin-top: auto; font-size: 12px; color: var(--muted); }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+    .footer-links { display: flex; gap: 14px; flex-wrap: wrap; }
+    .footer-links a { color: var(--muted); transition: color var(--transition); cursor: pointer; }
     .footer-links a:hover { color: #e5e7eb; }
+    .footer-badge { display: flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 999px; border: 1px solid rgba(31,41,55,0.9); font-size: 10px; }
+    .footer-badge-dot { width: 5px; height: 5px; border-radius: 999px; background: #22c55e; }
 
-    /* RESPONSIVE */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.75);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      backdrop-filter: blur(6px);
+    }
+    .modal-overlay.open { display: flex; }
+    .modal {
+      background: #0b0d13;
+      border: 1px solid rgba(148,163,184,0.3);
+      border-radius: 20px;
+      padding: 28px;
+      width: 100%;
+      max-width: 420px;
+      position: relative;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.8);
+      animation: modalIn 0.3s ease;
+    }
+    @keyframes modalIn { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 30px;
+      height: 30px;
+      border-radius: 999px;
+      background: rgba(55,65,81,0.6);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 18px;
+      transition: background var(--transition), color var(--transition);
+    }
+    .modal-close:hover { background: rgba(239,68,68,0.2); color: #fca5a5; }
+    .modal-title { font-family: var(--font-display); font-size: 22px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 4px; }
+    .modal-product { font-size: 13px; color: var(--muted); margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid rgba(31,41,55,0.9); line-height: 1.4; }
+    .modal-product strong { color: #e5e7eb; }
+    .modal-form { display: flex; flex-direction: column; gap: 12px; }
+    .modal-label { display: flex; flex-direction: column; gap: 5px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+    .modal-input {
+      padding: 10px 14px;
+      border-radius: 10px;
+      border: 1px solid rgba(55,65,81,0.9);
+      background: rgba(15,23,42,0.8);
+      color: #e5e7eb;
+      font-family: var(--font-body);
+      font-size: 14px;
+      outline: none;
+      transition: border-color var(--transition);
+    }
+    .modal-input:focus { border-color: rgba(250,204,21,0.8); }
+    .modal-note { font-size: 11px; color: var(--muted); line-height: 1.5; }
+    .modal-success { display: none; text-align: center; padding: 20px 0; }
+    .modal-success-icon { font-size: 48px; margin-bottom: 12px; }
+    .modal-success-title { font-family: var(--font-display); font-size: 22px; font-weight: 800; text-transform: uppercase; color: #86efac; margin-bottom: 6px; }
+    .modal-success-sub { font-size: 13px; color: var(--muted); }
+
+    .scroll-top {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 42px;
+      height: 42px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #facc15, #f97316);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 24px rgba(250,204,21,0.4);
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.3s, transform 0.3s;
+      z-index: 40;
+      color: #111827;
+      font-size: 18px;
+    }
+    .scroll-top.visible { opacity: 1; transform: translateY(0); }
 
     @media (max-width: 960px) {
       .hero-inner { grid-template-columns: minmax(0, 1fr); }
-      .hero-card { max-width: 360px; margin: 0 auto; }
+      .hero-card { max-width: 380px; margin: 0 auto; }
       .categories-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .products-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .benefits-grid,
-      .steps,
-      .reviews-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .benefits-grid, .steps, .reviews-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .contacts-grid { grid-template-columns: minmax(0, 1fr); }
       .nav { display: none; }
       .filter-panel { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .burger { display: flex; }
+      .steps::before { display: none; }
     }
-
     @media (max-width: 640px) {
       .header-inner { padding: 10px 0; }
       .hero { padding-top: 20px; }
-      .categories-grid,
-      .products-grid,
-      .benefits-grid,
-      .steps,
-      .reviews-grid { grid-template-columns: minmax(0, 1fr); }
-      .btn { font-size: 12px; padding: 9px 14px; }
+      .categories-grid, .products-grid, .benefits-grid, .steps, .reviews-grid { grid-template-columns: minmax(0, 1fr); }
+      .btn { font-size: 13px; padding: 9px 16px; }
       .filter-panel { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .phone { display: none; }
     }
   </style>
 </head>
 <body>
 <div class="page">
+
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#catalog" onclick="closeMobileMenu()">Каталог</a>
+    <a href="#popular" onclick="closeMobileMenu()">Популярное</a>
+    <a href="#benefits" onclick="closeMobileMenu()">Преимущества</a>
+    <a href="#reviews" onclick="closeMobileMenu()">Отзывы</a>
+    <a href="#contacts" onclick="closeMobileMenu()">Контакты</a>
+  </div>
+
   <header>
     <div class="container">
       <div class="header-inner">
-        <div class="logo">
+        <div class="logo" onclick="window.scrollTo({top:0,behavior:'smooth'})">
           <div class="logo-mark">77</div>
           <div class="logo-text">
             <div class="logo-title">Шина 77</div>
@@ -769,11 +648,14 @@
         </nav>
         <div class="header-right">
           <div class="phone">
-            <div class="phone-main">+7 (495) 661‑91‑77</div>
-            <div class="phone-sub">звонок по россии бесплатный</div>
+            <a href="tel:+74956619177" class="phone-main">+7 (495) 661‑91‑77</a>
+            <div class="phone-sub">звонок по России бесплатный</div>
           </div>
           <button class="btn btn-primary" onclick="document.getElementById('catalog').scrollIntoView({behavior:'smooth'})">
             Подбор шин
+          </button>
+          <button class="burger" id="burger" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
           </button>
         </div>
       </div>
@@ -781,63 +663,49 @@
   </header>
 
   <main>
-    <!-- HERO -->
+    <!-- HERO — с обновлённым текстом про Московскую и Владимирскую области -->
     <section class="hero">
       <div class="container">
         <div class="hero-inner">
           <div>
             <div class="eyebrow">
               <span class="eyebrow-dot"></span>
-              <span>Склад в Москве и МО</span>
+              <span>Склады в Московской и Владимирской областях · Самовывоз и доставка</span>
             </div>
             <h1 class="hero-title">
-              Грузовые и легкогрузовые шины<br>
-              <span>с быстрой доставкой</span> по России
+              Грузовые и<br>
+              легкогрузовые шины<br>
+              <span>в наличии на складах</span><br>
+              Московской и Владимирской областей
             </h1>
             <p class="hero-subtitle">
-              Подберём шины под ваш транспорт за 5–7 минут, предложим несколько вариантов по цене и наличию, организуем доставку или монтаж.
+              Подберём шины под ваш транспорт за 5–7 минут — предложим несколько вариантов по цене и наличию. Самовывоз с наших складов (Коломна, Раменское, Кольчугино) или уточняйте условия у менеджера.
             </p>
             <div class="hero-cta">
-              <button class="btn btn-primary" onclick="document.getElementById('catalog').scrollIntoView({behavior:'smooth'})">
-                Подобрать шины
+              <button class="btn btn-primary" onclick="openModal('Консультация по подбору шин', 'Оставьте номер — менеджер перезвонит и подберёт оптимальный вариант.')">
+                ✦ Подобрать шины
               </button>
               <button class="btn btn-outline" onclick="document.getElementById('popular').scrollIntoView({behavior:'smooth'})">
                 Открыть каталог
               </button>
             </div>
-            <div class="hero-meta">
-              <div class="hero-meta-item">
-                <span class="hero-meta-dot"></span>
-                <span>Грузовые и легкогрузовые шины на складе</span>
-              </div>
-              <div class="hero-meta-item">
-                <span class="hero-meta-dot"></span>
-                <span>Доставка по Москве и регионам РФ</span>
-              </div>
+            <div class="hero-stats">
+              <div class="hero-stat"><div class="hero-stat-num" data-target="1200">0</div><div class="hero-stat-label">Позиций на складе</div></div>
+              <div class="hero-stat"><div class="hero-stat-num" data-target="6">0</div><div class="hero-stat-label">Лет на рынке</div></div>
+              <div class="hero-stat"><div class="hero-stat-num" data-target="340">0</div><div class="hero-stat-label">Постоянных клиентов</div></div>
+              <div class="hero-stat"><div class="hero-stat-num" style="font-size:16px;padding-top:4px;">Быстрая</div><div class="hero-stat-label">Отгрузка со склада</div></div>
             </div>
           </div>
           <div>
             <div class="hero-card">
-              <div class="hero-tag">Спецпредложение</div>
-              <div class="hero-wheel">
-                <div class="hero-wheel-inner">
-                  <div class="hero-wheel-glow"></div>
-                </div>
+              <div class="hero-card-header">
+                <div class="hero-tag-inline">🔥 Спецпредложение</div>
+                <div class="hero-badge"><span class="hero-badge-dot"></span><span>Гарантия до 12 мес.</span></div>
               </div>
-              <div class="hero-price">
-                <div class="hero-price-main">от 23 900 ₽</div>
-                <div class="hero-price-sub">за грузовую шину при заказе от 4 шт.</div>
-              </div>
-              <div class="hero-note">
-                Точные цены и наличие уточняйте у менеджера — подберём оптимальный вариант под ваш пробег и бюджет.
-              </div>
-              <div class="hero-card-footer">
-                <div class="hero-badge">
-                  <span class="hero-badge-dot"></span>
-                  <span>Гарантия до 12 месяцев</span>
-                </div>
-                <div>Сертифицированная продукция, прямые поставки</div>
-              </div>
+              <div class="hero-price"><div class="hero-price-main">от 23 900 ₽</div><div class="hero-price-sub">за шину при заказе от 4 шт.</div></div>
+              <div class="hero-note">Уточняйте цены и наличие у менеджера — подберём под ваш пробег и бюджет.</div>
+              <div class="hero-wheel"><div class="hero-wheel-inner"><div class="hero-wheel-glow"></div></div></div>
+              <div class="hero-card-footer"><div style="font-size:11px;color:var(--muted);">Прямые поставки · Сертифицированная продукция</div></div>
             </div>
           </div>
         </div>
@@ -847,35 +715,11 @@
     <!-- CATEGORIES -->
     <section id="catalog">
       <div class="container">
-        <div class="section-header">
-          <div class="section-title">Категории шин</div>
-          <div class="section-sub">Выберите тип транспорта, а мы подберём подходящие модели</div>
-        </div>
+        <div class="section-header"><div class="section-title">Категории шин</div><div class="section-sub">Выберите тип транспорта, а мы подберём подходящие модели</div></div>
         <div class="categories-grid">
-          <div class="category-card">
-            <div class="category-title">Грузовые шины</div>
-            <div class="category-sub">Для тягачей, прицепов, самосвалов и коммерческого транспорта.</div>
-            <div class="category-meta">
-              <div>R22.5 • рулевая / ведущая / прицепная</div>
-              <div class="category-chip">Опт и розница</div>
-            </div>
-          </div>
-          <div class="category-card">
-            <div class="category-title">Легкогрузовые шины</div>
-            <div class="category-sub">Газели, фургоны, малотоннажный транспорт.</div>
-            <div class="category-meta">
-              <div>R15C / R16C</div>
-              <div class="category-chip">Подбор по авто</div>
-            </div>
-          </div>
-          <div class="category-card">
-            <div class="category-title">Спецшины</div>
-            <div class="category-sub">Строительная и сельхозтехника, погрузчики.</div>
-            <div class="category-meta">
-              <div>под заказ</div>
-              <div class="category-chip">Индивидуально</div>
-            </div>
-          </div>
+          <div class="category-card" onclick="document.getElementById('popular').scrollIntoView({behavior:'smooth'})"><span class="cat-icon">🚛</span><div class="category-title">Грузовые шины</div><div class="category-sub">Для тягачей, прицепов, самосвалов и коммерческого транспорта. Рулевая, ведущая, прицепная оси.</div><div class="category-meta"><div>R22.5 · R17.5</div><div class="category-chip">Опт и розница</div></div></div>
+          <div class="category-card" onclick="document.getElementById('popular').scrollIntoView({behavior:'smooth'})"><span class="cat-icon">🚐</span><div class="category-title">Легкогрузовые шины</div><div class="category-sub">Газели, фургоны, малотоннажный транспорт. Широкий выбор типоразмеров в наличии.</div><div class="category-meta"><div>R15C / R16C</div><div class="category-chip">Подбор по авто</div></div></div>
+          <div class="category-card" onclick="openModal('Спецшины под заказ', 'Укажите марку и модель техники — подберём шины со сроком поставки.')"><span class="cat-icon">🏗️</span><div class="category-title">Спецшины</div><div class="category-sub">Строительная и сельхозтехника, погрузчики, спецавтомобили. Под заказ в сжатые сроки.</div><div class="category-meta"><div>Под заказ</div><div class="category-chip">Индивидуально</div></div></div>
         </div>
       </div>
     </section>
@@ -883,373 +727,98 @@
     <!-- POPULAR + FILTER -->
     <section id="popular">
       <div class="container">
-        <div class="section-header">
-          <div class="section-title">Каталог грузовых и легкогрузовых шин</div>
-          <div class="section-sub">Используйте фильтр, как на сайте Шина 77: ширина, высота, диаметр, ось, производитель</div>
-        </div>
-
-        <!-- FILTER PANEL -->
+        <div class="section-header"><div class="section-title">Каталог шин</div><div class="section-sub products-count">Показано: <span class="products-count-num" id="visible-count">10</span> из 10 позиций</div></div>
         <div class="filter-panel">
-          <div class="filter-field">
-            <div class="filter-label">Ширина</div>
-            <select id="filter-width" class="filter-select">
-              <option value="">Все</option>
-              <option value="315">315</option>
-              <option value="385">385</option>
-              <option value="295">295</option>
-              <option value="11">11</option>
-              <option value="205">205</option>
-              <option value="185">185</option>
-            </select>
-          </div>
-          <div class="filter-field">
-            <div class="filter-label">Высота</div>
-            <select id="filter-height" class="filter-select">
-              <option value="">Все</option>
-              <option value="80">80</option>
-              <option value="70">70</option>
-              <option value="65">65</option>
-              <option value="R">R (без указания)</option>
-            </select>
-          </div>
-          <div class="filter-field">
-            <div class="filter-label">Диаметр</div>
-            <select id="filter-diameter" class="filter-select">
-              <option value="">Все</option>
-              <option value="22.5">22.5</option>
-              <option value="16">16</option>
-              <option value="15">15</option>
-            </select>
-          </div>
-          <div class="filter-field">
-            <div class="filter-label">Ось</div>
-            <select id="filter-axis" class="filter-select">
-              <option value="">Все</option>
-              <option value="steer">Рулевая</option>
-              <option value="drive">Ведущая</option>
-              <option value="trailer">Прицепная</option>
-              <option value="universal">Универсальная</option>
-            </select>
-          </div>
-          <div class="filter-field">
-            <div class="filter-label">Производитель</div>
-            <select id="filter-brand" class="filter-select">
-              <option value="">Все</option>
-              <option value="Normaks">Normaks</option>
-              <option value="Kama">Кама</option>
-              <option value="Goodride">Goodride</option>
-              <option value="Hankook">Hankook</option>
-              <option value="Cordiant">Cordiant</option>
-            </select>
-          </div>
-          <div class="filter-field">
-            <button class="btn btn-primary filter-btn" onclick="applyFilter()">Подобрать</button>
-          </div>
+          <div class="filter-field"><div class="filter-label">Ширина</div><select id="filter-width" class="filter-select" onchange="applyFilter()"><option value="">Все</option><option value="315">315</option><option value="385">385</option><option value="295">295</option><option value="11">11</option><option value="205">205</option><option value="185">185</option></select></div>
+          <div class="filter-field"><div class="filter-label">Высота</div><select id="filter-height" class="filter-select" onchange="applyFilter()"><option value="">Все</option><option value="80">80</option><option value="70">70</option><option value="65">65</option><option value="R">R (без указания)</option></select></div>
+          <div class="filter-field"><div class="filter-label">Диаметр</div><select id="filter-diameter" class="filter-select" onchange="applyFilter()"><option value="">Все</option><option value="22.5">22.5</option><option value="16">16</option><option value="15">15</option></select></div>
+          <div class="filter-field"><div class="filter-label">Ось</div><select id="filter-axis" class="filter-select" onchange="applyFilter()"><option value="">Все</option><option value="steer">Рулевая</option><option value="drive">Ведущая</option><option value="trailer">Прицепная</option><option value="universal">Универсальная</option></select></div>
+          <div class="filter-field"><div class="filter-label">Производитель</div><select id="filter-brand" class="filter-select" onchange="applyFilter()"><option value="">Все</option><option value="Normaks">Normaks</option><option value="Kama">Кама</option><option value="Goodride">Goodride</option><option value="Hankook">Hankook</option><option value="Cordiant">Cordiant</option></select></div>
+          <div class="filter-field"><div class="filter-actions"><button class="btn btn-ghost filter-btn" onclick="resetFilter()">Сброс</button></div></div>
         </div>
-
-        <!-- PRODUCTS GRID -->
         <div class="products-grid" id="products-grid">
-          <!-- Примеры реальных позиций по структуре с сайта -->
-          <div class="product-card"
-               data-width="385"
-               data-height="65"
-               data-diameter="22.5"
-               data-axis="trailer"
-               data-brand="Normaks">
-            <div class="product-top">
-              <div>
-                <div class="product-name">Normaks NT022 385/65 R22.5 160K</div>
-                <div class="product-specs">прицепная ось • грузовые шины</div>
-              </div>
-              <div class="product-tag">акция</div>
-            </div>
-            <div class="product-bottom">
-              <div class="product-price">
-                <div class="product-price-main">25 500 ₽</div>
-                <div class="product-price-sub">старая цена 29 400 ₽</div>
-              </div>
-              <button class="btn btn-primary product-btn">Купить</button>
-            </div>
-          </div>
-
-          <div class="product-card"
-               data-width="315"
-               data-height="80"
-               data-diameter="22.5"
-               data-axis="drive"
-               data-brand="Normaks">
-            <div class="product-top">
-              <div>
-                <div class="product-name">Normaks ND102 315/80 R22.5 157/153L</div>
-                <div class="product-specs">ведущая ось • дальние перевозки</div>
-              </div>
-              <div class="product-tag">в наличии</div>
-            </div>
-            <div class="product-bottom">
-              <div class="product-price">
-                <div class="product-price-main">23 900 ₽</div>
-                <div class="product-price-sub">скидка от 4 шт.</div>
-              </div>
-              <button class="btn btn-primary product-btn">Купить</button>
-            </div>
-          </div>
-
-          <div class="product-card"
-               data-width="315"
-               data-height="70"
-               data-diameter="22.5"
-               data-axis="drive"
-               data-brand="Normaks">
-            <div class="product-top">
-              <div>
-                <div class="product-name">Normaks ND202 315/70 R22.5 154/150M</div>
-                <div class="product-specs">ведущая ось • региональные</div>
-              </div>
-              <div class="product-tag">хит продаж</div>
-            </div>
-            <div class="product-bottom">
-              <div class="product-price">
-                <div class="product-price-main">24 600 ₽</div>
-                <div class="product-price-sub">спецусловия для парков</div>
-              </div>
-              <button class="btn btn-primary product-btn">Купить</button>
-            </div>
-          </div>
-
-          <div class="product-card"
-               data-width="385"
-               data-height="65"
-               data-diameter="22.5"
-               data-axis="trailer"
-               data-brand="Kama">
-            <div class="product-top">
-              <div>
-                <div class="product-name">Кама NT 201 385/65 R22.5 160K</div>
-                <div class="product-specs">прицепная ось • ЦМК</div>
-              </div>
-              <div class="product-tag">в наличии</div>
-            </div>
-            <div class="product-bottom">
-              <div class="product-price">
-                <div class="product-price-main">27 750 ₽</div>
-                <div class="product-price-sub">старая цена 29 700 ₽</div>
-              </div>
-              <button class="btn btn-primary product-btn">Купить</button>
-            </div>
-          </div>
-
-          <div class="product-card"
-               data-width="315"
-               data-height="80"
-               data-diameter="22.5"
-               data-axis="drive"
-               data-brand="Kama">
-            <div class="product-top">
-              <div>
-                <div class="product-name">Кама NR 201 315/80 R22.5 156/150L</div>
-                <div class="product-specs">ведущая ось • универсальное применение</div>
-              </div>
-              <div class="product-tag">в наличии</div>
-            </div>
-            <div class="product-bottom">
-              <div class="product-price">
-                <div class="product-price-main">26 600 ₽</div>
-                <div class="product-price-sub">опт и розница</div>
-              </div>
-              <button class="btn btn-primary product-btn">Купить</button>
-            </div>
-          </div>
-
-          <div class="product-card"
-               data-width="11"
-               data-height="R"
-               data-diameter="22.5"
-               data-axis="steer"
-               data-brand="Kama">
-            <div class="product-top">
-              <div>
-                <div class="product-name">Кама NF 701 11 R22.5 148/145K</div>
-                <div class="product-specs">рулевая ось • магистраль</div>
-              </div>
-              <div class="product-tag">новинка</div>
-            </div>
-            <div class="product-bottom">
-              <div class="product-price">
-                <div class="product-price-main">23 800 ₽</div>
-                <div class="product-price-sub">гарантия производителя</div>
-              </div>
-              <button class="btn btn-primary product-btn">Купить</button>
-            </div>
-          </div>
-
-          <div class="product-card"
-               data-width="205"
-               data-height="65"
-               data-diameter="16"
-               data-axis="universal"
-               data-brand="Cordiant">
-            <div class="product-top">
-              <div>
-                <div class="product-name">Cordiant 205/65 R16C</div>
-                <div class="product-specs">легкогрузовые • фургоны и газели</div>
-              </div>
-              <div class="product-tag">в наличии</div>
-            </div>
-            <div class="product-bottom">
-              <div class="product-price">
-                <div class="product-price-main">8 900 ₽</div>
-                <div class="product-price-sub">монтаж по записи</div>
-              </div>
-              <button class="btn btn-primary product-btn">Купить</button>
-            </div>
-          </div>
-
-          <div class="product-card"
-               data-width="185"
-               data-height="75"
-               data-diameter="16"
-               data-axis="universal"
-               data-brand="Goodride">
-            <div class="product-top">
-              <div>
-                <div class="product-name">Goodride 185/75 R16C</div>
-                <div class="product-specs">легкогрузовые • город / трасса</div>
-              </div>
-              <div class="product-tag">под заказ</div>
-            </div>
-            <div class="product-bottom">
-              <div class="product-price">
-                <div class="product-price-main">по запросу</div>
-                <div class="product-price-sub">срок поставки от 3 дней</div>
-              </div>
-              <button class="btn btn-primary product-btn">Уточнить</button>
-            </div>
-          </div>
+          <div class="product-card" data-width="385" data-height="65" data-diameter="22.5" data-axis="trailer" data-brand="Normaks"><div class="product-top"><div><div class="product-name">Normaks NT022 385/65 R22.5 160K</div><div class="product-specs">прицепная ось · грузовые шины</div></div><div class="product-tag tag-sale">акция</div></div><div class="product-divider"></div><div class="product-bottom"><div class="product-price"><div class="product-price-main">25 500 ₽</div><div class="product-price-old">29 400 ₽</div></div><button class="btn btn-primary product-btn" onclick="openModal('Normaks NT022 385/65 R22.5 160K', 'Прицепная ось · Грузовые шины · 25 500 ₽ (акция)')">Купить</button></div></div>
+          <div class="product-card" data-width="315" data-height="80" data-diameter="22.5" data-axis="drive" data-brand="Normaks"><div class="product-top"><div><div class="product-name">Normaks ND102 315/80 R22.5 157/153L</div><div class="product-specs">ведущая ось · дальние перевозки</div></div><div class="product-tag tag-stock">в наличии</div></div><div class="product-divider"></div><div class="product-bottom"><div class="product-price"><div class="product-price-main">23 900 ₽</div><div class="product-price-sub">скидка от 4 шт.</div></div><button class="btn btn-primary product-btn" onclick="openModal('Normaks ND102 315/80 R22.5', 'Ведущая ось · Дальние перевозки · 23 900 ₽')">Купить</button></div></div>
+          <div class="product-card" data-width="315" data-height="70" data-diameter="22.5" data-axis="drive" data-brand="Normaks"><div class="product-top"><div><div class="product-name">Normaks ND202 315/70 R22.5 154/150M</div><div class="product-specs">ведущая ось · региональные</div></div><div class="product-tag tag-hit">хит продаж</div></div><div class="product-divider"></div><div class="product-bottom"><div class="product-price"><div class="product-price-main">22 400 ₽</div></div><button class="btn btn-primary product-btn" onclick="openModal('Normaks ND202 315/70 R22.5', 'Ведущая ось · Региональные · 22 400 ₽')">Купить</button></div></div>
+          <div class="product-card" data-width="295" data-height="80" data-diameter="22.5" data-axis="steer" data-brand="Cordiant"><div class="product-top"><div><div class="product-name">Cordiant TR-1 295/80 R22.5 152/148M</div><div class="product-specs">рулевая ось · магистральные</div></div><div class="product-tag tag-stock">в наличии</div></div><div class="product-divider"></div><div class="product-bottom"><div class="product-price"><div class="product-price-main">21 800 ₽</div><div class="product-price-sub">опт и розница</div></div><button class="btn btn-primary product-btn" onclick="openModal('Cordiant TR-1 295/80 R22.5', 'Рулевая ось · Магистральные · 21 800 ₽')">Купить</button></div></div>
+          <div class="product-card" data-width="11" data-height="R" data-diameter="22.5" data-axis="drive" data-brand="Kama"><div class="product-top"><div><div class="product-name">Кама NF 201 11 R22.5 148/145L</div><div class="product-specs">ведущая ось · универсальные</div></div><div class="product-tag tag-fleet">для парков</div></div><div class="product-divider"></div><div class="product-bottom"><div class="product-price"><div class="product-price-main">24 600 ₽</div><div class="product-price-sub">спецусловия для парков</div></div><button class="btn btn-primary product-btn" onclick="openModal('Кама NF 201 11 R22.5', 'Ведущая ось · Универсальные · 24 600 ₽')">Купить</button></div></div>
+          <div class="product-card" data-width="385" data-height="65" data-diameter="22.5" data-axis="trailer" data-brand="Kama"><div class="product-top"><div><div class="product-name">Кама NT 202 385/65 R22.5 160K</div><div class="product-specs">прицепная ось · грузовые шины</div></div><div class="product-tag tag-new">новинка</div></div><div class="product-divider"></div><div class="product-bottom"><div class="product-price"><div class="product-price-main">27 900 ₽</div><div class="product-price-sub">актуальная цена</div></div><button class="btn btn-primary product-btn" onclick="openModal('Кама NT 202 385/65 R22.5', 'Прицепная ось · Грузовые · 27 900 ₽')">Купить</button></div></div>
+          <div class="product-card" data-width="205" data-height="R" data-diameter="16" data-axis="universal" data-brand="Goodride"><div class="product-top"><div><div class="product-name">Goodride CR926 205 R16C 110/108Q</div><div class="product-specs">универсальная ось · легкогрузовые</div></div><div class="product-tag tag-stock">в наличии</div></div><div class="product-divider"></div><div class="product-bottom"><div class="product-price"><div class="product-price-main">9 900 ₽</div><div class="product-price-sub">опт и розница</div></div><button class="btn btn-primary product-btn" onclick="openModal('Goodride CR926 205 R16C', 'Универсальная ось · Легкогрузовые · 9 900 ₽')">Купить</button></div></div>
+          <div class="product-card" data-width="185" data-height="R" data-diameter="15" data-axis="universal" data-brand="Hankook"><div class="product-top"><div><div class="product-name">Hankook RA18 185 R15C 102/100R</div><div class="product-specs">универсальная ось · легкогрузовые</div></div><div class="product-tag tag-hit">хит</div></div><div class="product-divider"></div><div class="product-bottom"><div class="product-price"><div class="product-price-main">8 700 ₽</div></div><button class="btn btn-primary product-btn" onclick="openModal('Hankook RA18 185 R15C', 'Универсальная ось · Легкогрузовые · 8 700 ₽')">Купить</button></div></div>
+          <div class="product-card" data-width="315" data-height="80" data-diameter="22.5" data-axis="steer" data-brand="Cordiant"><div class="product-top"><div><div class="product-name">Cordiant TR-2 315/80 R22.5 156/150L</div><div class="product-specs">рулевая ось · дальние перевозки</div></div><div class="product-tag tag-new">новинка</div></div><div class="product-divider"></div><div class="product-bottom"><div class="product-price"><div class="product-price-main">26 200 ₽</div><div class="product-price-sub">актуальная цена</div></div><button class="btn btn-primary product-btn" onclick="openModal('Cordiant TR-2 315/80 R22.5', 'Рулевая ось · Дальние перевозки · 26 200 ₽')">Купить</button></div></div>
+          <div class="product-card" data-width="205" data-height="R" data-diameter="16" data-axis="universal" data-brand="Hankook"><div class="product-top"><div><div class="product-name">Hankook AH22 205/75 R16C 110/108R</div><div class="product-specs">универсальная ось · фургоны</div></div><div class="product-tag tag-sale">акция</div></div><div class="product-divider"></div><div class="product-bottom"><div class="product-price"><div class="product-price-main">11 400 ₽</div><div class="product-price-old">13 500 ₽</div></div><button class="btn btn-primary product-btn" onclick="openModal('Hankook AH22 205/75 R16C', 'Универсальная ось · Фургоны · 11 400 ₽ (акция)')">Купить</button></div></div>
         </div>
-
-        <div class="products-empty" id="products-empty" style="display:none;">
-          По выбранным параметрам ничего не найдено. Попробуйте убрать часть фильтров или позвоните менеджеру: +7 (495) 661‑91‑77
-        </div>
+        <div id="products-empty" class="products-empty" style="display:none;">😕 По вашему запросу ничего не найдено — попробуйте изменить параметры фильтра.</div>
       </div>
     </section>
 
     <!-- BENEFITS -->
-    <section id="benefits">
-      <div class="container">
-        <div class="section-header">
-          <div class="section-title">Почему выбирают «Шина 77»</div>
-          <div class="section-sub">Работаем с автопарками, ИП и частными клиентами</div>
-        </div>
-        <div class="benefits-grid">
-          <div class="benefit-card">
-            <div class="benefit-title">Прямые поставки</div>
-            <div>Работаем с официальными дистрибьюторами и проверенными поставщиками — без «серых» схем и сюрпризов.</div>
-          </div>
-          <div class="benefit-card">
-            <div class="benefit-title">Честный подбор</div>
-            <div>Подбираем шины под ваш пробег, нагрузки и бюджет, а не под максимальную маржу.</div>
-          </div>
-          <div class="benefit-card">
-            <div class="benefit-title">Сервис под ключ</div>
-            <div>Доставка, шиномонтаж, хранение, помощь с документами для бухгалтерии и лизинговых компаний.</div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <section id="benefits"><div class="container"><div class="section-header"><div class="section-title">Почему выбирают «Шина 77»</div><div class="section-sub">Работаем с автопарками, ИП и частными клиентами</div></div><div class="benefits-grid"><div class="benefit-card"><div class="benefit-icon">📦</div><div class="benefit-title">Прямые поставки</div><div>Работаем с официальными дистрибьюторами и проверенными поставщиками — без «серых» схем и неожиданных сюрпризов при приёмке.</div></div><div class="benefit-card"><div class="benefit-icon">🎯</div><div class="benefit-title">Честный подбор</div><div>Подбираем шины под ваш пробег, нагрузки и бюджет — а не под максимальную маржу. Предлагаем 2–3 варианта с объяснением разницы.</div></div><div class="benefit-card"><div class="benefit-icon">🔧</div><div class="benefit-title">Сервис под ключ</div><div>Доставка, шиномонтаж, хранение, помощь с документами для бухгалтерии и лизинговых компаний — берём на себя весь процесс.</div></div></div></div></section>
 
     <!-- STEPS -->
-    <section>
-      <div class="container">
-        <div class="section-header">
-          <div class="section-title">Как мы работаем</div>
-          <div class="section-sub">Простой и понятный процесс — без лишней бюрократии</div>
-        </div>
-        <div class="steps">
-          <div class="step-card">
-            <div class="step-number">1</div>
-            <div class="step-title">Заявка или звонок</div>
-            <div>Вы оставляете заявку на сайте или звоните нам — рассказываете про транспорт и задачи.</div>
-          </div>
-          <div class="step-card">
-            <div class="step-number">2</div>
-            <div class="step-title">Подбор и согласование</div>
-            <div>Мы предлагаем несколько вариантов, согласуем цены, сроки и формат доставки или монтажа.</div>
-          </div>
-          <div class="step-card">
-            <div class="step-number">3</div>
-            <div class="step-title">Поставка и поддержка</div>
-            <div>Отгружаем шины, при необходимости монтируем и остаёмся на связи по дальнейшему обслуживанию.</div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <section><div class="container"><div class="section-header"><div class="section-title">Как мы работаем</div><div class="section-sub">Простой и понятный процесс — без лишней бюрократии</div></div><div class="steps"><div class="step-card"><div class="step-number">1</div><div class="step-title">Заявка или звонок</div><div>Вы оставляете заявку на сайте или звоните — рассказываете про транспорт и задачи. Работаем 6 дней в неделю с 9:00 до 19:00.</div></div><div class="step-card"><div class="step-number">2</div><div class="step-title">Подбор и согласование</div><div>Предлагаем несколько вариантов, согласуем цены, сроки и удобный формат получения. Обычно занимает 10–15 минут.</div></div><div class="step-card"><div class="step-number">3</div><div class="step-title">Поставка и поддержка</div><div>Отгружаем шины со склада, при необходимости помогаем с монтажом и остаёмся на связи по гарантийным вопросам.</div></div></div></div></section>
 
     <!-- REVIEWS -->
-    <section id="reviews">
-      <div class="container">
-        <div class="section-header">
-          <div class="section-title">Отзывы клиентов</div>
-          <div class="section-sub">Нам доверяют автопарки, логистические компании и частные владельцы</div>
-        </div>
-        <div class="reviews-grid">
-          <div class="review-card">
-            <div class="review-header">
-              <div class="review-name">ООО «ТрансЛогистик»</div>
-              <div class="review-rating">★★★★★</div>
-            </div>
-            <div>Берём здесь шины на тягачи и прицепы. Нравится, что всегда предлагают несколько вариантов и не навязывают самое дорогое.</div>
-          </div>
-          <div class="review-card">
-            <div class="review-header">
-              <div class="review-name">ИП Кузнецов</div>
-              <div class="review-rating">★★★★★</div>
-            </div>
-            <div>Подобрали комплект на газель и легковую машину. Всё быстро, цены адекватные, помогли с доставкой в область.</div>
-          </div>
-          <div class="review-card">
-            <div class="review-header">
-              <div class="review-name">Автопарк 24</div>
-              <div class="review-rating">★★★★☆</div>
-            </div>
-            <div>Работаем по договору, устраивают сроки и подход. По редким позициям заранее предупреждают о сроках поставки.</div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <section id="reviews"><div class="container"><div class="section-header"><div class="section-title">Отзывы клиентов</div><div class="section-sub">Нам доверяют автопарки, логистические компании и частные владельцы</div></div><div class="reviews-grid"><div class="review-card"><div class="review-header"><div class="review-avatar">ТЛ</div><div class="review-meta"><div class="review-name">ООО «ТрансЛогистик»</div><div class="review-date">Апрель 2026</div></div><div class="review-rating">★★★★★</div></div><div>Берём здесь шины на тягачи и прицепы. Нравится, что всегда предлагают несколько вариантов и не навязывают самое дорогое. Оформление документов — без вопросов.</div></div><div class="review-card"><div class="review-header"><div class="review-avatar">ИП</div><div class="review-meta"><div class="review-name">ИП Кузнецов</div><div class="review-date">Март 2026</div></div><div class="review-rating">★★★★★</div></div><div>Подобрали комплект на газель и легковую машину. Всё быстро, цены адекватные, помогли с доставкой в область. Связь с менеджером — оперативная.</div></div><div class="review-card"><div class="review-header"><div class="review-avatar">А24</div><div class="review-meta"><div class="review-name">Автопарк 24</div><div class="review-date">Февраль 2026</div></div><div class="review-rating">★★★★☆</div></div><div>Работаем по договору, устраивают сроки и подход. По редким позициям заранее предупреждают о сроках поставки — это честно и удобно для планирования.</div></div></div></div></section>
 
-    <!-- CONTACTS -->
+    <!-- CONTACTS — карта и точки самовывоза -->
     <section id="contacts">
       <div class="container">
         <div class="section-header">
-          <div class="section-title">Контакты и режим работы</div>
-          <div class="section-sub">Приезжайте на склад или звоните — обсудим задачи и подберём решение</div>
+          <div class="section-title">Контакты и самовывоз</div>
+          <div class="section-sub">Приезжайте на любой из наших складов — уточните наличие заранее по телефону</div>
         </div>
+
         <div class="contacts-grid">
           <div class="contacts-card">
-            <div class="contacts-row">
-              <div class="contacts-label">Адрес склада</div>
-              <div class="contacts-value">Москва, Варшавское шоссе, 42</div>
+            <div style="font-family:var(--font-display);font-size:14px;font-weight:700;margin-bottom:12px;">📞 Связаться с нами</div>
+            <div class="contacts-row"><div class="contacts-label">Телефон</div><div class="contacts-value"><a href="tel:+74956619177">+7 (495) 661‑91‑77</a></div></div>
+            <div class="contacts-row"><div class="contacts-label">Email</div><div class="contacts-value"><a href="mailto:zakaz@ishina77.ru">zakaz@ishina77.ru</a></div></div>
+            <div class="contacts-row"><div class="contacts-label">Режим работы</div><div class="contacts-value">Пн–Сб: 9:00–19:00, Вс — по договорённости</div></div>
+            <div style="margin-top:12px; display:flex; gap:8px; flex-wrap:wrap;">
+              <button class="btn btn-primary" onclick="window.open('https://yandex.ru/maps/?pt=38.848,55.078&z=12', '_blank')">Проложить маршрут</button>
+              <button class="btn btn-outline" onclick="openModal('Заказать звонок', 'Оставьте номер — перезвоним в течение 10 минут.')">Заказать звонок</button>
             </div>
-            <div class="contacts-row">
-              <div class="contacts-label">Телефон</div>
-              <div class="contacts-value">+7 (495) 661‑91‑77</div>
-            </div>
-            <div class="contacts-row">
-              <div class="contacts-label">Email</div>
-              <div class="contacts-value">zakaz@ishina77.ru</div>
-            </div>
-            <div class="contacts-row">
-              <div class="contacts-label">Режим работы</div>
-              <div class="contacts-value">Пн–Сб: 9:00–19:00, Вс — по договорённости</div>
-            </div>
-            <div style="margin-top:8px; display:flex; gap:8px; flex-wrap:wrap;">
-              <button class="btn btn-primary">Проложить маршрут</button>
-              <button class="btn btn-outline">Заказать звонок</button>
+
+            <div style="font-family:var(--font-display);font-size:14px;font-weight:700;margin:16px 0 8px 0;">📍 Точки самовывоза</div>
+            <div class="pickup-list">
+              <div class="pickup-point" data-point="0" onclick="showOnMap(0)">
+                <div class="pickup-num">1</div>
+                <div class="pickup-info">
+                  <div class="pickup-name">Склад в Коломне</div>
+                  <div class="pickup-addr">Московская обл., г. Коломна, село Амерево, автодорога М-5 Урал, тер 1</div>
+                  <div class="pickup-hours">Пн–Сб 9:00–19:00</div>
+                </div>
+                <div class="pickup-arrow">›</div>
+              </div>
+              <div class="pickup-point" data-point="1" onclick="showOnMap(1)">
+                <div class="pickup-num">2</div>
+                <div class="pickup-info">
+                  <div class="pickup-name">Склад в Раменском</div>
+                  <div class="pickup-addr">Московская обл., Раменский район, село Ганусово промзона, стр. 1</div>
+                  <div class="pickup-hours">Пн–Сб 9:00–18:00</div>
+                </div>
+                <div class="pickup-arrow">›</div>
+              </div>
+              <div class="pickup-point" data-point="2" onclick="showOnMap(2)">
+                <div class="pickup-num">3</div>
+                <div class="pickup-info">
+                  <div class="pickup-name">Склад в Кольчугино</div>
+                  <div class="pickup-addr">Владимирская обл., г. Кольчугино, улица Колхозная, д. 99а</div>
+                  <div class="pickup-hours">Пн–Пт 9:00–17:00</div>
+                </div>
+                <div class="pickup-arrow">›</div>
+              </div>
             </div>
           </div>
-          <div class="map-card">
-            <div class="map-placeholder">
-              Здесь может быть интерактивная карта (Яндекс.Карты / Google Maps) с меткой склада и маршрутом.
+
+          <div class="map-card" style="padding:0; overflow:hidden; border-radius: var(--radius);">
+            <div class="map-full-card" style="border:none;">
+              <div class="map-full-header">
+                <div class="map-full-title">📍 Наши склады на карте</div>
+                <a href="https://yandex.ru/maps/?pt=38.848,55.078~38.295,55.452~39.379,56.294&z=8" target="_blank" class="btn btn-ghost" style="font-size:11px;padding:6px 14px;">Открыть все точки ↗</a>
+              </div>
+              <div id="yandex-map" style="width:100%; height:380px;"></div>
             </div>
           </div>
         </div>
@@ -1260,51 +829,70 @@
   <footer>
     <div class="container">
       <div class="footer-inner">
-        <div>© Шина 77, 2020–2026. Все права защищены.</div>
-        <div class="footer-links">
-          <a href="#catalog">Каталог</a>
-          <a href="#popular">Популярное</a>
-          <a href="#contacts">Контакты</a>
-          <a href="#">Политика конфиденциальности</a>
-        </div>
+        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;"><span>© Шина 77, 2020–2026</span><span class="footer-badge"><span class="footer-badge-dot"></span> Работаем сегодня</span></div>
+        <div class="footer-links"><a href="#catalog">Каталог</a><a href="#popular">Популярное</a><a href="#contacts">Контакты</a><a href="#" onclick="openModal('Политика конфиденциальности', 'Информация собирается только для обработки заявок. Данные не передаются третьим лицам.'); return false;">Политика конфиденциальности</a></div>
       </div>
     </div>
   </footer>
 </div>
 
+<!-- MODAL -->
+<div class="modal-overlay" id="modal-overlay" onclick="handleOverlayClick(event)"><div class="modal"><button class="modal-close" onclick="closeModal()">×</button><div id="modal-form-wrap"><div class="modal-title">Оформить заявку</div><div class="modal-product" id="modal-product-info"><strong id="modal-product-name"></strong><br><span id="modal-product-desc"></span></div><div class="modal-form"><label class="modal-label">Ваше имя<input class="modal-input" type="text" id="modal-name" placeholder="Иван Иванов"></label><label class="modal-label">Телефон<input class="modal-input" type="tel" id="modal-phone" placeholder="+7 (___) ___-__-__"></label><label class="modal-label">Комментарий (необязательно)<input class="modal-input" type="text" id="modal-comment" placeholder="Количество шин, пожелания..."></label><button class="btn btn-primary" onclick="submitModal()" style="width:100%;justify-content:center;font-size:15px;padding:12px;">Отправить заявку</button><div class="modal-note">Нажимая кнопку, вы соглашаетесь на обработку персональных данных. Менеджер свяжется с вами в течение 10–15 минут.</div></div></div><div class="modal-success" id="modal-success"><div class="modal-success-icon">✅</div><div class="modal-success-title">Заявка принята!</div><div class="modal-success-sub">Менеджер свяжется с вами в течение 10–15 минут.<br>Работаем Пн–Сб с 9:00 до 19:00.</div></div></div></div>
+
+<button class="scroll-top" id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<!-- Яндекс.Карта API -->
+<script src="https://api-maps.yandex.ru/2.1/?apikey=814fa584-8a11-4af3-8744-434c92570e43&lang=ru_RU"></script>
 <script>
-function applyFilter() {
-  const width = document.getElementById('filter-width').value;
-  const height = document.getElementById('filter-height').value;
-  const diameter = document.getElementById('filter-diameter').value;
-  const axis = document.getElementById('filter-axis').value;
-  const brand = document.getElementById('filter-brand').value;
+  var map;
+  var points = [
+    { coords: [55.078, 38.848], name: "Склад в Коломне", address: "Московская обл., г. Коломна, село Амерево, автодорога М-5 Урал, тер 1" },
+    { coords: [55.452, 38.295], name: "Склад в Раменском", address: "Московская обл., Раменский район, село Ганусово промзона, стр. 1" },
+    { coords: [56.294, 39.379], name: "Склад в Кольчугино", address: "Владимирская обл., г. Кольчугино, улица Колхозная, д. 99а" }
+  ];
 
-  const cards = document.querySelectorAll('#products-grid .product-card');
-  let visibleCount = 0;
+  ymaps.ready(init);
+  function init() {
+    map = new ymaps.Map("yandex-map", {
+      center: [55.45, 38.8],
+      zoom: 8,
+      controls: ["zoomControl", "fullscreenControl"]
+    });
 
-  cards.forEach(card => {
-    const w = card.getAttribute('data-width');
-    const h = card.getAttribute('data-height');
-    const d = card.getAttribute('data-diameter');
-    const a = card.getAttribute('data-axis');
-    const b = card.getAttribute('data-brand');
+    points.forEach(function(point, index) {
+      var placemark = new ymaps.Placemark(point.coords, {
+        balloonContentHeader: point.name,
+        balloonContentBody: point.address,
+        balloonContentFooter: '<a href="https://yandex.ru/maps/?pt=' + point.coords[1] + ',' + point.coords[0] + '&z=15" target="_blank" style="color:#facc15;">Проложить маршрут →</a>'
+      }, {
+        preset: "islands#redIcon",
+        iconColor: "#facc15"
+      });
+      map.geoObjects.add(placemark);
+    });
+  }
 
-    let show = true;
+  function showOnMap(index) {
+    var point = points[index];
+    map.setCenter(point.coords, 14);
+    document.querySelectorAll('.pickup-point').forEach(function(el, i) {
+      el.classList.toggle('active', i === index);
+    });
+  }
 
-    if (width && w !== width) show = false;
-    if (height && h !== height) show = false;
-    if (diameter && d !== diameter) show = false;
-    if (axis && a !== axis) show = false;
-    if (brand && b !== brand) show = false;
-
-    card.style.display = show ? '' : 'none';
-    if (show) visibleCount++;
-  });
-
-  const empty = document.getElementById('products-empty');
-  empty.style.display = visibleCount === 0 ? 'block' : 'none';
-}
+  function toggleMenu() { var menu = document.getElementById('mobile-menu'); var burger = document.getElementById('burger'); menu.classList.toggle('open'); burger.classList.toggle('open'); }
+  function closeMobileMenu() { document.getElementById('mobile-menu').classList.remove('open'); document.getElementById('burger').classList.remove('open'); }
+  function applyFilter() { var width=document.getElementById('filter-width').value; var height=document.getElementById('filter-height').value; var diameter=document.getElementById('filter-diameter').value; var axis=document.getElementById('filter-axis').value; var brand=document.getElementById('filter-brand').value; var cards=document.querySelectorAll('#products-grid .product-card'); var visible=0; cards.forEach(function(card){var match=(!width||card.dataset.width===width)&&(!height||card.dataset.height===height)&&(!diameter||card.dataset.diameter===diameter)&&(!axis||card.dataset.axis===axis)&&(!brand||card.dataset.brand===brand); card.style.display=match?'':'none'; if(match) visible++;}); document.getElementById('visible-count').textContent=visible; document.getElementById('products-empty').style.display=visible===0?'block':'none'; }
+  function resetFilter() { ['filter-width','filter-height','filter-diameter','filter-axis','filter-brand'].forEach(function(id){document.getElementById(id).value='';}); applyFilter(); }
+  function openModal(name,desc){ document.getElementById('modal-product-name').textContent=name; document.getElementById('modal-product-desc').textContent=desc; document.getElementById('modal-form-wrap').style.display=''; document.getElementById('modal-success').style.display='none'; document.getElementById('modal-name').value=''; document.getElementById('modal-phone').value=''; document.getElementById('modal-comment').value=''; document.getElementById('modal-overlay').classList.add('open'); document.body.style.overflow='hidden'; }
+  function closeModal(){ document.getElementById('modal-overlay').classList.remove('open'); document.body.style.overflow=''; }
+  function handleOverlayClick(e){ if(e.target===document.getElementById('modal-overlay')) closeModal(); }
+  function submitModal(){ var phone=document.getElementById('modal-phone').value.trim(); if(!phone){ document.getElementById('modal-phone').focus(); document.getElementById('modal-phone').style.borderColor='rgba(239,68,68,0.8)'; setTimeout(function(){document.getElementById('modal-phone').style.borderColor='';},1500); return; } document.getElementById('modal-form-wrap').style.display='none'; document.getElementById('modal-success').style.display='block'; setTimeout(closeModal,3500); }
+  document.addEventListener('keydown',function(e){if(e.key==='Escape') closeModal();});
+  var scrollBtn=document.getElementById('scroll-top'); window.addEventListener('scroll',function(){scrollBtn.classList.toggle('visible',window.scrollY>400);});
+  function animateCounters(){ document.querySelectorAll('[data-target]').forEach(function(el){var target=parseInt(el.dataset.target); var suffix=el.dataset.target>=1000?'+':''; var current=0; var step=Math.ceil(target/60); var timer=setInterval(function(){current=Math.min(current+step,target); el.textContent=current.toLocaleString('ru')+(current===target?suffix:''); if(current>=target) clearInterval(timer);},20);}); }
+  var heroStats=document.querySelector('.hero-stats'); var counted=false; var observer=new IntersectionObserver(function(entries){if(entries[0].isIntersecting&&!counted){ counted=true; animateCounters(); }},{threshold:0.5}); if(heroStats) observer.observe(heroStats);
+  document.getElementById('visible-count').textContent=document.querySelectorAll('#products-grid .product-card').length;
 </script>
 </body>
 </html>
