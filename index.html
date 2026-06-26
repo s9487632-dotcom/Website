@@ -1,10 +1,15 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
   <title>Шина 77 — грузовые и легкогрузовые шины</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Шины для грузового и легкогрузового транспорта в наличии на складах Московской и Владимирской областей. Самовывоз и доставка.">
+  <meta name="keywords" content="шины, грузовые шины, легкогрузовые шины, шины для газели, шины для фургонов, шины 77, кама шины">
+  <meta property="og:title" content="Шина 77 — грузовые и легкогрузовые шины">
+  <meta property="og:description" content="Шины для грузового и легкогрузового транспорта в наличии.">
+  <meta property="og:type" content="website">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚛</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
@@ -25,9 +30,7 @@
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
-
     body {
       font-family: var(--font-body);
       background: radial-gradient(circle at top, #111827 0, #020617 45%, #000 100%);
@@ -35,15 +38,13 @@
       line-height: 1.5;
       -webkit-font-smoothing: antialiased;
     }
-
     a { color: inherit; text-decoration: none; }
     img { max-width: 100%; display: block; }
 
     .page { min-height: 100vh; display: flex; flex-direction: column; }
     .container { width: 100%; max-width: 1180px; margin: 0 auto; padding: 0 16px; }
 
-    /* фикс для якорных ссылок */
-    #catalog, #popular, #benefits, #reviews, #contacts {
+    #catalog, #popular, #benefits, #contacts {
       scroll-margin-top: 85px;
     }
 
@@ -95,6 +96,37 @@
     .phone-main { font-family: var(--font-display); font-weight: 600; font-size: 17px; letter-spacing: 0.04em; }
     .phone-sub { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.12em; }
 
+    /* Корзина в шапке */
+    .cart-icon-wrap {
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      transition: background 0.2s;
+    }
+    .cart-icon-wrap:hover { background: rgba(255,255,255,0.12); }
+    .cart-icon-wrap svg { width: 24px; height: 24px; fill: none; stroke: var(--text); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .cart-count {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      background: #facc15;
+      color: #111827;
+      font-size: 10px;
+      font-weight: 800;
+      padding: 2px 6px;
+      border-radius: 999px;
+      min-width: 18px;
+      text-align: center;
+      line-height: 1.4;
+      box-shadow: 0 2px 8px rgba(250,204,21,0.4);
+    }
+
     .burger {
       display: none;
       flex-direction: column;
@@ -113,7 +145,7 @@
       transition: all 0.3s ease;
     }
     .burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    .burger.open span:nth-child(2) { opacity: 0; }
+    .burger.open span:nth-child(2) { opacity: 0; transform: translateX(-10px); }
     .burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
     .mobile-menu {
@@ -125,16 +157,33 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 30px;
+      padding: 30px 0;
+      gap: 12px;
       font-family: var(--font-display);
-      font-size: 32px;
+      font-size: 20px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.08em;
     }
     .mobile-menu.open { display: flex; }
-    .mobile-menu a { color: var(--muted); transition: color 0.2s; }
+    .mobile-menu a { color: var(--muted); transition: color 0.2s; padding: 4px 0; }
     .mobile-menu a:hover { color: var(--accent); }
+    .mobile-menu .menu-contacts {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      text-transform: none;
+      letter-spacing: normal;
+      font-weight: 500;
+      color: #e5e7eb;
+      border-top: 1px solid rgba(148,163,184,0.2);
+      padding-top: 20px;
+      width: 80%;
+    }
+    .mobile-menu .menu-contacts a:hover { color: var(--accent); }
 
     .btn {
       border-radius: 999px;
@@ -158,6 +207,10 @@
     .btn-outline:hover { background: rgba(15,23,42,0.9); border-color: rgba(249,250,251,0.65); }
     .btn-ghost { background: rgba(255,255,255,0.06); color: var(--muted); border: 1px solid rgba(148,163,184,0.2); }
     .btn-ghost:hover { background: rgba(255,255,255,0.1); color: var(--text); }
+    .btn-buy { background: #4b5563; color: white; transition: 0.2s; }
+    .btn-buy:hover { background: #6b7280; }
+    .btn-danger { background: rgba(239,68,68,0.2); color: #fca5a5; border: 1px solid rgba(239,68,68,0.3); }
+    .btn-danger:hover { background: rgba(239,68,68,0.4); }
 
     .hero { padding: 36px 0 44px; }
     .hero-inner {
@@ -182,6 +235,7 @@
     }
     .eyebrow-dot { width: 6px; height: 6px; border-radius: 999px; background: #22c55e; box-shadow: 0 0 0 4px rgba(34,197,94,0.25); animation: pulse 2s infinite; }
     @keyframes pulse { 0%,100% { box-shadow: 0 0 0 4px rgba(34,197,94,0.25); } 50% { box-shadow: 0 0 0 8px rgba(34,197,94,0.1); } }
+    
     .hero-title {
       font-family: var(--font-display);
       font-size: clamp(32px, 4.5vw, 52px);
@@ -244,7 +298,6 @@
     @keyframes counter-spin { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
     .hero-wheel-inner::before { content: ""; position: absolute; inset: 18%; border-radius: inherit; border: 2px solid rgba(148,163,184,0.5); }
     .hero-wheel-inner::after { content: ""; width: 18px; height: 18px; border-radius: 999px; background: radial-gradient(circle at 30% 20%, #facc15, #b45309); box-shadow: 0 0 0 5px rgba(250,204,21,0.35); }
-    .hero-wheel-glow { position: absolute; inset: 18%; border-radius: 999px; background: radial-gradient(circle at 50% 0, rgba(250,204,21,0.35), transparent 60%); mix-blend-mode: screen; }
     .hero-price { display: flex; align-items: baseline; justify-content: center; gap: 6px; margin-bottom: 4px; }
     .hero-price-main { font-family: var(--font-display); font-size: 26px; font-weight: 800; letter-spacing: 0.02em; }
     .hero-price-sub { font-size: 11px; color: var(--muted); }
@@ -258,7 +311,7 @@
     .section-title { font-family: var(--font-display); font-size: 22px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; }
     .section-sub { font-size: 12px; color: var(--muted); }
 
-    .categories-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+    .categories-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
     .category-card {
       border-radius: var(--radius);
       background: radial-gradient(circle at top left, #111827 0, #020617 60%, #000 100%);
@@ -285,7 +338,7 @@
       padding: 14px;
       margin-bottom: 16px;
       display: grid;
-      grid-template-columns: repeat(6, minmax(0, 1fr));
+      grid-template-columns: repeat(7, minmax(0, 1fr)); /* 7 колонок для поиска */
       gap: 10px;
       align-items: end;
     }
@@ -301,62 +354,103 @@
       font-size: 13px;
       outline: none;
       transition: border-color var(--transition);
-      appearance: none;
       cursor: pointer;
     }
     .filter-select:focus { border-color: rgba(250,204,21,0.8); }
     .filter-select option { background: #0b0d1a; }
+    
+    .brand-search-container { position: relative; }
+    .brand-search-input {
+      width: 100%;
+      border-radius: 8px;
+      border: 1px solid rgba(55,65,81,0.9);
+      background: rgba(15,23,42,0.8);
+      color: #e5e7eb;
+      padding: 8px 10px;
+      font-family: var(--font-body);
+      font-size: 13px;
+      outline: none;
+    }
+    .brand-search-input:focus { border-color: rgba(250,204,21,0.8); }
+    .brand-dropdown {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: #0b0d13;
+      border: 1px solid rgba(250,204,21,0.4);
+      border-radius: 8px;
+      max-height: 180px;
+      overflow-y: auto;
+      z-index: 60;
+      display: none;
+      margin-top: 4px;
+    }
+    .brand-dropdown.show { display: block; }
+    .brand-option {
+      padding: 8px 12px;
+      cursor: pointer;
+      font-size: 13px;
+      transition: background 0.2s;
+    }
+    .brand-option:hover { background: rgba(250,204,21,0.15); color: #facc15; }
+    
     .filter-actions { display: flex; gap: 6px; }
     .filter-btn { flex: 1; justify-content: center; font-size: 12px; padding: 8px 12px; }
 
-    .products-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
-    .product-card {
+    /* ===== ТАБЛИЦА ПРАЙС-ЛИСТА ===== */
+    .price-table-wrap {
       border-radius: var(--radius);
       background: #020617;
       border: 1px solid rgba(31,41,55,0.9);
-      padding: 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
-      cursor: pointer;
-      position: relative;
       overflow: hidden;
     }
-    .product-card::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at top left, rgba(250,204,21,0.04) 0, transparent 60%); opacity: 0; transition: opacity var(--transition); pointer-events: none; }
-    .product-card:hover { transform: translateY(-3px); box-shadow: 0 18px 36px rgba(0,0,0,0.9); border-color: rgba(250,204,21,0.5); }
-    .product-card:hover::before { opacity: 1; }
-    .product-top { display: flex; justify-content: space-between; gap: 6px; align-items: flex-start; }
-    .product-name { font-size: 12px; font-weight: 600; line-height: 1.4; }
-    .product-tag {
-      flex-shrink: 0;
-      font-family: var(--font-display);
-      font-size: 9px;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      padding: 3px 7px;
-      border-radius: 999px;
+    .price-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      color: #e5e7eb;
+    }
+    .price-table th, .price-table td {
+      padding: 12px 14px;
+      text-align: left;
+      border-bottom: 1px solid rgba(31,41,55,0.6);
+    }
+    .price-table th {
+      background: rgba(15,23,42,0.5);
+      color: var(--muted);
+      font-weight: 600;
       text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 0.06em;
     }
-    .product-tag.tag-sale { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.4); }
-    .product-tag.tag-hit { background: rgba(250,204,21,0.15); color: #fde68a; border: 1px solid rgba(250,204,21,0.4); }
-    .product-tag.tag-new { background: rgba(59,130,246,0.15); color: #93c5fd; border: 1px solid rgba(59,130,246,0.4); }
-    .product-tag.tag-stock { background: rgba(34,197,94,0.12); color: #86efac; border: 1px solid rgba(34,197,94,0.4); }
-    .product-tag.tag-fleet { background: rgba(168,85,247,0.15); color: #d8b4fe; border: 1px solid rgba(168,85,247,0.4); }
-    .product-specs { font-size: 11px; color: var(--muted); }
-    .product-divider { height: 1px; background: rgba(31,41,55,0.8); }
-    .product-bottom { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
-    .product-price { display: flex; flex-direction: column; gap: 2px; }
-    .product-price-main { font-family: var(--font-display); font-size: 16px; font-weight: 700; letter-spacing: 0.02em; }
-    .product-price-sub { font-size: 10px; color: var(--muted); }
-    .product-price-old { text-decoration: line-through; color: var(--muted); font-size: 11px; }
-    .product-btn { font-size: 11px; padding: 7px 12px; }
-    .products-empty { margin-top: 8px; font-size: 13px; color: var(--muted); padding: 24px; text-align: center; border: 1px dashed rgba(55,65,81,0.7); border-radius: var(--radius); }
-    .products-count { font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 6px; }
-    .products-count-num { color: var(--accent); font-family: var(--font-display); font-weight: 700; font-size: 14px; }
+    .price-table tr:last-child td { border-bottom: none; }
+    .price-table tr:hover { background: rgba(250,204,21,0.03); }
+    
+    .product-link {
+      color: #e5e7eb;
+      cursor: pointer;
+      transition: color 0.2s;
+      font-weight: 500;
+    }
+    .product-link:hover { color: var(--accent); text-decoration: underline; }
+    
+    .old-price {
+      color: var(--muted);
+      text-decoration: line-through;
+      font-size: 11px;
+      margin-right: 6px;
+    }
+    .new-price {
+      color: #fca5a5;
+      font-weight: 700;
+    }
+    .price-col { white-space: nowrap; }
+    .action-col { white-space: nowrap; width: 110px; }
 
-    .benefits-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
-    .benefit-card {
+    .benefits-grid, .steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+    
+    .benefit-card, .step-card {
       border-radius: var(--radius);
       background: #020617;
       border: 1px solid rgba(31,41,55,0.9);
@@ -366,24 +460,27 @@
       line-height: 1.6;
       transition: border-color var(--transition), transform var(--transition);
     }
-    .benefit-card:hover { border-color: rgba(250,204,21,0.4); transform: translateY(-2px); }
-    .benefit-icon { font-size: 26px; margin-bottom: 10px; }
-    .benefit-title { font-family: var(--font-display); font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 6px; color: #e5e7eb; }
-
-    .steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; position: relative; }
-    .steps::before { content: ""; position: absolute; top: 22px; left: calc(33% + 10px); right: calc(33% + 10px); height: 1px; background: linear-gradient(90deg, rgba(250,204,21,0.5), rgba(250,204,21,0.5)); pointer-events: none; }
-    .step-card {
-      border-radius: var(--radius);
-      background: #020617;
-      border: 1px solid rgba(31,41,55,0.9);
-      padding: 16px;
-      font-size: 13px;
-      color: var(--muted);
-      line-height: 1.6;
-      transition: border-color var(--transition), transform var(--transition);
+    .benefit-card:hover, .step-card:hover { border-color: rgba(250,204,21,0.4); transform: translateY(-2px); }
+    
+    .benefit-card, .step-card {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      gap: 8px;
     }
-    .step-card:hover { border-color: rgba(250,204,21,0.4); transform: translateY(-2px); }
+    
+    .benefit-icon {
+      font-size: 26px;
+      margin-bottom: 0;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+    }
     .step-number {
+      flex-shrink: 0;
       width: 30px;
       height: 30px;
       border-radius: 999px;
@@ -395,29 +492,28 @@
       font-family: var(--font-display);
       font-weight: 800;
       font-size: 14px;
-      margin-bottom: 10px;
       box-shadow: 0 6px 16px rgba(250,204,21,0.35);
+      margin-bottom: 0;
     }
-    .step-title { font-family: var(--font-display); font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 6px; color: #e5e7eb; }
-
-    .reviews-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
-    .review-card {
-      border-radius: var(--radius);
-      background: #020617;
-      border: 1px solid rgba(31,41,55,0.9);
-      padding: 16px;
-      font-size: 13px;
-      color: var(--muted);
-      line-height: 1.6;
-      position: relative;
+    
+    .benefit-title, .step-title {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 0;
+      color: #e5e7eb;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      min-height: 34px;
     }
-    .review-card::before { content: '"'; position: absolute; top: 10px; right: 16px; font-size: 60px; color: rgba(250,204,21,0.08); line-height: 1; font-family: Georgia, serif; }
-    .review-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
-    .review-avatar { width: 32px; height: 32px; border-radius: 999px; background: linear-gradient(135deg, #374151, #1f2937); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 800; font-size: 13px; color: #facc15; }
-    .review-meta { flex: 1; margin-left: 10px; }
-    .review-name { font-family: var(--font-display); font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: #e5e7eb; }
-    .review-date { font-size: 10px; color: var(--muted); }
-    .review-rating { font-size: 13px; color: #facc15; letter-spacing: 1px; }
+    
+    .benefit-card > *:not(.benefit-icon):not(.benefit-title),
+    .step-card > *:not(.step-number):not(.step-title) {
+      width: 100%;
+    }
 
     .contacts-grid {
       display: grid;
@@ -508,11 +604,12 @@
     .footer-badge { display: flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 999px; border: 1px solid rgba(31,41,55,0.9); font-size: 10px; }
     .footer-badge-dot { width: 5px; height: 5px; border-radius: 999px; background: #22c55e; }
 
+    /* ===== МОДАЛЬНОЕ ОКНО (КАРТОЧКА ТОВАРА) ===== */
     .modal-overlay {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.75);
+      background: rgba(0,0,0,0.85);
       z-index: 100;
       align-items: center;
       justify-content: center;
@@ -526,10 +623,12 @@
       border-radius: 20px;
       padding: 28px;
       width: 100%;
-      max-width: 420px;
+      max-width: 900px;
+      max-height: 90vh;
       position: relative;
       box-shadow: 0 40px 80px rgba(0,0,0,0.8);
       animation: modalIn 0.3s ease;
+      overflow-y: auto;
     }
     @keyframes modalIn { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
     .modal-close {
@@ -548,30 +647,241 @@
       color: var(--muted);
       font-size: 18px;
       transition: background var(--transition), color var(--transition);
+      z-index: 10;
     }
     .modal-close:hover { background: rgba(239,68,68,0.2); color: #fca5a5; }
-    .modal-title { font-family: var(--font-display); font-size: 22px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 4px; }
-    .modal-product { font-size: 13px; color: var(--muted); margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid rgba(31,41,55,0.9); line-height: 1.4; }
-    .modal-product strong { color: #e5e7eb; }
-    .modal-form { display: flex; flex-direction: column; gap: 12px; }
-    .modal-label { display: flex; flex-direction: column; gap: 5px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
-    .modal-input {
-      padding: 10px 14px;
-      border-radius: 10px;
-      border: 1px solid rgba(55,65,81,0.9);
-      background: rgba(15,23,42,0.8);
-      color: #e5e7eb;
-      font-family: var(--font-body);
-      font-size: 14px;
-      outline: none;
-      transition: border-color var(--transition);
+
+    .modal-card-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 24px;
     }
-    .modal-input:focus { border-color: rgba(250,204,21,0.8); }
-    .modal-note { font-size: 11px; color: var(--muted); line-height: 1.5; }
-    .modal-success { display: none; text-align: center; padding: 20px 0; }
-    .modal-success-icon { font-size: 48px; margin-bottom: 12px; }
-    .modal-success-title { font-family: var(--font-display); font-size: 22px; font-weight: 800; text-transform: uppercase; color: #86efac; margin-bottom: 6px; }
-    .modal-success-sub { font-size: 13px; color: var(--muted); }
+    .modal-image-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+      background: rgba(255,255,255,0.02);
+      border-radius: var(--radius);
+      border: 1px solid rgba(31,41,55,0.8);
+      min-height: 280px;
+    }
+    .modal-image-wrap img {
+      max-width: 100%;
+      height: auto;
+      max-height: 320px;
+      object-fit: contain;
+    }
+    .modal-badge {
+      align-self: flex-start;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: #f59e0b;
+      color: #111827;
+      font-weight: 700;
+      font-size: 11px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      letter-spacing: 0.08em;
+    }
+
+    .modal-info-wrap { display: flex; flex-direction: column; gap: 12px; }
+    .modal-title {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: 0.02em;
+    }
+    .modal-specs { font-size: 14px; color: var(--muted); line-height: 1.6; }
+    .modal-specs span { color: #e5e7eb; font-weight: 500; }
+
+    .modal-price-block {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: 12px 0;
+      border-top: 1px solid rgba(31,41,55,0.9);
+      border-bottom: 1px solid rgba(31,41,55,0.9);
+    }
+    .modal-old-price { color: var(--muted); text-decoration: line-through; font-size: 16px; }
+    .modal-new-price { color: #fca5a5; font-size: 28px; font-weight: 800; font-family: var(--font-display); }
+
+    .modal-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 8px;
+    }
+    .qty-control {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(15,23,42,0.8);
+      border: 1px solid rgba(55,65,81,0.9);
+      border-radius: 8px;
+      padding: 4px 8px;
+    }
+    .qty-btn {
+      background: none;
+      border: none;
+      color: #e5e7eb;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      padding: 0 6px;
+    }
+    .qty-btn:hover { color: var(--accent); }
+    .qty-input {
+      width: 30px;
+      text-align: center;
+      background: transparent;
+      border: none;
+      color: #e5e7eb;
+      font-size: 16px;
+      font-weight: 600;
+      font-family: var(--font-body);
+    }
+    .qty-input:focus { outline: none; }
+    .modal-buy-btn {
+      flex: 1;
+      justify-content: center;
+      font-size: 15px;
+      padding: 12px;
+    }
+
+    .modal-delivery-note {
+      font-size: 13px;
+      color: #e5e7eb;
+      background: rgba(31,41,55,0.5);
+      padding: 8px 12px;
+      border-radius: 8px;
+      text-align: center;
+      margin-top: 4px;
+    }
+    .modal-delivery-note span { color: var(--accent); }
+
+    /* ===== ШТОРКА КОРЗИНЫ ===== */
+    .cart-sidebar {
+      position: fixed;
+      top: 0;
+      right: -420px;
+      width: 400px;
+      height: 100vh;
+      background: #0b0d13;
+      border-left: 1px solid rgba(148,163,184,0.2);
+      z-index: 200;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: -10px 0 40px rgba(0,0,0,0.8);
+    }
+    .cart-sidebar.open { right: 0; }
+
+    .cart-sidebar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(31,41,55,0.9);
+    }
+    .cart-sidebar-title { font-family: var(--font-display); font-size: 20px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; }
+    .cart-close-btn {
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-size: 24px;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .cart-close-btn:hover { color: #fca5a5; }
+
+    .cart-list {
+      flex: 1;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding-right: 4px;
+    }
+    .cart-list::-webkit-scrollbar { width: 4px; }
+    .cart-list::-webkit-scrollbar-track { background: rgba(31,41,55,0.5); border-radius: 4px; }
+    .cart-list::-webkit-scrollbar-thumb { background: #facc15; border-radius: 4px; }
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      background: rgba(15,23,42,0.5);
+      border-radius: 10px;
+      border: 1px solid rgba(31,41,55,0.6);
+    }
+    .cart-item-img {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+      background: rgba(255,255,255,0.03);
+      border-radius: 6px;
+      flex-shrink: 0;
+    }
+    .cart-item-info { flex: 1; }
+    .cart-item-name { font-size: 12px; font-weight: 600; color: #e5e7eb; line-height: 1.3; }
+    .cart-item-price { font-size: 13px; font-weight: 700; color: #fca5a5; margin-top: 2px; }
+    .cart-item-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .cart-qty-btn {
+      background: rgba(55,65,81,0.6);
+      border: none;
+      color: #e5e7eb;
+      width: 24px;
+      height: 24px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 700;
+      transition: background 0.2s;
+    }
+    .cart-qty-btn:hover { background: rgba(250,204,21,0.2); color: #facc15; }
+    .cart-item-qty { font-size: 14px; font-weight: 600; min-width: 20px; text-align: center; }
+    .cart-item-remove {
+      background: none;
+      border: none;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 16px;
+      margin-left: 4px;
+      transition: color 0.2s;
+    }
+    .cart-item-remove:hover { color: #fca5a5; }
+
+    .cart-sidebar-footer {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(31,41,55,0.9);
+    }
+    .cart-total-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 16px;
+      font-weight: 600;
+      color: #e5e7eb;
+      margin-bottom: 12px;
+    }
+    .cart-total-sum { color: #facc15; font-size: 20px; font-family: var(--font-display); }
+    .cart-checkout-btn {
+      width: 100%;
+      justify-content: center;
+      padding: 12px;
+      font-size: 15px;
+    }
+    .cart-empty-msg { text-align: center; color: var(--muted); margin-top: 40px; font-size: 14px; }
 
     .scroll-top {
       position: fixed;
@@ -600,21 +910,30 @@
       .hero-inner { grid-template-columns: minmax(0, 1fr); }
       .hero-card { max-width: 380px; margin: 0 auto; }
       .categories-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .products-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .benefits-grid, .steps, .reviews-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .benefits-grid, .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .contacts-grid { grid-template-columns: minmax(0, 1fr); }
       .nav { display: none; }
       .filter-panel { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .burger { display: flex; }
-      .steps::before { display: none; }
+      
+      .modal-card-layout { grid-template-columns: minmax(0, 1fr); }
+      .modal-image-wrap img { max-height: 220px; margin: 0 auto; }
+      .modal { max-width: 95%; padding: 20px; }
+
+      .cart-sidebar { width: 100%; right: -100%; }
     }
     @media (max-width: 640px) {
       .header-inner { padding: 10px 0; }
       .hero { padding-top: 20px; }
-      .categories-grid, .products-grid, .benefits-grid, .steps, .reviews-grid { grid-template-columns: minmax(0, 1fr); }
+      .hero-title { font-size: 24px; }
+      .categories-grid, .benefits-grid, .steps { grid-template-columns: minmax(0, 1fr); }
       .btn { font-size: 13px; padding: 9px 16px; }
       .filter-panel { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .phone { display: none; }
+      .price-table th, .price-table td { padding: 8px 6px; font-size: 11px; }
+      .action-col { width: 70px; }
+      .modal-title { font-size: 18px; }
+      .modal-new-price { font-size: 22px; }
     }
   </style>
 </head>
@@ -623,10 +942,14 @@
 
   <div class="mobile-menu" id="mobile-menu">
     <a href="#catalog" onclick="closeMobileMenu()">Каталог</a>
-    <a href="#popular" onclick="closeMobileMenu()">Популярное</a>
+    <a href="#popular" onclick="closeMobileMenu()">Каталог шин</a>
     <a href="#benefits" onclick="closeMobileMenu()">Преимущества</a>
-    <a href="#reviews" onclick="closeMobileMenu()">Отзывы</a>
     <a href="#contacts" onclick="closeMobileMenu()">Контакты</a>
+    <div class="menu-contacts">
+      <a href="tel:+74956619177">+7 (495) 661‑91‑77</a>
+      <a href="mailto:zakaz@ishina77.ru">zakaz@ishina77.ru</a>
+      <div style="font-size: 11px; color: var(--muted); margin-top: 4px;">звонок по России бесплатный</div>
+    </div>
   </div>
 
   <header>
@@ -641,9 +964,8 @@
         </div>
         <nav class="nav">
           <a href="#catalog">Каталог</a>
-          <a href="#popular">Популярное</a>
+          <a href="#popular">Каталог шин</a>
           <a href="#benefits">Преимущества</a>
-          <a href="#reviews">Отзывы</a>
           <a href="#contacts">Контакты</a>
         </nav>
         <div class="header-right">
@@ -651,11 +973,15 @@
             <a href="tel:+74956619177" class="phone-main">+7 (495) 661‑91‑77</a>
             <div class="phone-sub">звонок по России бесплатный</div>
           </div>
-          <button class="btn btn-primary" onclick="document.getElementById('catalog').scrollIntoView({behavior:'smooth'})">
-            Подбор шин
-          </button>
+          <!-- Иконка корзины -->
+          <div class="cart-icon-wrap" onclick="toggleCart()">
+            <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+            <span class="cart-count" id="cart-count">0</span>
+          </div>
           <button class="burger" id="burger" onclick="toggleMenu()">
-            <span></span><span></span><span></span>
+            <span></span>
+            <span></span>
+            <span></span>
           </button>
         </div>
       </div>
@@ -663,7 +989,6 @@
   </header>
 
   <main>
-    <!-- HERO — с обновлённым текстом про Московскую и Владимирскую области -->
     <section class="hero">
       <div class="container">
         <div class="hero-inner">
@@ -682,7 +1007,7 @@
               Подберём шины под ваш транспорт за 5–7 минут — предложим несколько вариантов по цене и наличию. Самовывоз с наших складов (Коломна, Раменское, Кольчугино) или уточняйте условия у менеджера.
             </p>
             <div class="hero-cta">
-              <button class="btn btn-primary" onclick="openModal('Консультация по подбору шин', 'Оставьте номер — менеджер перезвонит и подберёт оптимальный вариант.')">
+              <button class="btn btn-primary" onclick="document.getElementById('popular').scrollIntoView({behavior:'smooth'})">
                 ✦ Подобрать шины
               </button>
               <button class="btn btn-outline" onclick="document.getElementById('popular').scrollIntoView({behavior:'smooth'})">
@@ -690,9 +1015,9 @@
               </button>
             </div>
             <div class="hero-stats">
-              <div class="hero-stat"><div class="hero-stat-num" data-target="1200">0</div><div class="hero-stat-label">Позиций на складе</div></div>
-              <div class="hero-stat"><div class="hero-stat-num" data-target="6">0</div><div class="hero-stat-label">Лет на рынке</div></div>
-              <div class="hero-stat"><div class="hero-stat-num" data-target="340">0</div><div class="hero-stat-label">Постоянных клиентов</div></div>
+              <div class="hero-stat"><div class="hero-stat-num" id="stat-positions">1500</div><div class="hero-stat-label">Позиций на складе</div></div>
+              <div class="hero-stat"><div class="hero-stat-num" id="stat-years">6</div><div class="hero-stat-label">Лет на рынке</div></div>
+              <div class="hero-stat"><div class="hero-stat-num" id="stat-clients">340</div><div class="hero-stat-label">Постоянных клиентов</div></div>
               <div class="hero-stat"><div class="hero-stat-num" style="font-size:16px;padding-top:4px;">Быстрая</div><div class="hero-stat-label">Отгрузка со склада</div></div>
             </div>
           </div>
@@ -712,74 +1037,78 @@
       </div>
     </section>
 
-    <!-- CATEGORIES -->
     <section id="catalog">
       <div class="container">
-        <div class="section-header"><div class="section-title">Категории шин</div><div class="section-sub">Выберите тип транспорта, а мы подберём подходящие модели</div></div>
+        <div class="section-header"><div class="section-title">Категории</div><div class="section-sub">Выберите тип продукции</div></div>
         <div class="categories-grid">
-          <div class="category-card" onclick="document.getElementById('popular').scrollIntoView({behavior:'smooth'})"><span class="cat-icon">🚛</span><div class="category-title">Грузовые шины</div><div class="category-sub">Для тягачей, прицепов, самосвалов и коммерческого транспорта. Рулевая, ведущая, прицепная оси.</div><div class="category-meta"><div>R22.5 · R17.5</div><div class="category-chip">Опт и розница</div></div></div>
-          <div class="category-card" onclick="document.getElementById('popular').scrollIntoView({behavior:'smooth'})"><span class="cat-icon">🚐</span><div class="category-title">Легкогрузовые шины</div><div class="category-sub">Газели, фургоны, малотоннажный транспорт. Широкий выбор типоразмеров в наличии.</div><div class="category-meta"><div>R15C / R16C</div><div class="category-chip">Подбор по авто</div></div></div>
-          <div class="category-card" onclick="openModal('Спецшины под заказ', 'Укажите марку и модель техники — подберём шины со сроком поставки.')"><span class="cat-icon">🏗️</span><div class="category-title">Спецшины</div><div class="category-sub">Строительная и сельхозтехника, погрузчики, спецавтомобили. Под заказ в сжатые сроки.</div><div class="category-meta"><div>Под заказ</div><div class="category-chip">Индивидуально</div></div></div>
+          <div class="category-card" onclick="applyCategoryFilter('truck')"><span class="cat-icon">🚛</span><div class="category-title">Грузовые шины</div><div class="category-sub">Для тягачей, прицепов, самосвалов и коммерческого транспорта.</div><div class="category-meta"><div>R22.5 · R17.5</div><div class="category-chip">Опт и розница</div></div></div>
+          <div class="category-card" onclick="applyCategoryFilter('light')"><span class="cat-icon">🚐</span><div class="category-title">Легкогрузовые шины</div><div class="category-sub">Газели, фургоны, малотоннажный транспорт.</div><div class="category-meta"><div>R15C / R16C</div><div class="category-chip">Подбор по авто</div></div></div>
+          <div class="category-card" onclick="applyCategoryFilter('special')"><span class="cat-icon">🏗️</span><div class="category-title">Спецшины</div><div class="category-sub">Строительная и сельхозтехника, погрузчики.</div><div class="category-meta"><div>Под заказ</div><div class="category-chip">Индивидуально</div></div></div>
+          <div class="category-card" onclick="applyCategoryFilter('discs')"><span class="cat-icon">⚙️</span><div class="category-title">Грузовые диски</div><div class="category-sub">Стальные и легкосплавные диски для грузового транспорта.</div><div class="category-meta"><div>R17.5 · R22.5</div><div class="category-chip">Оригинал и аналоги</div></div></div>
         </div>
       </div>
     </section>
 
-    <!-- POPULAR + FILTER -->
     <section id="popular">
       <div class="container">
-        <div class="section-header"><div class="section-title">Каталог шин</div><div class="section-sub products-count">Показано: <span class="products-count-num" id="visible-count">10</span> из 10 позиций</div></div>
+        <div class="section-header"><div class="section-title">Каталог шин и дисков</div><div class="section-sub products-count">Показано: <span class="products-count-num" id="visible-count">10</span> из 40 позиций</div></div>
         <div class="filter-panel">
-          <div class="filter-field"><div class="filter-label">Ширина</div><select id="filter-width" class="filter-select" onchange="applyFilter()"><option value="">Все</option><option value="315">315</option><option value="385">385</option><option value="295">295</option><option value="11">11</option><option value="205">205</option><option value="185">185</option></select></div>
-          <div class="filter-field"><div class="filter-label">Высота</div><select id="filter-height" class="filter-select" onchange="applyFilter()"><option value="">Все</option><option value="80">80</option><option value="70">70</option><option value="65">65</option><option value="R">R (без указания)</option></select></div>
-          <div class="filter-field"><div class="filter-label">Диаметр</div><select id="filter-diameter" class="filter-select" onchange="applyFilter()"><option value="">Все</option><option value="22.5">22.5</option><option value="16">16</option><option value="15">15</option></select></div>
-          <div class="filter-field"><div class="filter-label">Ось</div><select id="filter-axis" class="filter-select" onchange="applyFilter()"><option value="">Все</option><option value="steer">Рулевая</option><option value="drive">Ведущая</option><option value="trailer">Прицепная</option><option value="universal">Универсальная</option></select></div>
-          <div class="filter-field"><div class="filter-label">Производитель</div><select id="filter-brand" class="filter-select" onchange="applyFilter()"><option value="">Все</option><option value="Normaks">Normaks</option><option value="Kama">Кама</option><option value="Goodride">Goodride</option><option value="Hankook">Hankook</option><option value="Cordiant">Cordiant</option></select></div>
+          <div class="filter-field"><div class="filter-label">Поиск</div><input type="text" id="global-search" class="filter-select" placeholder="Введите название или артикул..." oninput="applyFilter()" style="width:100%;"></div>
+          <div class="filter-field"><div class="filter-label">Категория</div><select id="filter-category" class="filter-select" onchange="applyFilter()"><option value="">Все</option><option value="truck">Грузовые шины</option><option value="light">Легкогрузовые шины</option><option value="special">Спецшины</option><option value="discs">Грузовые диски</option></select></div>
+          <div class="filter-field"><div class="filter-label">Ширина</div><select id="filter-width" class="filter-select" onchange="applyFilter()"><option value="">Все</option><option value="315">315</option><option value="385">385</option><option value="295">295</option><option value="11">11</option><option value="205">205</option><option value="185">185</option><option value="8.25">8.25</option><option value="9.00">9.00</option></select></div>
+          <div class="filter-field"><div class="filter-label">Диаметр</div><select id="filter-diameter" class="filter-select" onchange="applyFilter()"><option value="">Все</option><option value="22.5">22.5</option><option value="16">16</option><option value="15">15</option><option value="20">20</option><option value="17.5">17.5</option></select></div>
+          
+          <div class="filter-field">
+            <div class="filter-label">Производитель</div>
+            <div class="brand-search-container">
+              <input type="text" id="brand-search-input" class="brand-search-input" placeholder="Введите бренд..." autocomplete="off" onkeyup="filterBrands()" onfocus="showBrandDropdown()">
+              <div id="brand-dropdown" class="brand-dropdown"></div>
+            </div>
+            <input type="hidden" id="selected-brand" value="">
+          </div>
+          
+          <div class="filter-field"><div class="filter-label">Наличие</div><select id="filter-stock" class="filter-select" onchange="applyFilter()"><option value="">Все</option><option value="stock">В наличии</option><option value="order">Под заказ</option></select></div>
           <div class="filter-field"><div class="filter-actions"><button class="btn btn-ghost filter-btn" onclick="resetFilter()">Сброс</button></div></div>
         </div>
-        <div class="products-grid" id="products-grid">
-          <div class="product-card" data-width="385" data-height="65" data-diameter="22.5" data-axis="trailer" data-brand="Normaks"><div class="product-top"><div><div class="product-name">Normaks NT022 385/65 R22.5 160K</div><div class="product-specs">прицепная ось · грузовые шины</div></div><div class="product-tag tag-sale">акция</div></div><div class="product-divider"></div><div class="product-bottom"><div class="product-price"><div class="product-price-main">25 500 ₽</div><div class="product-price-old">29 400 ₽</div></div><button class="btn btn-primary product-btn" onclick="openModal('Normaks NT022 385/65 R22.5 160K', 'Прицепная ось · Грузовые шины · 25 500 ₽ (акция)')">Купить</button></div></div>
-          <div class="product-card" data-width="315" data-height="80" data-diameter="22.5" data-axis="drive" data-brand="Normaks"><div class="product-top"><div><div class="product-name">Normaks ND102 315/80 R22.5 157/153L</div><div class="product-specs">ведущая ось · дальние перевозки</div></div><div class="product-tag tag-stock">в наличии</div></div><div class="product-divider"></div><div class="product-bottom"><div class="product-price"><div class="product-price-main">23 900 ₽</div><div class="product-price-sub">скидка от 4 шт.</div></div><button class="btn btn-primary product-btn" onclick="openModal('Normaks ND102 315/80 R22.5', 'Ведущая ось · Дальние перевозки · 23 900 ₽')">Купить</button></div></div>
-          <div class="product-card" data-width="315" data-height="70" data-diameter="22.5" data-axis="drive" data-brand="Normaks"><div class="product-top"><div><div class="product-name">Normaks ND202 315/70 R22.5 154/150M</div><div class="product-specs">ведущая ось · региональные</div></div><div class="product-tag tag-hit">хит продаж</div></div><div class="product-divider"></div><div class="product-bottom"><div class="product-price"><div class="product-price-main">22 400 ₽</div></div><button class="btn btn-primary product-btn" onclick="openModal('Normaks ND202 315/70 R22.5', 'Ведущая ось · Региональные · 22 400 ₽')">Купить</button></div></div>
-          <div class="product-card" data-width="295" data-height="80" data-diameter="22.5" data-axis="steer" data-brand="Cordiant"><div class="product-top"><div><div class="product-name">Cordiant TR-1 295/80 R22.5 152/148M</div><div class="product-specs">рулевая ось · магистральные</div></div><div class="product-tag tag-stock">в наличии</div></div><div class="product-divider"></div><div class="product-bottom"><div class="product-price"><div class="product-price-main">21 800 ₽</div><div class="product-price-sub">опт и розница</div></div><button class="btn btn-primary product-btn" onclick="openModal('Cordiant TR-1 295/80 R22.5', 'Рулевая ось · Магистральные · 21 800 ₽')">Купить</button></div></div>
-          <div class="product-card" data-width="11" data-height="R" data-diameter="22.5" data-axis="drive" data-brand="Kama"><div class="product-top"><div><div class="product-name">Кама NF 201 11 R22.5 148/145L</div><div class="product-specs">ведущая ось · универсальные</div></div><div class="product-tag tag-fleet">для парков</div></div><div class="product-divider"></div><div class="product-bottom"><div class="product-price"><div class="product-price-main">24 600 ₽</div><div class="product-price-sub">спецусловия для парков</div></div><button class="btn btn-primary product-btn" onclick="openModal('Кама NF 201 11 R22.5', 'Ведущая ось · Универсальные · 24 600 ₽')">Купить</button></div></div>
-          <div class="product-card" data-width="385" data-height="65" data-diameter="22.5" data-axis="trailer" data-brand="Kama"><div class="product-top"><div><div class="product-name">Кама NT 202 385/65 R22.5 160K</div><div class="product-specs">прицепная ось · грузовые шины</div></div><div class="product-tag tag-new">новинка</div></div><div class="product-divider"></div><div class="product-bottom"><div class="product-price"><div class="product-price-main">27 900 ₽</div><div class="product-price-sub">актуальная цена</div></div><button class="btn btn-primary product-btn" onclick="openModal('Кама NT 202 385/65 R22.5', 'Прицепная ось · Грузовые · 27 900 ₽')">Купить</button></div></div>
-          <div class="product-card" data-width="205" data-height="R" data-diameter="16" data-axis="universal" data-brand="Goodride"><div class="product-top"><div><div class="product-name">Goodride CR926 205 R16C 110/108Q</div><div class="product-specs">универсальная ось · легкогрузовые</div></div><div class="product-tag tag-stock">в наличии</div></div><div class="product-divider"></div><div class="product-bottom"><div class="product-price"><div class="product-price-main">9 900 ₽</div><div class="product-price-sub">опт и розница</div></div><button class="btn btn-primary product-btn" onclick="openModal('Goodride CR926 205 R16C', 'Универсальная ось · Легкогрузовые · 9 900 ₽')">Купить</button></div></div>
-          <div class="product-card" data-width="185" data-height="R" data-diameter="15" data-axis="universal" data-brand="Hankook"><div class="product-top"><div><div class="product-name">Hankook RA18 185 R15C 102/100R</div><div class="product-specs">универсальная ось · легкогрузовые</div></div><div class="product-tag tag-hit">хит</div></div><div class="product-divider"></div><div class="product-bottom"><div class="product-price"><div class="product-price-main">8 700 ₽</div></div><button class="btn btn-primary product-btn" onclick="openModal('Hankook RA18 185 R15C', 'Универсальная ось · Легкогрузовые · 8 700 ₽')">Купить</button></div></div>
-          <div class="product-card" data-width="315" data-height="80" data-diameter="22.5" data-axis="steer" data-brand="Cordiant"><div class="product-top"><div><div class="product-name">Cordiant TR-2 315/80 R22.5 156/150L</div><div class="product-specs">рулевая ось · дальние перевозки</div></div><div class="product-tag tag-new">новинка</div></div><div class="product-divider"></div><div class="product-bottom"><div class="product-price"><div class="product-price-main">26 200 ₽</div><div class="product-price-sub">актуальная цена</div></div><button class="btn btn-primary product-btn" onclick="openModal('Cordiant TR-2 315/80 R22.5', 'Рулевая ось · Дальние перевозки · 26 200 ₽')">Купить</button></div></div>
-          <div class="product-card" data-width="205" data-height="R" data-diameter="16" data-axis="universal" data-brand="Hankook"><div class="product-top"><div><div class="product-name">Hankook AH22 205/75 R16C 110/108R</div><div class="product-specs">универсальная ось · фургоны</div></div><div class="product-tag tag-sale">акция</div></div><div class="product-divider"></div><div class="product-bottom"><div class="product-price"><div class="product-price-main">11 400 ₽</div><div class="product-price-old">13 500 ₽</div></div><button class="btn btn-primary product-btn" onclick="openModal('Hankook AH22 205/75 R16C', 'Универсальная ось · Фургоны · 11 400 ₽ (акция)')">Купить</button></div></div>
+        
+        <div class="price-table-wrap">
+          <table class="price-table" id="price-table">
+            <thead>
+              <tr>
+                <th>Наименование</th>
+                <th class="price-col">Новая цена</th>
+                <th class="action-col"></th>
+              </tr>
+            </thead>
+            <tbody id="table-body">
+              <!-- ТОВАРЫ БУДУТ ВСТАВЛЯТЬСЯ СЮДА ЧЕРЕЗ JS -->
+            </tbody>
+          </table>
         </div>
         <div id="products-empty" class="products-empty" style="display:none;">😕 По вашему запросу ничего не найдено — попробуйте изменить параметры фильтра.</div>
       </div>
     </section>
 
-    <!-- BENEFITS -->
-    <section id="benefits"><div class="container"><div class="section-header"><div class="section-title">Почему выбирают «Шина 77»</div><div class="section-sub">Работаем с автопарками, ИП и частными клиентами</div></div><div class="benefits-grid"><div class="benefit-card"><div class="benefit-icon">📦</div><div class="benefit-title">Прямые поставки</div><div>Работаем с официальными дистрибьюторами и проверенными поставщиками — без «серых» схем и неожиданных сюрпризов при приёмке.</div></div><div class="benefit-card"><div class="benefit-icon">🎯</div><div class="benefit-title">Честный подбор</div><div>Подбираем шины под ваш пробег, нагрузки и бюджет — а не под максимальную маржу. Предлагаем 2–3 варианта с объяснением разницы.</div></div><div class="benefit-card"><div class="benefit-icon">🔧</div><div class="benefit-title">Сервис под ключ</div><div>Доставка, шиномонтаж, хранение, помощь с документами для бухгалтерии и лизинговых компаний — берём на себя весь процесс.</div></div></div></div></section>
+    <section id="benefits"><div class="container"><div class="section-header"><div class="section-title">Почему выбирают «Шина 77»</div><div class="section-sub">Работаем с автопарками, ИП и частными клиентами</div></div><div class="benefits-grid"><div class="benefit-card"><div class="benefit-icon">📦</div><div class="benefit-title">Прямые поставки</div><div>Работаем с официальными дистрибьюторами и проверенными поставщиками.</div></div><div class="benefit-card"><div class="benefit-icon">🎯</div><div class="benefit-title">Честный подбор</div><div>Подбираем шины под ваш пробег, нагрузки и бюджет — а не под максимальную маржу.</div></div><div class="benefit-card"><div class="benefit-icon">🔧</div><div class="benefit-title">Сервис под ключ</div><div>Доставка, шиномонтаж, хранение, помощь с документами.</div></div></div></div></section>
 
-    <!-- STEPS -->
-    <section><div class="container"><div class="section-header"><div class="section-title">Как мы работаем</div><div class="section-sub">Простой и понятный процесс — без лишней бюрократии</div></div><div class="steps"><div class="step-card"><div class="step-number">1</div><div class="step-title">Заявка или звонок</div><div>Вы оставляете заявку на сайте или звоните — рассказываете про транспорт и задачи. Работаем 6 дней в неделю с 9:00 до 19:00.</div></div><div class="step-card"><div class="step-number">2</div><div class="step-title">Подбор и согласование</div><div>Предлагаем несколько вариантов, согласуем цены, сроки и удобный формат получения. Обычно занимает 10–15 минут.</div></div><div class="step-card"><div class="step-number">3</div><div class="step-title">Поставка и поддержка</div><div>Отгружаем шины со склада, при необходимости помогаем с монтажом и остаёмся на связи по гарантийным вопросам.</div></div></div></div></section>
+    <section><div class="container"><div class="section-header"><div class="section-title">Как мы работаем</div><div class="section-sub">Простой и понятный процесс</div></div><div class="steps"><div class="step-card"><div class="step-number">1</div><div class="step-title">Заявка или звонок</div><div>Вы оставляете заявку на сайте или звоните.</div></div><div class="step-card"><div class="step-number">2</div><div class="step-title">Подбор и согласование</div><div>Предлагаем несколько вариантов, согласуем цены и сроки.</div></div><div class="step-card"><div class="step-number">3</div><div class="step-title">Поставка и поддержка</div><div>Отгружаем шины со склада, остаёмся на связи.</div></div></div></div></section>
 
-    <!-- REVIEWS -->
-    <section id="reviews"><div class="container"><div class="section-header"><div class="section-title">Отзывы клиентов</div><div class="section-sub">Нам доверяют автопарки, логистические компании и частные владельцы</div></div><div class="reviews-grid"><div class="review-card"><div class="review-header"><div class="review-avatar">ТЛ</div><div class="review-meta"><div class="review-name">ООО «ТрансЛогистик»</div><div class="review-date">Апрель 2026</div></div><div class="review-rating">★★★★★</div></div><div>Берём здесь шины на тягачи и прицепы. Нравится, что всегда предлагают несколько вариантов и не навязывают самое дорогое. Оформление документов — без вопросов.</div></div><div class="review-card"><div class="review-header"><div class="review-avatar">ИП</div><div class="review-meta"><div class="review-name">ИП Кузнецов</div><div class="review-date">Март 2026</div></div><div class="review-rating">★★★★★</div></div><div>Подобрали комплект на газель и легковую машину. Всё быстро, цены адекватные, помогли с доставкой в область. Связь с менеджером — оперативная.</div></div><div class="review-card"><div class="review-header"><div class="review-avatar">А24</div><div class="review-meta"><div class="review-name">Автопарк 24</div><div class="review-date">Февраль 2026</div></div><div class="review-rating">★★★★☆</div></div><div>Работаем по договору, устраивают сроки и подход. По редким позициям заранее предупреждают о сроках поставки — это честно и удобно для планирования.</div></div></div></div></section>
-
-    <!-- CONTACTS — карта и точки самовывоза -->
     <section id="contacts">
       <div class="container">
         <div class="section-header">
           <div class="section-title">Контакты и самовывоз</div>
-          <div class="section-sub">Приезжайте на любой из наших складов — уточните наличие заранее по телефону</div>
+          <div class="section-sub">Приезжайте на любой из наших складов</div>
         </div>
-
         <div class="contacts-grid">
           <div class="contacts-card">
             <div style="font-family:var(--font-display);font-size:14px;font-weight:700;margin-bottom:12px;">📞 Связаться с нами</div>
             <div class="contacts-row"><div class="contacts-label">Телефон</div><div class="contacts-value"><a href="tel:+74956619177">+7 (495) 661‑91‑77</a></div></div>
             <div class="contacts-row"><div class="contacts-label">Email</div><div class="contacts-value"><a href="mailto:zakaz@ishina77.ru">zakaz@ishina77.ru</a></div></div>
-            <div class="contacts-row"><div class="contacts-label">Режим работы</div><div class="contacts-value">Пн–Сб: 9:00–19:00, Вс — по договорённости</div></div>
+            <div class="contacts-row"><div class="contacts-label">Режим работы</div><div class="contacts-value">Пн–Сб: 9:00–19:00</div></div>
             <div style="margin-top:12px; display:flex; gap:8px; flex-wrap:wrap;">
               <button class="btn btn-primary" onclick="window.open('https://yandex.ru/maps/?pt=38.848,55.078&z=12', '_blank')">Проложить маршрут</button>
               <button class="btn btn-outline" onclick="openModal('Заказать звонок', 'Оставьте номер — перезвоним в течение 10 минут.')">Заказать звонок</button>
             </div>
-
             <div style="font-family:var(--font-display);font-size:14px;font-weight:700;margin:16px 0 8px 0;">📍 Точки самовывоза</div>
             <div class="pickup-list">
               <div class="pickup-point" data-point="0" onclick="showOnMap(0)">
@@ -787,7 +1116,6 @@
                 <div class="pickup-info">
                   <div class="pickup-name">Склад в Коломне</div>
                   <div class="pickup-addr">Московская обл., г. Коломна, село Амерево, автодорога М-5 Урал, тер 1</div>
-                  <div class="pickup-hours">Пн–Сб 9:00–19:00</div>
                 </div>
                 <div class="pickup-arrow">›</div>
               </div>
@@ -796,7 +1124,6 @@
                 <div class="pickup-info">
                   <div class="pickup-name">Склад в Раменском</div>
                   <div class="pickup-addr">Московская обл., Раменский район, село Ганусово промзона, стр. 1</div>
-                  <div class="pickup-hours">Пн–Сб 9:00–18:00</div>
                 </div>
                 <div class="pickup-arrow">›</div>
               </div>
@@ -805,13 +1132,11 @@
                 <div class="pickup-info">
                   <div class="pickup-name">Склад в Кольчугино</div>
                   <div class="pickup-addr">Владимирская обл., г. Кольчугино, улица Колхозная, д. 99а</div>
-                  <div class="pickup-hours">Пн–Пт 9:00–17:00</div>
                 </div>
                 <div class="pickup-arrow">›</div>
               </div>
             </div>
           </div>
-
           <div class="map-card" style="padding:0; overflow:hidden; border-radius: var(--radius);">
             <div class="map-full-card" style="border:none;">
               <div class="map-full-header">
@@ -829,21 +1154,100 @@
   <footer>
     <div class="container">
       <div class="footer-inner">
-        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;"><span>© Шина 77, 2020–2026</span><span class="footer-badge"><span class="footer-badge-dot"></span> Работаем сегодня</span></div>
-        <div class="footer-links"><a href="#catalog">Каталог</a><a href="#popular">Популярное</a><a href="#contacts">Контакты</a><a href="#" onclick="openModal('Политика конфиденциальности', 'Информация собирается только для обработки заявок. Данные не передаются третьим лицам.'); return false;">Политика конфиденциальности</a></div>
+        <div><span>© Шина 77, 2020–2026</span><span class="footer-badge" style="margin-left:12px;"><span class="footer-badge-dot"></span> Работаем сегодня</span></div>
+        <div class="footer-links">
+          <a href="#" onclick="openModal('Политика конфиденциальности', 'Информация собирается только для обработки заявок.'); return false;">Политика конфиденциальности</a>
+        </div>
       </div>
     </div>
   </footer>
 </div>
 
-<!-- MODAL -->
-<div class="modal-overlay" id="modal-overlay" onclick="handleOverlayClick(event)"><div class="modal"><button class="modal-close" onclick="closeModal()">×</button><div id="modal-form-wrap"><div class="modal-title">Оформить заявку</div><div class="modal-product" id="modal-product-info"><strong id="modal-product-name"></strong><br><span id="modal-product-desc"></span></div><div class="modal-form"><label class="modal-label">Ваше имя<input class="modal-input" type="text" id="modal-name" placeholder="Иван Иванов"></label><label class="modal-label">Телефон<input class="modal-input" type="tel" id="modal-phone" placeholder="+7 (___) ___-__-__"></label><label class="modal-label">Комментарий (необязательно)<input class="modal-input" type="text" id="modal-comment" placeholder="Количество шин, пожелания..."></label><button class="btn btn-primary" onclick="submitModal()" style="width:100%;justify-content:center;font-size:15px;padding:12px;">Отправить заявку</button><div class="modal-note">Нажимая кнопку, вы соглашаетесь на обработку персональных данных. Менеджер свяжется с вами в течение 10–15 минут.</div></div></div><div class="modal-success" id="modal-success"><div class="modal-success-icon">✅</div><div class="modal-success-title">Заявка принята!</div><div class="modal-success-sub">Менеджер свяжется с вами в течение 10–15 минут.<br>Работаем Пн–Сб с 9:00 до 19:00.</div></div></div></div>
+<!-- ===== МОДАЛЬНОЕ ОКНО КАРТОЧКИ ТОВАРА ===== -->
+<div class="modal-overlay" id="modal-overlay" onclick="handleOverlayClick(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <div id="modal-card-wrap" style="display:block;">
+      <!-- Контент карточки будет вставлен через JS -->
+    </div>
+  </div>
+</div>
+
+<!-- ===== ШТОРКА КОРЗИНЫ ===== -->
+<div class="cart-sidebar" id="cart-sidebar">
+  <div class="cart-sidebar-header">
+    <div class="cart-sidebar-title">🛒 Корзина</div>
+    <button class="cart-close-btn" onclick="toggleCart()">×</button>
+  </div>
+  <div class="cart-list" id="cart-list">
+    <!-- Товары будут добавляться через JS -->
+  </div>
+  <div class="cart-sidebar-footer">
+    <div class="cart-total-row">
+      <span>Итого:</span>
+      <span class="cart-total-sum" id="cart-total">0 ₽</span>
+    </div>
+    <button class="btn btn-primary cart-checkout-btn" onclick="checkoutCart()">Оформить заказ</button>
+  </div>
+</div>
 
 <button class="scroll-top" id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
-<!-- Яндекс.Карта API -->
-<script src="https://api-maps.yandex.ru/2.1/?apikey=814fa584-8a11-4af3-8744-434c92570e43&lang=ru_RU"></script>
+<script src="https://api-maps.yandex.ru/2.1/?apikey=ВАШ_API_КЛЮЧ&lang=ru_RU"></script>
 <script>
+  // ===== ДАННЫЕ ТОВАРОВ =====
+  var products = [
+    // === АКЦИОННЫЕ ШИНЫ (SIMPECO И KAMA) - будут видны по умолчанию ===
+    { id: 31, name: 'SIMPECO Praktik C 315/80/R22.5 157/154K', desc: 'Ведущая ось · SIMPECO', price_old: null, price_new: '27 200', cat: 'truck', width: '315', diam: '22.5', brand: 'SIMPECO', stock: 'stock', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23444" stroke="%23555" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23222"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="9" font-weight="bold" font-family="Arial">SIMPECO</text></svg>' },
+    { id: 32, name: 'SIMPECO Praktik D1 315/80/R22.5 154/151M', desc: 'Ведущая ось · SIMPECO', price_old: '26 900', price_new: '24 500', cat: 'truck', width: '315', diam: '22.5', brand: 'SIMPECO', stock: 'stock', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23444" stroke="%23555" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23222"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="9" font-weight="bold" font-family="Arial">SIMPECO</text></svg>' },
+    { id: 33, name: 'SIMPECO Praktik S1 315/80/R22.5 157/154K', desc: 'Рулевая ось · SIMPECO', price_old: null, price_new: '24 700', cat: 'truck', width: '315', diam: '22.5', brand: 'SIMPECO', stock: 'stock', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23444" stroke="%23555" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23222"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="9" font-weight="bold" font-family="Arial">SIMPECO</text></svg>' },
+    { id: 34, name: 'SIMPECO Praktik D1 315/70/R22.5 154/150L', desc: 'Ведущая ось · SIMPECO', price_old: null, price_new: '24 500', cat: 'truck', width: '315', diam: '22.5', brand: 'SIMPECO', stock: 'stock', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23444" stroke="%23555" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23222"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="9" font-weight="bold" font-family="Arial">SIMPECO</text></svg>' },
+    { id: 35, name: 'SIMPECO Praktik S1 315/70/R22.5 156/150LL', desc: 'Рулевая ось · SIMPECO', price_old: null, price_new: '23 200', cat: 'truck', width: '315', diam: '22.5', brand: 'SIMPECO', stock: 'stock', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23444" stroke="%23555" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23222"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="9" font-weight="bold" font-family="Arial">SIMPECO</text></svg>' },
+    { id: 36, name: 'SIMPECO Praktik T2 385/65/R22.5 164K', desc: 'Прицепная ось · SIMPECO', price_old: null, price_new: '30 800', cat: 'truck', width: '385', diam: '22.5', brand: 'SIMPECO', stock: 'stock', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23444" stroke="%23555" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23222"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="9" font-weight="bold" font-family="Arial">SIMPECO</text></svg>' },
+    { id: 37, name: 'KAMA NT 201 385/65/R22.5 160K', desc: 'Прицепная ось · KAMA', price_old: null, price_new: '27 750', cat: 'truck', width: '385', diam: '22.5', brand: 'Kama', stock: 'stock', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23444" stroke="%23555" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23222"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="9" font-weight="bold" font-family="Arial">KAMA</text></svg>' },
+    { id: 38, name: 'KAMA NR 201 315/80/R22.5 156/150L', desc: 'Рулевая ось · KAMA', price_old: null, price_new: '26 600', cat: 'truck', width: '315', diam: '22.5', brand: 'Kama', stock: 'stock', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23444" stroke="%23555" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23222"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="9" font-weight="bold" font-family="Arial">KAMA</text></svg>' },
+    { id: 39, name: 'KAMA NF 202 315/70/R22.5 152/148M', desc: 'Ведущая ось · KAMA', price_old: null, price_new: '24 200', cat: 'truck', width: '315', diam: '22.5', brand: 'Kama', stock: 'stock', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23444" stroke="%23555" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23222"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="9" font-weight="bold" font-family="Arial">KAMA</text></svg>' },
+    { id: 40, name: 'KAMA NF 701 11/R22.5 148/145K', desc: 'Ведущая ось · KAMA', price_old: null, price_new: '23 800', cat: 'truck', width: '11', diam: '22.5', brand: 'Kama', stock: 'stock', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23444" stroke="%23555" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23222"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="9" font-weight="bold" font-family="Arial">KAMA</text></svg>' },
+
+    // === ОСНОВНОЙ АССОРТИМЕНТ (СКРЫТ ПО УМОЛЧАНИЮ) ===
+    { id: 1, name: 'Normaks NT022 385/65 R22.5 160K', desc: 'Прицепная ось · Грузовые шины', price_old: '29 400', price_new: '25 500', cat: 'truck', width: '385', diam: '22.5', brand: 'Normaks', stock: 'stock', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23222" stroke="%23333" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23111"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="10" font-weight="bold" font-family="Arial">NT022</text></svg>' },
+    { id: 2, name: 'Normaks ND102 315/80 R22.5 157/153L', desc: 'Ведущая ось · Дальние перевозки', price_old: null, price_new: '23 900', cat: 'truck', width: '315', diam: '22.5', brand: 'Normaks', stock: 'stock', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23222" stroke="%23333" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23111"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="10" font-weight="bold" font-family="Arial">ND102</text></svg>' },
+    { id: 3, name: 'Normaks ND202 315/70 R22.5 154/150M', desc: 'Ведущая ось · Региональные', price_old: null, price_new: '22 400', cat: 'truck', width: '315', diam: '22.5', brand: 'Normaks', stock: 'stock', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23222" stroke="%23333" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23111"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="10" font-weight="bold" font-family="Arial">ND202</text></svg>' },
+    { id: 4, name: 'Cordiant TR-1 295/80 R22.5 152/148M', desc: 'Рулевая ось · Магистральные', price_old: null, price_new: '21 800', cat: 'truck', width: '295', diam: '22.5', brand: 'Cordiant', stock: 'stock', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23222" stroke="%23333" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23111"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="10" font-weight="bold" font-family="Arial">TR-1</text></svg>' },
+    { id: 5, name: 'Кама NF 201 11 R22.5 148/145L', desc: 'Ведущая ось · Универсальные', price_old: null, price_new: '24 600', cat: 'truck', width: '11', diam: '22.5', brand: 'Kama', stock: 'stock', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23222" stroke="%23333" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23111"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="10" font-weight="bold" font-family="Arial">NF201</text></svg>' },
+    { id: 6, name: 'Кама NT 202 385/65 R22.5 160K', desc: 'Прицепная ось · Грузовые шины', price_old: null, price_new: '27 900', cat: 'truck', width: '385', diam: '22.5', brand: 'Kama', stock: 'order', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23222" stroke="%23333" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23111"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="10" font-weight="bold" font-family="Arial">NT202</text></svg>' },
+    { id: 7, name: 'Goodride CR926 205 R16C 110/108Q', desc: 'Универсальная ось · Легкогрузовые', price_old: null, price_new: '9 900', cat: 'light', width: '205', diam: '16', brand: 'Goodride', stock: 'stock', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23222" stroke="%23333" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23111"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="10" font-weight="bold" font-family="Arial">CR926</text></svg>' },
+    { id: 8, name: 'Hankook RA18 185 R15C 102/100R', desc: 'Универсальная ось · Легкогрузовые', price_old: null, price_new: '8 700', cat: 'light', width: '185', diam: '15', brand: 'Hankook', stock: 'stock', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23222" stroke="%23333" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23111"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="10" font-weight="bold" font-family="Arial">RA18</text></svg>' },
+    { id: 9, name: 'Hankook AH22 205/75 R16C 110/108R', desc: 'Универсальная ось · Фургоны', price_old: '13 500', price_new: '11 400', cat: 'light', width: '205', diam: '16', brand: 'Hankook', stock: 'stock', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23222" stroke="%23333" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23111"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="10" font-weight="bold" font-family="Arial">AH22</text></svg>' },
+    { id: 10, name: 'LINGLONG LMC100 185 R15C 103/101R', desc: 'Универсальная · Легкогрузовые', price_old: null, price_new: '7 900', cat: 'light', width: '185', diam: '15', brand: 'LINGLONG', stock: 'stock', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23222" stroke="%23333" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23111"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="10" font-weight="bold" font-family="Arial">LMC100</text></svg>' },
+    { id: 11, name: 'Triangle TR685 8.25R20 139/137G', desc: 'Строительная техника · Спецшины', price_old: null, price_new: '34 500', cat: 'special', width: '8.25', diam: '20', brand: 'Triangle', stock: 'order', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23222" stroke="%23333" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23111"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="10" font-weight="bold" font-family="Arial">TR685</text></svg>' },
+    { id: 12, name: 'DOUBLE COIN RR202 9.00R20', desc: 'Погрузчики · Спецшины', price_old: null, price_new: '41 200', cat: 'special', width: '9.00', diam: '20', brand: 'DoubleCoin', stock: 'order', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23222" stroke="%23333" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23111"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="10" font-weight="bold" font-family="Arial">RR202</text></svg>' },
+    { id: 13, name: 'Sailun SDR1 315/80R22.5', desc: 'Спецтехника · Высокие нагрузки', price_old: null, price_new: '28 900', cat: 'special', width: '315', diam: '22.5', brand: 'Sailun', stock: 'order', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23222" stroke="%23333" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23111"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="10" font-weight="bold" font-family="Arial">SDR1</text></svg>' },
+    { id: 14, name: 'ADVANCE 8.25x22.5 ET120', desc: 'Стальной диск · Грузовые', price_old: null, price_new: '12 800', cat: 'discs', width: '8.25', diam: '22.5', brand: 'Advance', stock: 'stock', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23222" stroke="%23333" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23111"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="10" font-weight="bold" font-family="Arial">8.25</text></svg>' },
+    { id: 15, name: 'AEOLUS 9.00x22.5 ET135', desc: 'Стальной диск · Усиленный', price_old: null, price_new: '14 200', cat: 'discs', width: '9.00', diam: '22.5', brand: 'Aeolus', stock: 'stock', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23222" stroke="%23333" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23111"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="10" font-weight="bold" font-family="Arial">9.00</text></svg>' },
+    { id: 16, name: 'AUSTONE 6.75x17.5 ET120', desc: 'Диск R17.5 · Грузовые', price_old: null, price_new: '9 500', cat: 'discs', width: '6.75', diam: '17.5', brand: 'Austone', stock: 'stock', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23222" stroke="%23333" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23111"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="10" font-weight="bold" font-family="Arial">6.75</text></svg>' },
+    { id: 17, name: 'Blackhawk 7.50x17.5 ET135', desc: 'Легкосплавный диск', price_old: null, price_new: '15 800', cat: 'discs', width: '7.50', diam: '17.5', brand: 'Blackhawk', stock: 'order', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23222" stroke="%23333" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23111"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="10" font-weight="bold" font-family="Arial">7.50</text></svg>' },
+    { id: 18, name: 'Sailun SDR1 315/80R22.5 156/150L', desc: 'Рулевая ось · Магистральные', price_old: null, price_new: '24 500', cat: 'truck', width: '315', diam: '22.5', brand: 'Sailun', stock: 'stock', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23222" stroke="%23333" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23111"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="10" font-weight="bold" font-family="Arial">SDR1</text></svg>' },
+    { id: 19, name: 'Triangle TR691 385/65R22.5 160K', desc: 'Прицепная ось · Грузовые', price_old: null, price_new: '26 800', cat: 'truck', width: '385', diam: '22.5', brand: 'Triangle', stock: 'order', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23222" stroke="%23333" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23111"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="10" font-weight="bold" font-family="Arial">TR691</text></svg>' },
+    { id: 20, name: 'LINGLONG LMC200 205/75R16C', desc: 'Легкогрузовые · Фургоны', price_old: null, price_new: '10 200', cat: 'light', width: '205', diam: '16', brand: 'LINGLONG', stock: 'stock', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23222" stroke="%23333" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23111"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="10" font-weight="bold" font-family="Arial">LMC200</text></svg>' },
+    { id: 21, name: 'DOUBLE COIN RR101 315/80R22.5', desc: 'Универсальная ось · Грузовые', price_old: null, price_new: '23 200', cat: 'truck', width: '315', diam: '22.5', brand: 'DoubleCoin', stock: 'stock', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23222" stroke="%23333" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23111"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="10" font-weight="bold" font-family="Arial">RR101</text></svg>' },
+    { id: 22, name: 'AEOLUS HN355 295/80R22.5', desc: 'Рулевая ось · Магистральные', price_old: null, price_new: '22 500', cat: 'truck', width: '295', diam: '22.5', brand: 'Aeolus', stock: 'stock', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23222" stroke="%23333" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23111"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="10" font-weight="bold" font-family="Arial">HN355</text></svg>' },
+    { id: 23, name: 'Cordiant TR-2 315/80R22.5', desc: 'Ведущая ось · Региональные', price_old: null, price_new: '23 200', cat: 'truck', width: '315', diam: '22.5', brand: 'Cordiant', stock: 'stock', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23222" stroke="%23333" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23111"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="10" font-weight="bold" font-family="Arial">TR-2</text></svg>' },
+    { id: 24, name: 'Normaks NT022 385/65R22.5', desc: 'Прицепная ось · Грузовые', price_old: null, price_new: '25 900', cat: 'truck', width: '385', diam: '22.5', brand: 'Normaks', stock: 'stock', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23222" stroke="%23333" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23111"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="10" font-weight="bold" font-family="Arial">NT022</text></svg>' },
+    { id: 25, name: 'Goodride CR926 185 R15C', desc: 'Универсальная ось · Легкогрузовые', price_old: null, price_new: '8 200', cat: 'light', width: '185', diam: '15', brand: 'Goodride', stock: 'stock', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23222" stroke="%23333" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23111"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="10" font-weight="bold" font-family="Arial">CR926</text></svg>' },
+    { id: 26, name: 'Triangle TR685 315/80R22.5', desc: 'Спецтехника · Высокие нагрузки', price_old: null, price_new: '33 000', cat: 'special', width: '315', diam: '22.5', brand: 'Triangle', stock: 'order', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23222" stroke="%23333" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23111"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="10" font-weight="bold" font-family="Arial">TR685</text></svg>' },
+    { id: 27, name: 'Blackhawk 8.25x22.5 ET120', desc: 'Стальной диск · Грузовые', price_old: null, price_new: '13 200', cat: 'discs', width: '8.25', diam: '22.5', brand: 'Blackhawk', stock: 'stock', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23222" stroke="%23333" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23111"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="10" font-weight="bold" font-family="Arial">8.25</text></svg>' },
+    { id: 28, name: 'DOUBLE COIN RR105 315/80R22.5', desc: 'Универсальная ось · Грузовые', price_old: null, price_new: '24 100', cat: 'truck', width: '315', diam: '22.5', brand: 'DoubleCoin', stock: 'stock', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23222" stroke="%23333" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23111"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="10" font-weight="bold" font-family="Arial">RR105</text></svg>' },
+    { id: 29, name: 'Hankook AH22 205/75 R16C', desc: 'Универсальная ось · Фургоны', price_old: null, price_new: '11 800', cat: 'light', width: '205', diam: '16', brand: 'Hankook', stock: 'stock', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23222" stroke="%23333" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23111"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="10" font-weight="bold" font-family="Arial">AH22</text></svg>' },
+    { id: 30, name: 'ADVANCE 7.50x17.5 ET135', desc: 'Легкосплавный диск · Усиленный', price_old: null, price_new: '16 200', cat: 'discs', width: '7.50', diam: '17.5', brand: 'Advance', stock: 'order', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23222" stroke="%23333" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23111"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="10" font-weight="bold" font-family="Arial">7.50</text></svg>' }
+  ];
+
+  // ===== ФУНКЦИОНАЛ САЙТА =====
+
+  var realBrands = [];
+  products.forEach(function(p) { if (p.brand && realBrands.indexOf(p.brand) === -1) realBrands.push(p.brand); });
+  realBrands.sort();
+
   var map;
   var points = [
     { coords: [55.078, 38.848], name: "Склад в Коломне", address: "Московская обл., г. Коломна, село Амерево, автодорога М-5 Урал, тер 1" },
@@ -851,48 +1255,401 @@
     { coords: [56.294, 39.379], name: "Склад в Кольчугино", address: "Владимирская обл., г. Кольчугино, улица Колхозная, д. 99а" }
   ];
 
-  ymaps.ready(init);
-  function init() {
-    map = new ymaps.Map("yandex-map", {
-      center: [55.45, 38.8],
-      zoom: 8,
-      controls: ["zoomControl", "fullscreenControl"]
-    });
-
-    points.forEach(function(point, index) {
-      var placemark = new ymaps.Placemark(point.coords, {
-        balloonContentHeader: point.name,
-        balloonContentBody: point.address,
-        balloonContentFooter: '<a href="https://yandex.ru/maps/?pt=' + point.coords[1] + ',' + point.coords[0] + '&z=15" target="_blank" style="color:#facc15;">Проложить маршрут →</a>'
-      }, {
-        preset: "islands#redIcon",
-        iconColor: "#facc15"
+  function initMap() {
+    if (typeof ymaps === 'undefined') { setTimeout(initMap, 500); return; }
+    ymaps.ready(function() {
+      map = new ymaps.Map("yandex-map", { center: [55.45, 38.8], zoom: 8, controls: ["zoomControl", "fullscreenControl"] });
+      points.forEach(function(point, index) {
+        var placemark = new ymaps.Placemark(point.coords, {
+          balloonContentHeader: point.name,
+          balloonContentBody: point.address,
+          balloonContentFooter: '<a href="https://yandex.ru/maps/?pt=' + point.coords[1] + ',' + point.coords[0] + '&z=15" target="_blank" style="color:#facc15;">Проложить маршрут →</a>'
+        }, { preset: "islands#redIcon", iconColor: "#facc15" });
+        map.geoObjects.add(placemark);
       });
-      map.geoObjects.add(placemark);
     });
   }
+  initMap();
 
   function showOnMap(index) {
+    if (!map) return;
     var point = points[index];
     map.setCenter(point.coords, 14);
-    document.querySelectorAll('.pickup-point').forEach(function(el, i) {
-      el.classList.toggle('active', i === index);
+    document.querySelectorAll('.pickup-point').forEach(function(el, i) { el.classList.toggle('active', i === index); });
+  }
+
+  function applyCategoryFilter(category) {
+    document.getElementById('filter-category').value = category;
+    applyFilter();
+    document.getElementById('popular').scrollIntoView({behavior:'smooth'});
+  }
+
+  function toggleMenu() {
+    var menu = document.getElementById('mobile-menu');
+    var burger = document.getElementById('burger');
+    menu.classList.toggle('open');
+    burger.classList.toggle('open');
+    document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+  }
+
+  function closeMobileMenu() {
+    document.getElementById('mobile-menu').classList.remove('open');
+    document.getElementById('burger').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function showBrandDropdown() {
+    document.getElementById('brand-dropdown').classList.add('show');
+    filterBrands();
+  }
+
+  function filterBrands() {
+    var searchTerm = document.getElementById('brand-search-input').value.toLowerCase();
+    var dropdown = document.getElementById('brand-dropdown');
+    var filtered = realBrands.filter(function(brand) { return brand.toLowerCase().includes(searchTerm); });
+    if (filtered.length === 0) {
+      dropdown.innerHTML = '<div class="brand-option" style="color:#6b7280;">Ничего не найдено</div>';
+    } else {
+      dropdown.innerHTML = filtered.map(function(brand) {
+        return '<div class="brand-option" onclick="selectBrand(\'' + brand.replace(/'/g, "\\'") + '\')">' + brand + '</div>';
+      }).join('');
+    }
+    dropdown.classList.add('show');
+  }
+
+  function selectBrand(brand) {
+    document.getElementById('brand-search-input').value = brand;
+    document.getElementById('selected-brand').value = brand;
+    document.getElementById('brand-dropdown').classList.remove('show');
+    applyFilter();
+  }
+
+  document.addEventListener('click', function(e) {
+    var container = document.querySelector('.brand-search-container');
+    if (container && !container.contains(e.target)) {
+      document.getElementById('brand-dropdown').classList.remove('show');
+    }
+  });
+
+  // ===== ФИЛЬТРАЦИЯ И ОТРИСОВКА ТАБЛИЦЫ =====
+  function renderTable(data) {
+    var tbody = document.getElementById('table-body');
+    tbody.innerHTML = '';
+    if (data.length === 0) {
+      document.getElementById('products-empty').style.display = 'block';
+      document.getElementById('visible-count').textContent = '0';
+      return;
+    }
+    document.getElementById('products-empty').style.display = 'none';
+    document.getElementById('visible-count').textContent = data.length;
+
+    data.forEach(function(p) {
+      var tr = document.createElement('tr');
+      var priceHtml = p.price_old ? '<span class="old-price">' + p.price_old + ' руб.</span> <span class="new-price">' + p.price_new + ' руб.</span>' : p.price_new + ' руб.';
+      tr.innerHTML = `
+        <td><span class="product-link" onclick="openProductCard(${p.id})">${p.name}</span><br><span style="font-size:11px;color:var(--muted);">${p.desc}</span></td>
+        <td class="price-col">${priceHtml}</td>
+        <td class="action-col"><button class="btn btn-buy" onclick="event.stopPropagation(); addToCart(${p.id})">Купить</button></td>
+      `;
+      tbody.appendChild(tr);
     });
   }
 
-  function toggleMenu() { var menu = document.getElementById('mobile-menu'); var burger = document.getElementById('burger'); menu.classList.toggle('open'); burger.classList.toggle('open'); }
-  function closeMobileMenu() { document.getElementById('mobile-menu').classList.remove('open'); document.getElementById('burger').classList.remove('open'); }
-  function applyFilter() { var width=document.getElementById('filter-width').value; var height=document.getElementById('filter-height').value; var diameter=document.getElementById('filter-diameter').value; var axis=document.getElementById('filter-axis').value; var brand=document.getElementById('filter-brand').value; var cards=document.querySelectorAll('#products-grid .product-card'); var visible=0; cards.forEach(function(card){var match=(!width||card.dataset.width===width)&&(!height||card.dataset.height===height)&&(!diameter||card.dataset.diameter===diameter)&&(!axis||card.dataset.axis===axis)&&(!brand||card.dataset.brand===brand); card.style.display=match?'':'none'; if(match) visible++;}); document.getElementById('visible-count').textContent=visible; document.getElementById('products-empty').style.display=visible===0?'block':'none'; }
-  function resetFilter() { ['filter-width','filter-height','filter-diameter','filter-axis','filter-brand'].forEach(function(id){document.getElementById(id).value='';}); applyFilter(); }
-  function openModal(name,desc){ document.getElementById('modal-product-name').textContent=name; document.getElementById('modal-product-desc').textContent=desc; document.getElementById('modal-form-wrap').style.display=''; document.getElementById('modal-success').style.display='none'; document.getElementById('modal-name').value=''; document.getElementById('modal-phone').value=''; document.getElementById('modal-comment').value=''; document.getElementById('modal-overlay').classList.add('open'); document.body.style.overflow='hidden'; }
-  function closeModal(){ document.getElementById('modal-overlay').classList.remove('open'); document.body.style.overflow=''; }
-  function handleOverlayClick(e){ if(e.target===document.getElementById('modal-overlay')) closeModal(); }
-  function submitModal(){ var phone=document.getElementById('modal-phone').value.trim(); if(!phone){ document.getElementById('modal-phone').focus(); document.getElementById('modal-phone').style.borderColor='rgba(239,68,68,0.8)'; setTimeout(function(){document.getElementById('modal-phone').style.borderColor='';},1500); return; } document.getElementById('modal-form-wrap').style.display='none'; document.getElementById('modal-success').style.display='block'; setTimeout(closeModal,3500); }
-  document.addEventListener('keydown',function(e){if(e.key==='Escape') closeModal();});
-  var scrollBtn=document.getElementById('scroll-top'); window.addEventListener('scroll',function(){scrollBtn.classList.toggle('visible',window.scrollY>400);});
-  function animateCounters(){ document.querySelectorAll('[data-target]').forEach(function(el){var target=parseInt(el.dataset.target); var suffix=el.dataset.target>=1000?'+':''; var current=0; var step=Math.ceil(target/60); var timer=setInterval(function(){current=Math.min(current+step,target); el.textContent=current.toLocaleString('ru')+(current===target?suffix:''); if(current>=target) clearInterval(timer);},20);}); }
-  var heroStats=document.querySelector('.hero-stats'); var counted=false; var observer=new IntersectionObserver(function(entries){if(entries[0].isIntersecting&&!counted){ counted=true; animateCounters(); }},{threshold:0.5}); if(heroStats) observer.observe(heroStats);
-  document.getElementById('visible-count').textContent=document.querySelectorAll('#products-grid .product-card').length;
+  function applyFilter() {
+    var category = document.getElementById('filter-category').value;
+    var width = document.getElementById('filter-width').value;
+    var diameter = document.getElementById('filter-diameter').value;
+    var brand = document.getElementById('selected-brand').value;
+    var stock = document.getElementById('filter-stock').value;
+    var search = document.getElementById('global-search').value.toLowerCase().trim();
+    
+    var filtered = products.filter(function(p) {
+      var matchSearch = !search || p.name.toLowerCase().includes(search) || p.desc.toLowerCase().includes(search) || p.brand.toLowerCase().includes(search);
+      return matchSearch &&
+             (!category || p.cat === category) &&
+             (!width || p.width === width) &&
+             (!diameter || p.diam === diameter) &&
+             (!brand || p.brand === brand) &&
+             (!stock || p.stock === stock);
+    });
+    renderTable(filtered);
+  }
+
+  function resetFilter() {
+    document.getElementById('filter-category').value = '';
+    document.getElementById('filter-width').value = '';
+    document.getElementById('filter-diameter').value = '';
+    document.getElementById('brand-search-input').value = '';
+    document.getElementById('selected-brand').value = '';
+    document.getElementById('filter-stock').value = '';
+    document.getElementById('global-search').value = '';
+    applyFilter();
+  }
+
+  // ===== КОРЗИНА (ПОЛНОСТЬЮ РАБОЧАЯ) =====
+  var cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+  function saveCart() {
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartUI();
+  }
+
+  function addToCart(id) {
+    var p = products.find(function(item) { return item.id === id; });
+    if (!p) return;
+
+    var existing = cart.find(function(item) { return item.id === id; });
+    if (existing) {
+      existing.qty += 1;
+    } else {
+      cart.push({ id: id, qty: 1, price: parseInt(p.price_new.replace(/\s/g, '')) });
+    }
+    saveCart();
+    
+    document.getElementById('cart-count').style.transform = 'scale(1.3)';
+    setTimeout(function() { document.getElementById('cart-count').style.transform = 'scale(1)'; }, 200);
+  }
+
+  function removeFromCart(id) {
+    cart = cart.filter(function(item) { return item.id !== id; });
+    saveCart();
+  }
+
+  function changeCartQty(id, delta) {
+    var item = cart.find(function(i) { return i.id === id; });
+    if (!item) return;
+    item.qty += delta;
+    if (item.qty <= 0) {
+      removeFromCart(id);
+    } else {
+      saveCart();
+    }
+  }
+
+  function updateCartUI() {
+    var list = document.getElementById('cart-list');
+    var countEl = document.getElementById('cart-count');
+    var totalEl = document.getElementById('cart-total');
+
+    var totalItems = 0;
+    var totalSum = 0;
+
+    if (cart.length === 0) {
+      list.innerHTML = '<div class="cart-empty-msg">Корзина пуста</div>';
+      countEl.textContent = '0';
+      totalEl.textContent = '0 ₽';
+      return;
+    }
+
+    var html = '';
+    cart.forEach(function(item) {
+      var p = products.find(function(prod) { return prod.id === item.id; });
+      if (!p) return;
+      totalItems += item.qty;
+      totalSum += item.price * item.qty;
+      
+      html += `
+        <div class="cart-item">
+          <img src="${p.img}" class="cart-item-img" alt="${p.name}">
+          <div class="cart-item-info">
+            <div class="cart-item-name">${p.name}</div>
+            <div class="cart-item-price">${(item.price * item.qty).toLocaleString('ru')} ₽</div>
+          </div>
+          <div class="cart-item-actions">
+            <button class="cart-qty-btn" onclick="changeCartQty(${item.id}, -1)">−</button>
+            <span class="cart-item-qty">${item.qty}</span>
+            <button class="cart-qty-btn" onclick="changeCartQty(${item.id}, 1)">+</button>
+            <button class="cart-item-remove" onclick="removeFromCart(${item.id})">✕</button>
+          </div>
+        </div>
+      `;
+    });
+    list.innerHTML = html;
+    countEl.textContent = totalItems;
+    totalEl.textContent = totalSum.toLocaleString('ru') + ' ₽';
+  }
+
+  function toggleCart() {
+    var sidebar = document.getElementById('cart-sidebar');
+    sidebar.classList.toggle('open');
+    document.body.style.overflow = sidebar.classList.contains('open') ? 'hidden' : '';
+    updateCartUI();
+  }
+
+  function checkoutCart() {
+    if (cart.length === 0) return;
+    var total = document.getElementById('cart-total').textContent;
+    var items = cart.map(function(item) {
+      var p = products.find(function(prod) { return prod.id === item.id; });
+      return p ? p.name + ' (' + item.qty + ' шт.)' : '';
+    }).join(', ');
+    
+    toggleCart();
+    setTimeout(function() {
+      openModal('Оформление заказа', 'Ваш заказ: ' + items + '<br>Общая сумма: ' + total + '<br><br>Оставьте телефон для связи.');
+    }, 400);
+  }
+
+  // Закрытие корзины по клику вне её
+  document.addEventListener('click', function(e) {
+    var sidebar = document.getElementById('cart-sidebar');
+    if (sidebar.classList.contains('open')) {
+      if (!sidebar.contains(e.target) && !e.target.closest('.cart-icon-wrap')) {
+        toggleCart();
+      }
+    }
+  });
+
+  // ===== ОТКРЫТИЕ КАРТОЧКИ ТОВАРА =====
+  function openProductCard(id) {
+    var p = products.find(function(item) { return item.id === id; });
+    if (!p) return;
+
+    var wrap = document.getElementById('modal-card-wrap');
+    var img = p.img || 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="%23333"/><text x="50" y="55" text-anchor="middle" fill="%23999" font-size="12">Шина</text></svg>';
+    
+    var priceHtml = p.price_old ? `<div class="modal-old-price">${p.price_old} руб.</div><div class="modal-new-price">${p.price_new} руб.</div>` : `<div class="modal-new-price">${p.price_new} руб.</div>`;
+    var stockHtml = p.stock === 'stock' ? '<span style="color:#22c55e; font-size:12px;">● В наличии</span>' : '<span style="color:#f87171; font-size:12px;">● Под заказ</span>';
+
+    wrap.innerHTML = `
+      <div class="modal-card-layout">
+        <div class="modal-image-wrap">
+          <div class="modal-badge">Акция</div>
+          <img src="${img}" alt="${p.name}">
+        </div>
+        <div class="modal-info-wrap">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+            <div class="modal-title">${p.name}</div>
+            <div>${stockHtml}</div>
+          </div>
+          <div class="modal-specs">
+            Производитель: <span>${p.brand}</span><br>
+            Типоразмер: <span>${p.width}/${p.diam}</span><br>
+            ${p.desc}
+          </div>
+          <div class="modal-price-block">
+            ${priceHtml}
+          </div>
+          <div class="modal-actions">
+            <div class="qty-control">
+              <button class="qty-btn" onclick="changeQty(-1)">−</button>
+              <input type="text" class="qty-input" id="qty-input" value="1" readonly>
+              <button class="qty-btn" onclick="changeQty(1)">+</button>
+            </div>
+            <button class="btn btn-primary modal-buy-btn" onclick="addToCartFromModal(${p.id})">Купить</button>
+          </div>
+          <div class="modal-delivery-note">
+            Доставим в ваш регион. Звоните: <span>+7 (495) 661-91-77</span>!
+          </div>
+        </div>
+      </div>
+    `;
+    
+    document.getElementById('modal-overlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function changeQty(delta) {
+    var input = document.getElementById('qty-input');
+    var val = parseInt(input.value) || 1;
+    val = Math.max(1, val + delta);
+    input.value = val;
+  }
+
+  function addToCartFromModal(id) {
+    var qty = parseInt(document.getElementById('qty-input').value) || 1;
+    for (var i = 0; i < qty; i++) {
+      addToCart(id);
+    }
+    closeModal();
+  }
+
+  // ===== ОСТАЛЬНЫЕ ФУНКЦИИ (МОДАЛКИ, АНИМАЦИИ И Т.Д.) =====
+  function openModal(name, desc){
+    document.getElementById('modal-product-name').textContent = name;
+    document.getElementById('modal-product-desc').textContent = desc;
+    document.getElementById('modal-form-wrap').style.display = '';
+    document.getElementById('modal-success').style.display = 'none';
+    document.getElementById('modal-name').value = '';
+    document.getElementById('modal-phone').value = '';
+    document.getElementById('modal-comment').value = '';
+    document.getElementById('modal-overlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal(){
+    document.getElementById('modal-overlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function handleOverlayClick(e){
+    if(e.target === document.getElementById('modal-overlay')) closeModal();
+  }
+
+  function validatePhone(phone) {
+    var cleaned = phone.replace(/\D/g, '');
+    return cleaned.length >= 10;
+  }
+
+  function submitModal() {
+    var name = document.getElementById('modal-name').value.trim();
+    var phone = document.getElementById('modal-phone').value.trim();
+    var phoneInput = document.getElementById('modal-phone');
+    
+    if (!phone || !validatePhone(phone)) {
+      phoneInput.classList.add('error');
+      phoneInput.focus();
+      setTimeout(function() { phoneInput.classList.remove('error'); }, 2000);
+      return;
+    }
+    document.getElementById('modal-form-wrap').style.display = 'none';
+    document.getElementById('modal-success').style.display = 'block';
+    setTimeout(closeModal, 3500);
+  }
+
+  document.getElementById('modal-phone').addEventListener('input', function(e) {
+    var x = this.value.replace(/\D/g, '').match(/(\d{0,1})(\d{0,3})(\d{0,3})(\d{0,2})(\d{0,2})/);
+    if (!x) return;
+    this.value = '+' + (x[1] ? '7' : '') + (x[2] ? ' (' + x[2] : '') + (x[3] ? ') ' + x[3] : '') + (x[4] ? '-' + x[4] : '') + (x[5] ? '-' + x[5] : '');
+  });
+
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
+
+  var scrollBtn = document.getElementById('scroll-top');
+  window.addEventListener('scroll', function() { scrollBtn.classList.toggle('visible', window.scrollY > 400); });
+
+  function animateCounter(element, target, suffix) {
+    var current = 0;
+    var step = Math.ceil(target / 60);
+    var timer = setInterval(function() {
+      current = Math.min(current + step, target);
+      element.textContent = current.toLocaleString('ru') + (current === target ? suffix : '');
+      if (current >= target) clearInterval(timer);
+    }, 20);
+  }
+
+  var heroStats = document.querySelector('.hero-stats');
+  var counted = false;
+  var observer = new IntersectionObserver(function(entries) {
+    if (entries[0].isIntersecting && !counted) {
+      counted = true;
+      var positions = document.getElementById('stat-positions');
+      var years = document.getElementById('stat-years');
+      var clients = document.getElementById('stat-clients');
+      if (positions) animateCounter(positions, 1500, '+');
+      if (years) animateCounter(years, 6, '');
+      if (clients) animateCounter(clients, 340, '');
+    }
+  }, {threshold: 0.5});
+  if (heroStats) observer.observe(heroStats);
+
+  // Инициализация при загрузке
+  document.addEventListener('DOMContentLoaded', function() {
+    // По умолчанию показываем только акционные шины (id 31-40)
+    var stockProducts = products.filter(function(p) { return p.id >= 31 && p.id <= 40; });
+    renderTable(stockProducts);
+    updateCartUI();
+  });
 </script>
 </body>
 </html>
