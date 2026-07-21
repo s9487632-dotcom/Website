@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -8,7 +9,7 @@
   <meta property="og:title" content="Шина 77 — грузовые и легкогрузовые шины">
   <meta property="og:description" content="Шины для грузового и легкогрузового транспорта в наличии.">
   <meta property="og:type" content="website">
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=yes">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚛</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -44,9 +45,7 @@
     .page { min-height: 100vh; display: flex; flex-direction: column; }
     .container { width: 100%; max-width: 1180px; margin: 0 auto; padding: 0 16px; }
 
-    #catalog, #popular, #benefits, #contacts {
-      scroll-margin-top: 85px;
-    }
+    #catalog, #popular, #benefits { scroll-margin-top: 85px; }
 
     header {
       position: sticky;
@@ -67,22 +66,26 @@
 
     .logo { display: flex; align-items: center; gap: 10px; cursor: pointer; }
     .logo-mark {
-      width: 36px;
-      height: 36px;
+      width: 48px;
+      height: 48px;
       border-radius: 999px;
-      background: radial-gradient(circle at 30% 20%, #fef9c3, #facc15 40%, #b45309 100%);
+      background: #ffffff;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 0 0 1px rgba(248,250,252,0.12), 0 8px 24px rgba(250,204,21,0.4);
+      box-shadow: 0 0 0 1px rgba(0,0,0,0.1), 0 4px 12px rgba(0,0,0,0.3);
+    }
+    .logo-mark span {
       font-family: var(--font-display);
       font-weight: 800;
-      font-size: 17px;
-      letter-spacing: 0.02em;
-      color: #111827;
+      font-size: 22px;
+      letter-spacing: -0.02em;
+      color: #facc15;
+      line-height: 1;
     }
+
     .logo-text { display: flex; flex-direction: column; gap: 1px; }
-    .logo-title { font-family: var(--font-display); font-weight: 700; font-size: 20px; letter-spacing: 0.06em; text-transform: uppercase; }
+    .logo-title { font-family: var(--font-display); font-weight: 700; font-size: 20px; letter-spacing: 0.06em; text-transform: uppercase; color: #ffffff; }
     .logo-sub { font-size: 10px; text-transform: uppercase; color: var(--muted); letter-spacing: 0.16em; }
 
     .nav { display: flex; align-items: center; gap: 22px; font-size: 14px; color: var(--muted); }
@@ -96,7 +99,6 @@
     .phone-main { font-family: var(--font-display); font-weight: 600; font-size: 17px; letter-spacing: 0.04em; }
     .phone-sub { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.12em; }
 
-    /* Корзина в шапке */
     .cart-icon-wrap {
       position: relative;
       cursor: pointer;
@@ -209,8 +211,6 @@
     .btn-ghost:hover { background: rgba(255,255,255,0.1); color: var(--text); }
     .btn-buy { background: #4b5563; color: white; transition: 0.2s; }
     .btn-buy:hover { background: #6b7280; }
-    .btn-danger { background: rgba(239,68,68,0.2); color: #fca5a5; border: 1px solid rgba(239,68,68,0.3); }
-    .btn-danger:hover { background: rgba(239,68,68,0.4); }
 
     .hero { padding: 36px 0 44px; }
     .hero-inner {
@@ -268,36 +268,6 @@
       border: 1px solid rgba(148,163,184,0.3);
       isolation: isolate;
     }
-    .hero-wheel {
-      position: relative;
-      width: 190px;
-      height: 190px;
-      margin: 10px auto 10px;
-      border-radius: 999px;
-      background: radial-gradient(circle at 30% 20%, #f9fafb 0, #e5e7eb 30%, #111827 65%, #020617 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 26px 60px rgba(0,0,0,0.9);
-      animation: spin 18s linear infinite;
-    }
-    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-    .hero-wheel-inner {
-      width: 62%;
-      height: 62%;
-      border-radius: 999px;
-      border: 6px solid #020617;
-      background: conic-gradient(from 0deg, #020617, #111827, #020617, #111827, #020617);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-      animation: counter-spin 18s linear infinite;
-    }
-    @keyframes counter-spin { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
-    .hero-wheel-inner::before { content: ""; position: absolute; inset: 18%; border-radius: inherit; border: 2px solid rgba(148,163,184,0.5); }
-    .hero-wheel-inner::after { content: ""; width: 18px; height: 18px; border-radius: 999px; background: radial-gradient(circle at 30% 20%, #facc15, #b45309); box-shadow: 0 0 0 5px rgba(250,204,21,0.35); }
     .hero-price { display: flex; align-items: baseline; justify-content: center; gap: 6px; margin-bottom: 4px; }
     .hero-price-main { font-family: var(--font-display); font-size: 26px; font-weight: 800; letter-spacing: 0.02em; }
     .hero-price-sub { font-size: 11px; color: var(--muted); }
@@ -338,7 +308,7 @@
       padding: 14px;
       margin-bottom: 16px;
       display: grid;
-      grid-template-columns: repeat(7, minmax(0, 1fr)); /* 7 колонок для поиска */
+      grid-template-columns: repeat(7, minmax(0, 1fr));
       gap: 10px;
       align-items: end;
     }
@@ -398,7 +368,6 @@
     .filter-actions { display: flex; gap: 6px; }
     .filter-btn { flex: 1; justify-content: center; font-size: 12px; padding: 8px 12px; }
 
-    /* ===== ТАБЛИЦА ПРАЙС-ЛИСТА ===== */
     .price-table-wrap {
       border-radius: var(--radius);
       background: #020617;
@@ -515,72 +484,6 @@
       width: 100%;
     }
 
-    .contacts-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-      gap: 14px;
-    }
-    .contacts-card, .map-card {
-      border-radius: var(--radius);
-      background: #020617;
-      border: 1px solid rgba(31,41,55,0.9);
-      padding: 10px 11px 9px;
-      font-size: 12px;
-      color: var(--muted);
-    }
-    .contacts-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 4px;
-    }
-    .contacts-label { color: #6b7280; }
-    .contacts-value { color: #e5e7eb; }
-
-    .pickup-list {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      margin-top: 12px;
-    }
-    .pickup-point {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 10px 12px;
-      border-radius: 10px;
-      border: 1px solid rgba(31,41,55,0.9);
-      background: rgba(15,23,42,0.5);
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .pickup-point:hover {
-      border-color: rgba(250,204,21,0.5);
-      background: rgba(250,204,21,0.04);
-    }
-    .pickup-point.active {
-      border-color: rgba(250,204,21,0.7);
-      background: rgba(250,204,21,0.08);
-    }
-    .pickup-num {
-      flex-shrink: 0;
-      width: 26px;
-      height: 26px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, #facc15, #f97316);
-      color: #111827;
-      font-family: var(--font-display);
-      font-weight: 800;
-      font-size: 13px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .pickup-info { flex: 1; }
-    .pickup-name { font-size: 13px; font-weight: 600; color: #e5e7eb; margin-bottom: 2px; }
-    .pickup-addr { font-size: 12px; color: var(--muted); }
-    .pickup-arrow { color: var(--muted); font-size: 18px; }
-
     .map-full-card {
       border-radius: var(--radius);
       border: none;
@@ -596,15 +499,6 @@
     }
     .map-full-title { font-family: var(--font-display); font-size: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; }
 
-    footer { border-top: 1px solid rgba(31,41,55,0.9); padding: 16px 0; margin-top: auto; font-size: 12px; color: var(--muted); }
-    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
-    .footer-links { display: flex; gap: 14px; flex-wrap: wrap; }
-    .footer-links a { color: var(--muted); transition: color var(--transition); cursor: pointer; }
-    .footer-links a:hover { color: #e5e7eb; }
-    .footer-badge { display: flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 999px; border: 1px solid rgba(31,41,55,0.9); font-size: 10px; }
-    .footer-badge-dot { width: 5px; height: 5px; border-radius: 999px; background: #22c55e; }
-
-    /* ===== МОДАЛЬНОЕ ОКНО (КАРТОЧКА ТОВАРА) ===== */
     .modal-overlay {
       display: none;
       position: fixed;
@@ -762,7 +656,6 @@
     }
     .modal-delivery-note span { color: var(--accent); }
 
-    /* ===== ШТОРКА КОРЗИНЫ ===== */
     .cart-sidebar {
       position: fixed;
       top: 0;
@@ -906,12 +799,94 @@
     }
     .scroll-top.visible { opacity: 1; transform: translateY(0); }
 
+    /* Toaster — всплывающее уведомление "Добавлено в корзину" */
+    .toast-container {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .toast {
+      background: #0b0d13;
+      border: 1px solid rgba(250,204,21,0.4);
+      border-radius: 12px;
+      padding: 14px 20px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.8);
+      animation: slideIn 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+      max-width: 360px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #e5e7eb;
+      font-size: 14px;
+    }
+    .toast-icon {
+      font-size: 24px;
+      flex-shrink: 0;
+    }
+    .toast-text {
+      flex: 1;
+    }
+    .toast-text strong {
+      color: #facc15;
+    }
+    .toast-close {
+      background: none;
+      border: none;
+      color: #9ca3af;
+      cursor: pointer;
+      font-size: 18px;
+      padding: 0 4px;
+    }
+    .toast-close:hover { color: #fca5a5; }
+    @keyframes slideIn {
+      from { transform: translateX(120%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    .toast.out {
+      animation: slideOut 0.3s ease forwards;
+    }
+    @keyframes slideOut {
+      from { transform: translateX(0); opacity: 1; }
+      to { transform: translateX(120%); opacity: 0; }
+    }
+
+    /* Стили для ошибок в модальной форме */
+    .modal-form-group {
+      position: relative;
+    }
+    .modal-form-group .required-star {
+      color: #ef4444;
+      margin-left: 4px;
+    }
+    .modal-form-group .error-message {
+      display: none;
+      color: #ef4444;
+      font-size: 12px;
+      margin-top: 4px;
+    }
+    .modal-form-group.error input,
+    .modal-form-group.error textarea {
+      border-color: #ef4444 !important;
+    }
+    .modal-form-group.error .error-message {
+      display: block;
+    }
+    /* Важно! 16px шрифт отключает авто-зум на мобильных */
+    .modal-form-group input,
+    .modal-form-group textarea,
+    .modal-form-group select {
+      font-size: 16px !important;
+    }
+
     @media (max-width: 960px) {
       .hero-inner { grid-template-columns: minmax(0, 1fr); }
       .hero-card { max-width: 380px; margin: 0 auto; }
       .categories-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .benefits-grid, .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .contacts-grid { grid-template-columns: minmax(0, 1fr); }
       .nav { display: none; }
       .filter-panel { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .burger { display: flex; }
@@ -944,7 +919,7 @@
     <a href="#catalog" onclick="closeMobileMenu()">Каталог</a>
     <a href="#popular" onclick="closeMobileMenu()">Каталог шин</a>
     <a href="#benefits" onclick="closeMobileMenu()">Преимущества</a>
-    <a href="#contacts" onclick="closeMobileMenu()">Контакты</a>
+    <a href="#" onclick="openLocations(); return false;" style="color: var(--accent); font-weight: 700; font-size: 22px;">📍 Контакты и самовывоз</a>
     <div class="menu-contacts">
       <a href="tel:+74956619177">+7 (495) 661‑91‑77</a>
       <a href="mailto:zakaz@ishina77.ru">zakaz@ishina77.ru</a>
@@ -955,27 +930,25 @@
   <header>
     <div class="container">
       <div class="header-inner">
-        <div class="logo" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-          <div class="logo-mark">77</div>
-          <div class="logo-text">
-            <div class="logo-title">Шина 77</div>
-            <div class="logo-sub">грузовые и легкогрузовые шины</div>
+        <div class="logo" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="display:flex;align-items:center;gap:10px;">
+          <img src="images/logo.png" alt="Шина 77" style="height:52px;width:auto;border-radius:50%;">
+          <div style="display:flex;flex-direction:column;line-height:1.2;">
+            <span style="font-family:var(--font-display);font-weight:800;font-size:18px;letter-spacing:0.05em;color:#fff;text-transform:uppercase;">Шина 77</span>
+            <span style="font-size:10px;color:rgba(255,255,255,0.6);letter-spacing:0.08em;text-transform:uppercase;">Грузовые и легкогрузовые шины</span>
           </div>
         </div>
         <nav class="nav">
           <a href="#catalog">Каталог</a>
           <a href="#popular">Каталог шин</a>
           <a href="#benefits">Преимущества</a>
-          <a href="#contacts">Контакты</a>
         </nav>
         <div class="header-right">
           <div class="phone">
             <a href="tel:+74956619177" class="phone-main">+7 (495) 661‑91‑77</a>
             <div class="phone-sub">звонок по России бесплатный</div>
           </div>
-          <!-- Иконка корзины -->
           <div class="cart-icon-wrap" onclick="toggleCart()">
-            <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+            <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2 2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
             <span class="cart-count" id="cart-count">0</span>
           </div>
           <button class="burger" id="burger" onclick="toggleMenu()">
@@ -995,8 +968,9 @@
           <div>
             <div class="eyebrow">
               <span class="eyebrow-dot"></span>
-              <span>Склады в Московской и Владимирской областях · Самовывоз и доставка</span>
+              <span>Склады в Московской и Владимирской областях</span>
             </div>
+            <div style="font-size:10px; color:var(--muted); text-transform:uppercase; letter-spacing:0.16em; margin-bottom:16px; margin-top:-8px;">Самовывоз и доставка</div>
             <h1 class="hero-title">
               Грузовые и<br>
               легкогрузовые шины<br>
@@ -1015,10 +989,10 @@
               </button>
             </div>
             <div class="hero-stats">
-              <div class="hero-stat"><div class="hero-stat-num" id="stat-positions">1500</div><div class="hero-stat-label">Позиций на складе</div></div>
-              <div class="hero-stat"><div class="hero-stat-num" id="stat-years">6</div><div class="hero-stat-label">Лет на рынке</div></div>
-              <div class="hero-stat"><div class="hero-stat-num" id="stat-clients">340</div><div class="hero-stat-label">Постоянных клиентов</div></div>
-              <div class="hero-stat"><div class="hero-stat-num" style="font-size:16px;padding-top:4px;">Быстрая</div><div class="hero-stat-label">Отгрузка со склада</div></div>
+              <div class="hero-stat"><div class="hero-stat-num" id="stat-positions">0</div><div class="hero-stat-label">Позиций на складе</div></div>
+              <div class="hero-stat"><div class="hero-stat-num" id="stat-years">0</div><div class="hero-stat-label">Лет на рынке</div></div>
+              <div class="hero-stat"><div class="hero-stat-num" id="stat-clients">0</div><div class="hero-stat-label">Постоянных клиентов</div></div>
+              <div class="hero-stat"><div class="hero-stat-num" id="stat-hours">0</div><div class="hero-stat-label">Отгрузка со склада</div></div>
             </div>
           </div>
           <div>
@@ -1029,7 +1003,12 @@
               </div>
               <div class="hero-price"><div class="hero-price-main">от 23 900 ₽</div><div class="hero-price-sub">за шину при заказе от 4 шт.</div></div>
               <div class="hero-note">Уточняйте цены и наличие у менеджера — подберём под ваш пробег и бюджет.</div>
-              <div class="hero-wheel"><div class="hero-wheel-inner"><div class="hero-wheel-glow"></div></div></div>
+              
+              <!-- Картинка в герое теперь подгружается из папки images -->
+              <div style="display:flex;align-items:center;justify-content:center;margin:10px auto 10px;width:190px;height:190px;">
+                <img src="images/tire-hero.svg" alt="шина" style="width:190px;height:190px;object-fit:contain;filter:drop-shadow(0 10px 30px rgba(0,0,0,0.8));">
+              </div>
+
               <div class="hero-card-footer"><div style="font-size:11px;color:var(--muted);">Прямые поставки · Сертифицированная продукция</div></div>
             </div>
           </div>
@@ -1039,11 +1018,11 @@
 
     <section id="catalog">
       <div class="container">
-        <div class="section-header"><div class="section-title">Категории</div><div class="section-sub">Выберите тип продукции</div></div>
+        <div class="section-header"><div class="section-title">Категории</div><div class="section-sub" style="display:none;">Выберите тип продукции</div></div>
         <div class="categories-grid">
           <div class="category-card" onclick="applyCategoryFilter('truck')"><span class="cat-icon">🚛</span><div class="category-title">Грузовые шины</div><div class="category-sub">Для тягачей, прицепов, самосвалов и коммерческого транспорта.</div><div class="category-meta"><div>R22.5 · R17.5</div><div class="category-chip">Опт и розница</div></div></div>
           <div class="category-card" onclick="applyCategoryFilter('light')"><span class="cat-icon">🚐</span><div class="category-title">Легкогрузовые шины</div><div class="category-sub">Газели, фургоны, малотоннажный транспорт.</div><div class="category-meta"><div>R15C / R16C</div><div class="category-chip">Подбор по авто</div></div></div>
-          <div class="category-card" onclick="applyCategoryFilter('special')"><span class="cat-icon">🏗️</span><div class="category-title">Спецшины</div><div class="category-sub">Строительная и сельхозтехника, погрузчики.</div><div class="category-meta"><div>Под заказ</div><div class="category-chip">Индивидуально</div></div></div>
+          <div class="category-card" onclick="applyCategoryFilter('special')"><span class="cat-icon">⛑️</span><div class="category-title">Спецшины</div><div class="category-sub">Строительная и сельхозтехника, погрузчики.</div><div class="category-meta"><div>Под заказ</div><div class="category-chip">Индивидуально</div></div></div>
           <div class="category-card" onclick="applyCategoryFilter('discs')"><span class="cat-icon">⚙️</span><div class="category-title">Грузовые диски</div><div class="category-sub">Стальные и легкосплавные диски для грузового транспорта.</div><div class="category-meta"><div>R17.5 · R22.5</div><div class="category-chip">Оригинал и аналоги</div></div></div>
         </div>
       </div>
@@ -1051,7 +1030,7 @@
 
     <section id="popular">
       <div class="container">
-        <div class="section-header"><div class="section-title">Каталог шин и дисков</div><div class="section-sub products-count">Показано: <span class="products-count-num" id="visible-count">10</span> из 40 позиций</div></div>
+        <!-- Фильтры -->
         <div class="filter-panel">
           <div class="filter-field"><div class="filter-label">Поиск</div><input type="text" id="global-search" class="filter-select" placeholder="Введите название или артикул..." oninput="applyFilter()" style="width:100%;"></div>
           <div class="filter-field"><div class="filter-label">Категория</div><select id="filter-category" class="filter-select" onchange="applyFilter()"><option value="">Все</option><option value="truck">Грузовые шины</option><option value="light">Легкогрузовые шины</option><option value="special">Спецшины</option><option value="discs">Грузовые диски</option></select></div>
@@ -1069,6 +1048,12 @@
           
           <div class="filter-field"><div class="filter-label">Наличие</div><select id="filter-stock" class="filter-select" onchange="applyFilter()"><option value="">Все</option><option value="stock">В наличии</option><option value="order">Под заказ</option></select></div>
           <div class="filter-field"><div class="filter-actions"><button class="btn btn-ghost filter-btn" onclick="resetFilter()">Сброс</button></div></div>
+        </div>
+
+        <!-- Заголовок и подзаголовок прямо над таблицей -->
+        <div class="section-header" style="margin-top:0;">
+          <div class="section-title" id="catalog-section-title">Акции</div>
+          <div class="section-sub" id="catalog-section-sub">Специальные предложения от Шина 77</div>
         </div>
         
         <div class="price-table-wrap">
@@ -1092,96 +1077,74 @@
     <section id="benefits"><div class="container"><div class="section-header"><div class="section-title">Почему выбирают «Шина 77»</div><div class="section-sub">Работаем с автопарками, ИП и частными клиентами</div></div><div class="benefits-grid"><div class="benefit-card"><div class="benefit-icon">📦</div><div class="benefit-title">Прямые поставки</div><div>Работаем с официальными дистрибьюторами и проверенными поставщиками.</div></div><div class="benefit-card"><div class="benefit-icon">🎯</div><div class="benefit-title">Честный подбор</div><div>Подбираем шины под ваш пробег, нагрузки и бюджет — а не под максимальную маржу.</div></div><div class="benefit-card"><div class="benefit-icon">🔧</div><div class="benefit-title">Сервис под ключ</div><div>Доставка, шиномонтаж, хранение, помощь с документами.</div></div></div></div></section>
 
     <section><div class="container"><div class="section-header"><div class="section-title">Как мы работаем</div><div class="section-sub">Простой и понятный процесс</div></div><div class="steps"><div class="step-card"><div class="step-number">1</div><div class="step-title">Заявка или звонок</div><div>Вы оставляете заявку на сайте или звоните.</div></div><div class="step-card"><div class="step-number">2</div><div class="step-title">Подбор и согласование</div><div>Предлагаем несколько вариантов, согласуем цены и сроки.</div></div><div class="step-card"><div class="step-number">3</div><div class="step-title">Поставка и поддержка</div><div>Отгружаем шины со склада, остаёмся на связи.</div></div></div></div></section>
-
-    <section id="contacts">
-      <div class="container">
-        <div class="section-header">
-          <div class="section-title">Контакты и самовывоз</div>
-          <div class="section-sub">Приезжайте на любой из наших складов</div>
-        </div>
-        <div class="contacts-grid">
-          <div class="contacts-card">
-            <div style="font-family:var(--font-display);font-size:14px;font-weight:700;margin-bottom:12px;">📞 Связаться с нами</div>
-            <div class="contacts-row"><div class="contacts-label">Телефон</div><div class="contacts-value"><a href="tel:+74956619177">+7 (495) 661‑91‑77</a></div></div>
-            <div class="contacts-row"><div class="contacts-label">Email</div><div class="contacts-value"><a href="mailto:zakaz@ishina77.ru">zakaz@ishina77.ru</a></div></div>
-            <div class="contacts-row"><div class="contacts-label">Режим работы</div><div class="contacts-value">Пн–Сб: 9:00–19:00</div></div>
-            <div style="margin-top:12px; display:flex; gap:8px; flex-wrap:wrap;">
-              <button class="btn btn-primary" onclick="window.open('https://yandex.ru/maps/?pt=38.848,55.078&z=12', '_blank')">Проложить маршрут</button>
-              <button class="btn btn-outline" onclick="openModal('Заказать звонок', 'Оставьте номер — перезвоним в течение 10 минут.')">Заказать звонок</button>
-            </div>
-            <div style="font-family:var(--font-display);font-size:14px;font-weight:700;margin:16px 0 8px 0;">📍 Точки самовывоза</div>
-            <div class="pickup-list">
-              <div class="pickup-point" data-point="0" onclick="showOnMap(0)">
-                <div class="pickup-num">1</div>
-                <div class="pickup-info">
-                  <div class="pickup-name">Склад в Коломне</div>
-                  <div class="pickup-addr">Московская обл., г. Коломна, село Амерево, автодорога М-5 Урал, тер 1</div>
-                </div>
-                <div class="pickup-arrow">›</div>
-              </div>
-              <div class="pickup-point" data-point="1" onclick="showOnMap(1)">
-                <div class="pickup-num">2</div>
-                <div class="pickup-info">
-                  <div class="pickup-name">Склад в Раменском</div>
-                  <div class="pickup-addr">Московская обл., Раменский район, село Ганусово промзона, стр. 1</div>
-                </div>
-                <div class="pickup-arrow">›</div>
-              </div>
-              <div class="pickup-point" data-point="2" onclick="showOnMap(2)">
-                <div class="pickup-num">3</div>
-                <div class="pickup-info">
-                  <div class="pickup-name">Склад в Кольчугино</div>
-                  <div class="pickup-addr">Владимирская обл., г. Кольчугино, улица Колхозная, д. 99а</div>
-                </div>
-                <div class="pickup-arrow">›</div>
-              </div>
-            </div>
-          </div>
-          <div class="map-card" style="padding:0; overflow:hidden; border-radius: var(--radius);">
-            <div class="map-full-card" style="border:none;">
-              <div class="map-full-header">
-                <div class="map-full-title">📍 Наши склады на карте</div>
-                <a href="https://yandex.ru/maps/?pt=38.848,55.078~38.295,55.452~39.379,56.294&z=8" target="_blank" class="btn btn-ghost" style="font-size:11px;padding:6px 14px;">Открыть все точки ↗</a>
-              </div>
-              <div id="yandex-map" style="width:100%; height:380px;"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
   </main>
 
+  <!-- Footer: чистый, без политик, с копирайтом и "Работаем сегодня" -->
   <footer>
     <div class="container">
-      <div class="footer-inner">
-        <div><span>© Шина 77, 2020–2026</span><span class="footer-badge" style="margin-left:12px;"><span class="footer-badge-dot"></span> Работаем сегодня</span></div>
-        <div class="footer-links">
-          <a href="#" onclick="openModal('Политика конфиденциальности', 'Информация собирается только для обработки заявок.'); return false;">Политика конфиденциальности</a>
-        </div>
+      <div class="footer-inner" style="display: flex; align-items: center; justify-content: flex-start; flex-wrap: wrap; gap: 10px; padding-top: 8px; padding-bottom: 8px;">
+        <span style="color: var(--muted);">© Шина 77, 2020–2026</span>
+        <span style="display: flex; align-items: center; gap: 6px; color: var(--muted); font-size: 12px;">
+          <span style="width: 6px; height: 6px; border-radius: 999px; background: #22c55e;"></span> Работаем сегодня
+        </span>
       </div>
     </div>
   </footer>
+
 </div>
 
-<!-- ===== МОДАЛЬНОЕ ОКНО КАРТОЧКИ ТОВАРА ===== -->
+<!-- Контейнер для всплывающих уведомлений -->
+<div class="toast-container" id="toast-container"></div>
+
+<!-- ===== ОСНОВНОЕ МОДАЛЬНОЕ ОКНО (КАРТОЧКА ТОВАРА) ===== -->
 <div class="modal-overlay" id="modal-overlay" onclick="handleOverlayClick(event)">
   <div class="modal">
     <button class="modal-close" onclick="closeModal()">×</button>
-    <div id="modal-card-wrap" style="display:block;">
-      <!-- Контент карточки будет вставлен через JS -->
+    <div id="modal-card-wrap" style="display:none;"></div>
+    <div id="modal-form-wrap">
+      <div id="modal-product-name" style="font-family:var(--font-display);font-size:20px;font-weight:700;margin-bottom:6px;"></div>
+      <div id="modal-product-desc" style="font-size:13px;color:var(--muted);margin-bottom:18px;"></div>
+      
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div class="modal-form-group" id="name-group">
+          <label style="display:block;font-size:13px;color:var(--muted);margin-bottom:4px;">
+            Ваше имя <span class="required-star">*</span>
+          </label>
+          <input id="modal-name" type="text" placeholder="Введите ваше имя" class="filter-select" style="border-radius:8px;padding:10px 12px;width:100%;font-size:16px !important;">
+          <div class="error-message">Пожалуйста, укажите ваше имя</div>
+        </div>
+
+        <div class="modal-form-group">
+          <label style="display:block;font-size:13px;color:var(--muted);margin-bottom:4px;">
+            Телефон <span class="required-star">*</span>
+          </label>
+          <input id="modal-phone" type="tel" placeholder="+7 (___) ___-__-__" class="filter-select" style="border-radius:8px;padding:10px 12px;width:100%;font-size:16px !important;">
+          <div class="error-message" id="phone-error" style="display:none;">Пожалуйста, укажите корректный номер телефона</div>
+        </div>
+
+        <div class="modal-form-group">
+          <label style="display:block;font-size:13px;color:var(--muted);margin-bottom:4px;">Комментарий</label>
+          <textarea id="modal-comment" placeholder="Комментарий (необязательно)" class="filter-select" style="border-radius:8px;padding:10px 12px;width:100%;resize:none;height:80px;font-size:16px !important;"></textarea>
+        </div>
+        
+        <button class="btn btn-primary" onclick="submitModal()" style="width:100%;justify-content:center;">Отправить заявку</button>
+      </div>
+    </div>
+    <div id="modal-success" style="display:none;text-align:center;padding:20px 0;">
+      <div style="font-size:40px;margin-bottom:12px;">✅</div>
+      <div style="font-family:var(--font-display);font-size:20px;font-weight:700;margin-bottom:6px;">Заявка отправлена!</div>
+      <div style="font-size:13px;color:var(--muted);">Перезвоним в течение 10 минут.</div>
     </div>
   </div>
 </div>
 
-<!-- ===== ШТОРКА КОРЗИНЫ ===== -->
+<!-- ===== КОРЗИНА ===== -->
 <div class="cart-sidebar" id="cart-sidebar">
   <div class="cart-sidebar-header">
     <div class="cart-sidebar-title">🛒 Корзина</div>
     <button class="cart-close-btn" onclick="toggleCart()">×</button>
   </div>
-  <div class="cart-list" id="cart-list">
-    <!-- Товары будут добавляться через JS -->
-  </div>
+  <div class="cart-list" id="cart-list"></div>
   <div class="cart-sidebar-footer">
     <div class="cart-total-row">
       <span>Итого:</span>
@@ -1191,55 +1154,136 @@
   </div>
 </div>
 
+<!-- ===== ПОЛНОЭКРАННОЕ ОКНО: КОНТАКТЫ И САМОВЫВОЗ (4 ТОЧКИ) ===== -->
+<div class="locations-overlay" id="locations-overlay" style="display:none; position:fixed; inset:0; z-index:9999; background:#020617; overflow-y:auto; padding:20px;">
+  <div class="container" style="max-width: 900px; margin: 0 auto;">
+    
+    <!-- Кнопка назад -->
+    <div style="display:flex; align-items:center; gap:12px; margin-bottom:20px; border-bottom:1px solid rgba(148,163,184,0.2); padding-bottom:16px;">
+      <button onclick="closeLocations()" style="background:none; border:none; color:#facc15; font-size:24px; cursor:pointer;">← Назад</button>
+      <span style="font-family:var(--font-display); font-size:22px; font-weight:700; color:#fff;">📍 Контакты и самовывоз</span>
+    </div>
+
+    <!-- Список точек -->
+    <div class="pickup-list" style="margin-bottom:24px;">
+      
+      <!-- Точка 1: Основной склад (Раменское) -->
+      <div class="pickup-point" onclick="showLocationMap(0)">
+        <div class="pickup-num">1</div>
+        <div class="pickup-info">
+          <div class="pickup-name">Основной склад</div>
+          <div class="pickup-addr">Московская обл., Раменский р-н, с. Ганусово, промзона стр. 1</div>
+          <div style="margin-top:2px; font-size:12px; color:var(--muted);">
+            📞 <a href="tel:+79163693137" style="color:#facc15;">+7 (916) 369-31-37</a>
+          </div>
+          <div style="margin-top:4px; font-size:11px; color:#fca5a5;">❗ Для оптовых заказов предварительно звоните!</div>
+        </div>
+        <div class="pickup-arrow">›</div>
+      </div>
+      
+      <!-- Точка 2: Склад в Дмитровском округе -->
+      <div class="pickup-point" onclick="showLocationMap(1)">
+        <div class="pickup-num">2</div>
+        <div class="pickup-info">
+          <div class="pickup-name">Склад (Дмитровский округ)</div>
+          <div class="pickup-addr">Московская обл., Дмитровский м.о., д. Старо, вл. 71с1</div>
+          <div style="margin-top:2px; font-size:12px; color:var(--muted);">
+            📞 <a href="tel:+79167580150" style="color:#facc15;">+7 (916) 758-01-50</a>
+          </div>
+          <div style="margin-top:4px; font-size:11px; color:#fca5a5;">❗ Для оптовых заказов предварительно звоните!</div>
+        </div>
+        <div class="pickup-arrow">›</div>
+      </div>
+
+      <!-- Точка 3: Склад в Кольчугино -->
+      <div class="pickup-point" onclick="showLocationMap(2)">
+        <div class="pickup-num">3</div>
+        <div class="pickup-info">
+          <div class="pickup-name">Склад (Кольчугино)</div>
+          <div class="pickup-addr">Владимирская обл., г. Кольчугино, ул. Колхозная, д. 99а</div>
+          <div style="margin-top:2px; font-size:12px; color:var(--muted);">
+            📞 <a href="tel:+79209204933" style="color:#facc15;">+7 (920) 920-49-33</a>
+          </div>
+          <div style="margin-top:4px; font-size:11px; color:#fca5a5;">❗ Для оптовых заказов предварительно звоните!</div>
+        </div>
+        <div class="pickup-arrow">›</div>
+      </div>
+
+      <!-- Точка 4: Розничный магазин (Коломна) -->
+      <div class="pickup-point" onclick="showLocationMap(3)">
+        <div class="pickup-num">4</div>
+        <div class="pickup-info">
+          <div class="pickup-name">Розничный магазин</div>
+          <div class="pickup-addr">Московская обл., г. Коломна, с. Амерево, автодорога М-5 Урал, тер. 1</div>
+          <div style="margin-top:2px; font-size:12px; color:var(--muted);">
+            📞 <a href="tel:+79160523634" style="color:#facc15;">+7 (916) 052-36-34</a>
+          </div>
+          <div style="margin-top:4px; font-size:11px; color:#22c55e;">✅ Можно приехать и купить в розницу!</div>
+        </div>
+        <div class="pickup-arrow">›</div>
+      </div>
+
+    </div>
+
+    <!-- Карта (меняется при клике на точку) -->
+    <div class="map-card" style="padding:0; overflow:hidden; border-radius: var(--radius);">
+      <div class="map-full-card" style="border:none;">
+        <iframe id="locations-map-iframe" src="https://yandex.ru/map-widget/v1/?ll=38.25%2C55.45&z=8" width="100%" height="500" frameborder="0" allowfullscreen style="display:block;"></iframe>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 <button class="scroll-top" id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
-<script src="https://api-maps.yandex.ru/2.1/?apikey=ВАШ_API_КЛЮЧ&lang=ru_RU"></script>
+
 <script>
   // ===== ДАННЫЕ ТОВАРОВ =====
   var products = [
-    // === АКЦИОННЫЕ ШИНЫ (SIMPECO И KAMA) - будут видны по умолчанию ===
-    { id: 31, name: 'SIMPECO Praktik C 315/80/R22.5 157/154K', desc: 'Ведущая ось · SIMPECO', price_old: null, price_new: '27 200', cat: 'truck', width: '315', diam: '22.5', brand: 'SIMPECO', stock: 'stock', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23444" stroke="%23555" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23222"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="9" font-weight="bold" font-family="Arial">SIMPECO</text></svg>' },
-    { id: 32, name: 'SIMPECO Praktik D1 315/80/R22.5 154/151M', desc: 'Ведущая ось · SIMPECO', price_old: '26 900', price_new: '24 500', cat: 'truck', width: '315', diam: '22.5', brand: 'SIMPECO', stock: 'stock', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23444" stroke="%23555" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23222"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="9" font-weight="bold" font-family="Arial">SIMPECO</text></svg>' },
-    { id: 33, name: 'SIMPECO Praktik S1 315/80/R22.5 157/154K', desc: 'Рулевая ось · SIMPECO', price_old: null, price_new: '24 700', cat: 'truck', width: '315', diam: '22.5', brand: 'SIMPECO', stock: 'stock', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23444" stroke="%23555" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23222"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="9" font-weight="bold" font-family="Arial">SIMPECO</text></svg>' },
-    { id: 34, name: 'SIMPECO Praktik D1 315/70/R22.5 154/150L', desc: 'Ведущая ось · SIMPECO', price_old: null, price_new: '24 500', cat: 'truck', width: '315', diam: '22.5', brand: 'SIMPECO', stock: 'stock', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23444" stroke="%23555" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23222"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="9" font-weight="bold" font-family="Arial">SIMPECO</text></svg>' },
-    { id: 35, name: 'SIMPECO Praktik S1 315/70/R22.5 156/150LL', desc: 'Рулевая ось · SIMPECO', price_old: null, price_new: '23 200', cat: 'truck', width: '315', diam: '22.5', brand: 'SIMPECO', stock: 'stock', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23444" stroke="%23555" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23222"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="9" font-weight="bold" font-family="Arial">SIMPECO</text></svg>' },
-    { id: 36, name: 'SIMPECO Praktik T2 385/65/R22.5 164K', desc: 'Прицепная ось · SIMPECO', price_old: null, price_new: '30 800', cat: 'truck', width: '385', diam: '22.5', brand: 'SIMPECO', stock: 'stock', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23444" stroke="%23555" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23222"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="9" font-weight="bold" font-family="Arial">SIMPECO</text></svg>' },
-    { id: 37, name: 'KAMA NT 201 385/65/R22.5 160K', desc: 'Прицепная ось · KAMA', price_old: null, price_new: '27 750', cat: 'truck', width: '385', diam: '22.5', brand: 'Kama', stock: 'stock', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23444" stroke="%23555" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23222"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="9" font-weight="bold" font-family="Arial">KAMA</text></svg>' },
-    { id: 38, name: 'KAMA NR 201 315/80/R22.5 156/150L', desc: 'Рулевая ось · KAMA', price_old: null, price_new: '26 600', cat: 'truck', width: '315', diam: '22.5', brand: 'Kama', stock: 'stock', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23444" stroke="%23555" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23222"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="9" font-weight="bold" font-family="Arial">KAMA</text></svg>' },
-    { id: 39, name: 'KAMA NF 202 315/70/R22.5 152/148M', desc: 'Ведущая ось · KAMA', price_old: null, price_new: '24 200', cat: 'truck', width: '315', diam: '22.5', brand: 'Kama', stock: 'stock', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23444" stroke="%23555" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23222"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="9" font-weight="bold" font-family="Arial">KAMA</text></svg>' },
-    { id: 40, name: 'KAMA NF 701 11/R22.5 148/145K', desc: 'Ведущая ось · KAMA', price_old: null, price_new: '23 800', cat: 'truck', width: '11', diam: '22.5', brand: 'Kama', stock: 'stock', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23444" stroke="%23555" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23222"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="9" font-weight="bold" font-family="Arial">KAMA</text></svg>' },
+    // === АКЦИОННЫЕ ШИНЫ (SIMPECO И KAMA) — только они видны по умолчанию ===
+    { id: 31, name: 'Грузовая шина SIMPECO Praktik C 315/80/R22.5 157/154K', desc: 'Ведущая ось', price_old: null, price_new: '27 200', cat: 'truck', width: '315', diam: '22.5', brand: 'SIMPECO', stock: 'stock', img: 'images/tire-31.svg' },
+    { id: 32, name: 'Грузовая шина SIMPECO Praktik D1 315/80/R22.5 154/151M', desc: 'Ведущая ось', price_old: '26 900', price_new: '24 500', cat: 'truck', width: '315', diam: '22.5', brand: 'SIMPECO', stock: 'stock', img: 'images/tire-32.svg' },
+    { id: 33, name: 'Грузовая шина SIMPECO Praktik S1 315/80/R22.5 157/154K', desc: 'Рулевая ось', price_old: null, price_new: '24 700', cat: 'truck', width: '315', diam: '22.5', brand: 'SIMPECO', stock: 'stock', img: 'images/tire-33.svg' },
+    { id: 34, name: 'Грузовая шина SIMPECO Praktik D1 315/70/R22.5 154/150L', desc: 'Ведущая ось', price_old: null, price_new: '24 500', cat: 'truck', width: '315', diam: '22.5', brand: 'SIMPECO', stock: 'stock', img: 'images/tire-34.svg' },
+    { id: 35, name: 'Грузовая шина SIMPECO Praktik S1 315/70/R22.5 156/150LL', desc: 'Рулевая ось', price_old: null, price_new: '23 200', cat: 'truck', width: '315', diam: '22.5', brand: 'SIMPECO', stock: 'stock', img: 'images/tire-35.svg' },
+    { id: 36, name: 'Грузовая шина SIMPECO Praktik T2 385/65/R22.5 164K', desc: 'Прицепная ось', price_old: null, price_new: '30 800', cat: 'truck', width: '385', diam: '22.5', brand: 'SIMPECO', stock: 'stock', img: 'images/tire-36.svg' },
+    { id: 37, name: 'Грузовая шина Кама NT 201 385/65/R22.5 160K', desc: 'Прицепная ось', price_old: null, price_new: '27 750', cat: 'truck', width: '385', diam: '22.5', brand: 'Kama', stock: 'stock', img: 'images/tire-37.svg' },
+    { id: 38, name: 'Грузовая шина Кама NR 201 315/80/R22.5 156/150L', desc: 'Рулевая ось', price_old: null, price_new: '26 600', cat: 'truck', width: '315', diam: '22.5', brand: 'Kama', stock: 'stock', img: 'images/tire-38.svg' },
+    { id: 39, name: 'Грузовая шина Кама NF 202 315/70/R22.5 152/148M', desc: 'Ведущая ось', price_old: null, price_new: '24 200', cat: 'truck', width: '315', diam: '22.5', brand: 'Kama', stock: 'stock', img: 'images/tire-39.svg' },
+    { id: 40, name: 'Грузовая шина Кама NF 701 11/R22.5 148/145K', desc: 'Ведущая ось', price_old: null, price_new: '23 800', cat: 'truck', width: '11', diam: '22.5', brand: 'Kama', stock: 'stock', img: 'images/tire-40.svg' },
 
-    // === ОСНОВНОЙ АССОРТИМЕНТ (СКРЫТ ПО УМОЛЧАНИЮ) ===
-    { id: 1, name: 'Normaks NT022 385/65 R22.5 160K', desc: 'Прицепная ось · Грузовые шины', price_old: '29 400', price_new: '25 500', cat: 'truck', width: '385', diam: '22.5', brand: 'Normaks', stock: 'stock', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23222" stroke="%23333" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23111"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="10" font-weight="bold" font-family="Arial">NT022</text></svg>' },
-    { id: 2, name: 'Normaks ND102 315/80 R22.5 157/153L', desc: 'Ведущая ось · Дальние перевозки', price_old: null, price_new: '23 900', cat: 'truck', width: '315', diam: '22.5', brand: 'Normaks', stock: 'stock', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23222" stroke="%23333" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23111"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="10" font-weight="bold" font-family="Arial">ND102</text></svg>' },
-    { id: 3, name: 'Normaks ND202 315/70 R22.5 154/150M', desc: 'Ведущая ось · Региональные', price_old: null, price_new: '22 400', cat: 'truck', width: '315', diam: '22.5', brand: 'Normaks', stock: 'stock', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23222" stroke="%23333" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23111"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="10" font-weight="bold" font-family="Arial">ND202</text></svg>' },
-    { id: 4, name: 'Cordiant TR-1 295/80 R22.5 152/148M', desc: 'Рулевая ось · Магистральные', price_old: null, price_new: '21 800', cat: 'truck', width: '295', diam: '22.5', brand: 'Cordiant', stock: 'stock', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23222" stroke="%23333" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23111"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="10" font-weight="bold" font-family="Arial">TR-1</text></svg>' },
-    { id: 5, name: 'Кама NF 201 11 R22.5 148/145L', desc: 'Ведущая ось · Универсальные', price_old: null, price_new: '24 600', cat: 'truck', width: '11', diam: '22.5', brand: 'Kama', stock: 'stock', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23222" stroke="%23333" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23111"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="10" font-weight="bold" font-family="Arial">NF201</text></svg>' },
-    { id: 6, name: 'Кама NT 202 385/65 R22.5 160K', desc: 'Прицепная ось · Грузовые шины', price_old: null, price_new: '27 900', cat: 'truck', width: '385', diam: '22.5', brand: 'Kama', stock: 'order', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23222" stroke="%23333" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23111"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="10" font-weight="bold" font-family="Arial">NT202</text></svg>' },
-    { id: 7, name: 'Goodride CR926 205 R16C 110/108Q', desc: 'Универсальная ось · Легкогрузовые', price_old: null, price_new: '9 900', cat: 'light', width: '205', diam: '16', brand: 'Goodride', stock: 'stock', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23222" stroke="%23333" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23111"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="10" font-weight="bold" font-family="Arial">CR926</text></svg>' },
-    { id: 8, name: 'Hankook RA18 185 R15C 102/100R', desc: 'Универсальная ось · Легкогрузовые', price_old: null, price_new: '8 700', cat: 'light', width: '185', diam: '15', brand: 'Hankook', stock: 'stock', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23222" stroke="%23333" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23111"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="10" font-weight="bold" font-family="Arial">RA18</text></svg>' },
-    { id: 9, name: 'Hankook AH22 205/75 R16C 110/108R', desc: 'Универсальная ось · Фургоны', price_old: '13 500', price_new: '11 400', cat: 'light', width: '205', diam: '16', brand: 'Hankook', stock: 'stock', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23222" stroke="%23333" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23111"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="10" font-weight="bold" font-family="Arial">AH22</text></svg>' },
-    { id: 10, name: 'LINGLONG LMC100 185 R15C 103/101R', desc: 'Универсальная · Легкогрузовые', price_old: null, price_new: '7 900', cat: 'light', width: '185', diam: '15', brand: 'LINGLONG', stock: 'stock', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23222" stroke="%23333" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23111"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="10" font-weight="bold" font-family="Arial">LMC100</text></svg>' },
-    { id: 11, name: 'Triangle TR685 8.25R20 139/137G', desc: 'Строительная техника · Спецшины', price_old: null, price_new: '34 500', cat: 'special', width: '8.25', diam: '20', brand: 'Triangle', stock: 'order', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23222" stroke="%23333" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23111"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="10" font-weight="bold" font-family="Arial">TR685</text></svg>' },
-    { id: 12, name: 'DOUBLE COIN RR202 9.00R20', desc: 'Погрузчики · Спецшины', price_old: null, price_new: '41 200', cat: 'special', width: '9.00', diam: '20', brand: 'DoubleCoin', stock: 'order', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23222" stroke="%23333" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23111"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="10" font-weight="bold" font-family="Arial">RR202</text></svg>' },
-    { id: 13, name: 'Sailun SDR1 315/80R22.5', desc: 'Спецтехника · Высокие нагрузки', price_old: null, price_new: '28 900', cat: 'special', width: '315', diam: '22.5', brand: 'Sailun', stock: 'order', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23222" stroke="%23333" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23111"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="10" font-weight="bold" font-family="Arial">SDR1</text></svg>' },
-    { id: 14, name: 'ADVANCE 8.25x22.5 ET120', desc: 'Стальной диск · Грузовые', price_old: null, price_new: '12 800', cat: 'discs', width: '8.25', diam: '22.5', brand: 'Advance', stock: 'stock', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23222" stroke="%23333" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23111"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="10" font-weight="bold" font-family="Arial">8.25</text></svg>' },
-    { id: 15, name: 'AEOLUS 9.00x22.5 ET135', desc: 'Стальной диск · Усиленный', price_old: null, price_new: '14 200', cat: 'discs', width: '9.00', diam: '22.5', brand: 'Aeolus', stock: 'stock', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23222" stroke="%23333" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23111"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="10" font-weight="bold" font-family="Arial">9.00</text></svg>' },
-    { id: 16, name: 'AUSTONE 6.75x17.5 ET120', desc: 'Диск R17.5 · Грузовые', price_old: null, price_new: '9 500', cat: 'discs', width: '6.75', diam: '17.5', brand: 'Austone', stock: 'stock', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23222" stroke="%23333" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23111"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="10" font-weight="bold" font-family="Arial">6.75</text></svg>' },
-    { id: 17, name: 'Blackhawk 7.50x17.5 ET135', desc: 'Легкосплавный диск', price_old: null, price_new: '15 800', cat: 'discs', width: '7.50', diam: '17.5', brand: 'Blackhawk', stock: 'order', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23222" stroke="%23333" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23111"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="10" font-weight="bold" font-family="Arial">7.50</text></svg>' },
-    { id: 18, name: 'Sailun SDR1 315/80R22.5 156/150L', desc: 'Рулевая ось · Магистральные', price_old: null, price_new: '24 500', cat: 'truck', width: '315', diam: '22.5', brand: 'Sailun', stock: 'stock', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23222" stroke="%23333" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23111"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="10" font-weight="bold" font-family="Arial">SDR1</text></svg>' },
-    { id: 19, name: 'Triangle TR691 385/65R22.5 160K', desc: 'Прицепная ось · Грузовые', price_old: null, price_new: '26 800', cat: 'truck', width: '385', diam: '22.5', brand: 'Triangle', stock: 'order', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23222" stroke="%23333" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23111"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="10" font-weight="bold" font-family="Arial">TR691</text></svg>' },
-    { id: 20, name: 'LINGLONG LMC200 205/75R16C', desc: 'Легкогрузовые · Фургоны', price_old: null, price_new: '10 200', cat: 'light', width: '205', diam: '16', brand: 'LINGLONG', stock: 'stock', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23222" stroke="%23333" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23111"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="10" font-weight="bold" font-family="Arial">LMC200</text></svg>' },
-    { id: 21, name: 'DOUBLE COIN RR101 315/80R22.5', desc: 'Универсальная ось · Грузовые', price_old: null, price_new: '23 200', cat: 'truck', width: '315', diam: '22.5', brand: 'DoubleCoin', stock: 'stock', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23222" stroke="%23333" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23111"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="10" font-weight="bold" font-family="Arial">RR101</text></svg>' },
-    { id: 22, name: 'AEOLUS HN355 295/80R22.5', desc: 'Рулевая ось · Магистральные', price_old: null, price_new: '22 500', cat: 'truck', width: '295', diam: '22.5', brand: 'Aeolus', stock: 'stock', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23222" stroke="%23333" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23111"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="10" font-weight="bold" font-family="Arial">HN355</text></svg>' },
-    { id: 23, name: 'Cordiant TR-2 315/80R22.5', desc: 'Ведущая ось · Региональные', price_old: null, price_new: '23 200', cat: 'truck', width: '315', diam: '22.5', brand: 'Cordiant', stock: 'stock', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23222" stroke="%23333" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23111"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="10" font-weight="bold" font-family="Arial">TR-2</text></svg>' },
-    { id: 24, name: 'Normaks NT022 385/65R22.5', desc: 'Прицепная ось · Грузовые', price_old: null, price_new: '25 900', cat: 'truck', width: '385', diam: '22.5', brand: 'Normaks', stock: 'stock', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23222" stroke="%23333" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23111"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="10" font-weight="bold" font-family="Arial">NT022</text></svg>' },
-    { id: 25, name: 'Goodride CR926 185 R15C', desc: 'Универсальная ось · Легкогрузовые', price_old: null, price_new: '8 200', cat: 'light', width: '185', diam: '15', brand: 'Goodride', stock: 'stock', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23222" stroke="%23333" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23111"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="10" font-weight="bold" font-family="Arial">CR926</text></svg>' },
-    { id: 26, name: 'Triangle TR685 315/80R22.5', desc: 'Спецтехника · Высокие нагрузки', price_old: null, price_new: '33 000', cat: 'special', width: '315', diam: '22.5', brand: 'Triangle', stock: 'order', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23222" stroke="%23333" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23111"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="10" font-weight="bold" font-family="Arial">TR685</text></svg>' },
-    { id: 27, name: 'Blackhawk 8.25x22.5 ET120', desc: 'Стальной диск · Грузовые', price_old: null, price_new: '13 200', cat: 'discs', width: '8.25', diam: '22.5', brand: 'Blackhawk', stock: 'stock', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23222" stroke="%23333" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23111"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="10" font-weight="bold" font-family="Arial">8.25</text></svg>' },
-    { id: 28, name: 'DOUBLE COIN RR105 315/80R22.5', desc: 'Универсальная ось · Грузовые', price_old: null, price_new: '24 100', cat: 'truck', width: '315', diam: '22.5', brand: 'DoubleCoin', stock: 'stock', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23222" stroke="%23333" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23111"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="10" font-weight="bold" font-family="Arial">RR105</text></svg>' },
-    { id: 29, name: 'Hankook AH22 205/75 R16C', desc: 'Универсальная ось · Фургоны', price_old: null, price_new: '11 800', cat: 'light', width: '205', diam: '16', brand: 'Hankook', stock: 'stock', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23222" stroke="%23333" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23111"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="10" font-weight="bold" font-family="Arial">AH22</text></svg>' },
-    { id: 30, name: 'ADVANCE 7.50x17.5 ET135', desc: 'Легкосплавный диск · Усиленный', price_old: null, price_new: '16 200', cat: 'discs', width: '7.50', diam: '17.5', brand: 'Advance', stock: 'order', img: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23222" stroke="%23333" stroke-width="4"/><circle cx="50" cy="50" r="30" fill="%23111"/><text x="50" y="55" text-anchor="middle" fill="%23facc15" font-size="10" font-weight="bold" font-family="Arial">7.50</text></svg>' }
+    // === ОСТАЛЬНЫЕ ШИНЫ (будут видны только при фильтрации) ===
+    { id: 1, name: 'Normaks NT022 385/65 R22.5 160K', desc: 'Прицепная ось · Грузовые шины', price_old: '29 400', price_new: '25 500', cat: 'truck', width: '385', diam: '22.5', brand: 'Normaks', stock: 'stock', img: 'images/tire-1.svg' },
+    { id: 2, name: 'Normaks ND102 315/80 R22.5 157/153L', desc: 'Ведущая ось · Дальние перевозки', price_old: null, price_new: '23 900', cat: 'truck', width: '315', diam: '22.5', brand: 'Normaks', stock: 'stock', img: 'images/tire-2.svg' },
+    { id: 3, name: 'Normaks ND202 315/70 R22.5 154/150M', desc: 'Ведущая ось · Региональные', price_old: null, price_new: '22 400', cat: 'truck', width: '315', diam: '22.5', brand: 'Normaks', stock: 'stock', img: 'images/tire-3.svg' },
+    { id: 4, name: 'Cordiant TR-1 295/80 R22.5 152/148M', desc: 'Рулевая ось · Магистральные', price_old: null, price_new: '21 800', cat: 'truck', width: '295', diam: '22.5', brand: 'Cordiant', stock: 'stock', img: 'images/tire-4.svg' },
+    { id: 5, name: 'Кама NF 201 11 R22.5 148/145L', desc: 'Ведущая ось · Универсальные', price_old: null, price_new: '24 600', cat: 'truck', width: '11', diam: '22.5', brand: 'Kama', stock: 'stock', img: 'images/tire-5.svg' },
+    { id: 6, name: 'Кама NT 202 385/65 R22.5 160K', desc: 'Прицепная ось · Грузовые шины', price_old: null, price_new: '27 900', cat: 'truck', width: '385', diam: '22.5', brand: 'Kama', stock: 'order', img: 'images/tire-6.svg' },
+    { id: 7, name: 'Goodride CR926 205 R16C 110/108Q', desc: 'Универсальная ось · Легкогрузовые', price_old: null, price_new: '9 900', cat: 'light', width: '205', diam: '16', brand: 'Goodride', stock: 'stock', img: 'images/tire-7.svg' },
+    { id: 8, name: 'Hankook RA18 185 R15C 102/100R', desc: 'Универсальная ось · Легкогрузовые', price_old: null, price_new: '8 700', cat: 'light', width: '185', diam: '15', brand: 'Hankook', stock: 'stock', img: 'images/tire-8.svg' },
+    { id: 9, name: 'Hankook AH22 205/75 R16C 110/108R', desc: 'Универсальная ось · Фургоны', price_old: '13 500', price_new: '11 400', cat: 'light', width: '205', diam: '16', brand: 'Hankook', stock: 'stock', img: 'images/tire-9.svg' },
+    { id: 10, name: 'LINGLONG LMC100 185 R15C 103/101R', desc: 'Универсальная · Легкогрузовые', price_old: null, price_new: '7 900', cat: 'light', width: '185', diam: '15', brand: 'LINGLONG', stock: 'stock', img: 'images/tire-10.svg' },
+    { id: 11, name: 'Triangle TR685 8.25R20 139/137G', desc: 'Строительная техника · Спецшины', price_old: null, price_new: '34 500', cat: 'special', width: '8.25', diam: '20', brand: 'Triangle', stock: 'order', img: 'images/tire-11.svg' },
+    { id: 12, name: 'DOUBLE COIN RR202 9.00R20', desc: 'Погрузчики · Спецшины', price_old: null, price_new: '41 200', cat: 'special', width: '9.00', diam: '20', brand: 'DoubleCoin', stock: 'order', img: 'images/tire-12.svg' },
+    { id: 13, name: 'Sailun SDR1 315/80R22.5', desc: 'Спецтехника · Высокие нагрузки', price_old: null, price_new: '28 900', cat: 'special', width: '315', diam: '22.5', brand: 'Sailun', stock: 'order', img: 'images/tire-13.svg' },
+    { id: 14, name: 'ADVANCE 8.25x22.5 ET120', desc: 'Стальной диск · Грузовые', price_old: null, price_new: '12 800', cat: 'discs', width: '8.25', diam: '22.5', brand: 'Advance', stock: 'stock', img: 'images/tire-14.svg' },
+    { id: 15, name: 'AEOLUS 9.00x22.5 ET135', desc: 'Стальной диск · Усиленный', price_old: null, price_new: '14 200', cat: 'discs', width: '9.00', diam: '22.5', brand: 'Aeolus', stock: 'stock', img: 'images/tire-15.svg' },
+    { id: 16, name: 'AUSTONE 6.75x17.5 ET120', desc: 'Диск R17.5 · Грузовые', price_old: null, price_new: '9 500', cat: 'discs', width: '6.75', diam: '17.5', brand: 'Austone', stock: 'stock', img: 'images/tire-16.svg' },
+    { id: 17, name: 'Blackhawk 7.50x17.5 ET135', desc: 'Легкосплавный диск', price_old: null, price_new: '15 800', cat: 'discs', width: '7.50', diam: '17.5', brand: 'Blackhawk', stock: 'order', img: 'images/tire-17.svg' },
+    { id: 18, name: 'Sailun SDR1 315/80R22.5 156/150L', desc: 'Рулевая ось · Магистральные', price_old: null, price_new: '24 500', cat: 'truck', width: '315', diam: '22.5', brand: 'Sailun', stock: 'stock', img: 'images/tire-18.svg' },
+    { id: 19, name: 'Triangle TR691 385/65R22.5 160K', desc: 'Прицепная ось · Грузовые', price_old: null, price_new: '26 800', cat: 'truck', width: '385', diam: '22.5', brand: 'Triangle', stock: 'order', img: 'images/tire-19.svg' },
+    { id: 20, name: 'LINGLONG LMC200 205/75R16C', desc: 'Легкогрузовые · Фургоны', price_old: null, price_new: '10 200', cat: 'light', width: '205', diam: '16', brand: 'LINGLONG', stock: 'stock', img: 'images/tire-20.svg' },
+    { id: 21, name: 'DOUBLE COIN RR101 315/80R22.5', desc: 'Универсальная ось · Грузовые', price_old: null, price_new: '23 200', cat: 'truck', width: '315', diam: '22.5', brand: 'DoubleCoin', stock: 'stock', img: 'images/tire-21.svg' },
+    { id: 22, name: 'AEOLUS HN355 295/80R22.5', desc: 'Рулевая ось · Магистральные', price_old: null, price_new: '22 500', cat: 'truck', width: '295', diam: '22.5', brand: 'Aeolus', stock: 'stock', img: 'images/tire-22.svg' },
+    { id: 23, name: 'Cordiant TR-2 315/80R22.5', desc: 'Ведущая ось · Региональные', price_old: null, price_new: '23 200', cat: 'truck', width: '315', diam: '22.5', brand: 'Cordiant', stock: 'stock', img: 'images/tire-23.svg' },
+    { id: 24, name: 'Normaks NT022 385/65R22.5', desc: 'Прицепная ось · Грузовые', price_old: null, price_new: '25 900', cat: 'truck', width: '385', diam: '22.5', brand: 'Normaks', stock: 'stock', img: 'images/tire-24.svg' },
+    { id: 25, name: 'Goodride CR926 185 R15C', desc: 'Универсальная ось · Легкогрузовые', price_old: null, price_new: '8 200', cat: 'light', width: '185', diam: '15', brand: 'Goodride', stock: 'stock', img: 'images/tire-25.svg' },
+    { id: 26, name: 'Triangle TR685 315/80R22.5', desc: 'Спецтехника · Высокие нагрузки', price_old: null, price_new: '33 000', cat: 'special', width: '315', diam: '22.5', brand: 'Triangle', stock: 'order', img: 'images/tire-26.svg' },
+    { id: 27, name: 'Blackhawk 8.25x22.5 ET120', desc: 'Стальной диск · Грузовые', price_old: null, price_new: '13 200', cat: 'discs', width: '8.25', diam: '22.5', brand: 'Blackhawk', stock: 'stock', img: 'images/tire-27.svg' },
+    { id: 28, name: 'DOUBLE COIN RR105 315/80R22.5', desc: 'Универсальная ось · Грузовые', price_old: null, price_new: '24 100', cat: 'truck', width: '315', diam: '22.5', brand: 'DoubleCoin', stock: 'stock', img: 'images/tire-28.svg' },
+    { id: 29, name: 'Hankook AH22 205/75 R16C', desc: 'Универсальная ось · Фургоны', price_old: null, price_new: '11 800', cat: 'light', width: '205', diam: '16', brand: 'Hankook', stock: 'stock', img: 'images/tire-29.svg' },
+    { id: 30, name: 'ADVANCE 7.50x17.5 ET135', desc: 'Легкосплавный диск · Усиленный', price_old: null, price_new: '16 200', cat: 'discs', width: '7.50', diam: '17.5', brand: 'Advance', stock: 'order', img: 'images/tire-30.svg' }
   ];
 
   // ===== ФУНКЦИОНАЛ САЙТА =====
@@ -1247,42 +1291,6 @@
   var realBrands = [];
   products.forEach(function(p) { if (p.brand && realBrands.indexOf(p.brand) === -1) realBrands.push(p.brand); });
   realBrands.sort();
-
-  var map;
-  var points = [
-    { coords: [55.078, 38.848], name: "Склад в Коломне", address: "Московская обл., г. Коломна, село Амерево, автодорога М-5 Урал, тер 1" },
-    { coords: [55.452, 38.295], name: "Склад в Раменском", address: "Московская обл., Раменский район, село Ганусово промзона, стр. 1" },
-    { coords: [56.294, 39.379], name: "Склад в Кольчугино", address: "Владимирская обл., г. Кольчугино, улица Колхозная, д. 99а" }
-  ];
-
-  function initMap() {
-    if (typeof ymaps === 'undefined') { setTimeout(initMap, 500); return; }
-    ymaps.ready(function() {
-      map = new ymaps.Map("yandex-map", { center: [55.45, 38.8], zoom: 8, controls: ["zoomControl", "fullscreenControl"] });
-      points.forEach(function(point, index) {
-        var placemark = new ymaps.Placemark(point.coords, {
-          balloonContentHeader: point.name,
-          balloonContentBody: point.address,
-          balloonContentFooter: '<a href="https://yandex.ru/maps/?pt=' + point.coords[1] + ',' + point.coords[0] + '&z=15" target="_blank" style="color:#facc15;">Проложить маршрут →</a>'
-        }, { preset: "islands#redIcon", iconColor: "#facc15" });
-        map.geoObjects.add(placemark);
-      });
-    });
-  }
-  initMap();
-
-  function showOnMap(index) {
-    if (!map) return;
-    var point = points[index];
-    map.setCenter(point.coords, 14);
-    document.querySelectorAll('.pickup-point').forEach(function(el, i) { el.classList.toggle('active', i === index); });
-  }
-
-  function applyCategoryFilter(category) {
-    document.getElementById('filter-category').value = category;
-    applyFilter();
-    document.getElementById('popular').scrollIntoView({behavior:'smooth'});
-  }
 
   function toggleMenu() {
     var menu = document.getElementById('mobile-menu');
@@ -1337,11 +1345,9 @@
     tbody.innerHTML = '';
     if (data.length === 0) {
       document.getElementById('products-empty').style.display = 'block';
-      document.getElementById('visible-count').textContent = '0';
       return;
     }
     document.getElementById('products-empty').style.display = 'none';
-    document.getElementById('visible-count').textContent = data.length;
 
     data.forEach(function(p) {
       var tr = document.createElement('tr');
@@ -1355,6 +1361,8 @@
     });
   }
 
+  var promoIds = [31,32,33,34,35,36,37,38,39,40];
+
   function applyFilter() {
     var category = document.getElementById('filter-category').value;
     var width = document.getElementById('filter-width').value;
@@ -1362,7 +1370,21 @@
     var brand = document.getElementById('selected-brand').value;
     var stock = document.getElementById('filter-stock').value;
     var search = document.getElementById('global-search').value.toLowerCase().trim();
-    
+
+    var anyActive = category || width || diameter || brand || stock || search;
+
+    if (!anyActive) {
+      // Если фильтры не активны — показываем только акции
+      document.getElementById('catalog-section-title').textContent = 'Акции';
+      document.getElementById('catalog-section-sub').textContent = 'Специальные предложения от Шина 77';
+      renderTable(products.filter(function(p) { return promoIds.indexOf(p.id) !== -1; }));
+      return;
+    }
+
+    // Если фильтры активны — показываем каталог с отфильтрованными товарами
+    document.getElementById('catalog-section-title').textContent = 'Каталог шин';
+    document.getElementById('catalog-section-sub').textContent = 'Все позиции в наличии и под заказ';
+
     var filtered = products.filter(function(p) {
       var matchSearch = !search || p.name.toLowerCase().includes(search) || p.desc.toLowerCase().includes(search) || p.brand.toLowerCase().includes(search);
       return matchSearch &&
@@ -1386,7 +1408,30 @@
     applyFilter();
   }
 
-  // ===== КОРЗИНА (ПОЛНОСТЬЮ РАБОЧАЯ) =====
+  function applyCategoryFilter(category) {
+    document.getElementById('filter-category').value = category;
+    applyFilter();
+    document.getElementById('popular').scrollIntoView({behavior:'smooth'});
+  }
+
+  // ===== ВСПЛЫВАЮЩЕЕ УВЕДОМЛЕНИЕ (TOAST) =====
+  function showToast(message, icon) {
+    var container = document.getElementById('toast-container');
+    var toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.innerHTML = `
+      <div class="toast-icon">${icon || '✅'}</div>
+      <div class="toast-text">${message}</div>
+      <button class="toast-close" onclick="this.parentElement.classList.add('out'); setTimeout(function(){this.parentElement.remove()}.bind(this), 300)">✕</button>
+    `;
+    container.appendChild(toast);
+    setTimeout(function() {
+      toast.classList.add('out');
+      setTimeout(function() { toast.remove(); }, 300);
+    }, 4000);
+  }
+
+  // ===== КОРЗИНА =====
   var cart = JSON.parse(localStorage.getItem('cart')) || [];
 
   function saveCart() {
@@ -1406,6 +1451,10 @@
     }
     saveCart();
     
+    // Показываем красивое уведомление
+    showToast('<strong>' + p.name + '</strong> добавлено в корзину', '🛒');
+    
+    // Анимация счётчика корзины
     document.getElementById('cart-count').style.transform = 'scale(1.3)';
     setTimeout(function() { document.getElementById('cart-count').style.transform = 'scale(1)'; }, 200);
   }
@@ -1415,7 +1464,10 @@
     saveCart();
   }
 
-  function changeCartQty(id, delta) {
+  function changeCartQty(id, delta, event) {
+    // Останавливаем всплытие события, чтобы корзина не закрывалась
+    if (event) event.stopPropagation();
+
     var item = cart.find(function(i) { return i.id === id; });
     if (!item) return;
     item.qty += delta;
@@ -1456,9 +1508,9 @@
             <div class="cart-item-price">${(item.price * item.qty).toLocaleString('ru')} ₽</div>
           </div>
           <div class="cart-item-actions">
-            <button class="cart-qty-btn" onclick="changeCartQty(${item.id}, -1)">−</button>
+            <button class="cart-qty-btn" onclick="changeCartQty(${item.id}, -1, event)">−</button>
             <span class="cart-item-qty">${item.qty}</span>
-            <button class="cart-qty-btn" onclick="changeCartQty(${item.id}, 1)">+</button>
+            <button class="cart-qty-btn" onclick="changeCartQty(${item.id}, 1, event)">+</button>
             <button class="cart-item-remove" onclick="removeFromCart(${item.id})">✕</button>
           </div>
         </div>
@@ -1490,7 +1542,6 @@
     }, 400);
   }
 
-  // Закрытие корзины по клику вне её
   document.addEventListener('click', function(e) {
     var sidebar = document.getElementById('cart-sidebar');
     if (sidebar.classList.contains('open')) {
@@ -1500,21 +1551,32 @@
     }
   });
 
-  // ===== ОТКРЫТИЕ КАРТОЧКИ ТОВАРА =====
+  // ===== ОТКРЫТИЕ КАРТОЧКИ ТОВАРА (С КАЛЬКУЛЯТОРОМ СУММЫ) =====
   function openProductCard(id) {
     var p = products.find(function(item) { return item.id === id; });
     if (!p) return;
 
+    document.getElementById('modal-form-wrap').style.display = 'none';
+    document.getElementById('modal-success').style.display = 'none';
     var wrap = document.getElementById('modal-card-wrap');
-    var img = p.img || 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="%23333"/><text x="50" y="55" text-anchor="middle" fill="%23999" font-size="12">Шина</text></svg>';
+    wrap.style.display = 'block';
+    var img = p.img || 'images/tire-hero.svg';
+    
+    var promoIds = [31,32,33,34,35,36,37,38,39,40];
+    var isPromo = promoIds.indexOf(p.id) !== -1;
+    var badgeHtml = isPromo ? '<div class="modal-badge">Акция</div>' : '';
+    
+    // Парсим цену (убираем пробелы, чтобы посчитать)
+    var priceNum = parseInt(p.price_new.replace(/\s/g, ''));
     
     var priceHtml = p.price_old ? `<div class="modal-old-price">${p.price_old} руб.</div><div class="modal-new-price">${p.price_new} руб.</div>` : `<div class="modal-new-price">${p.price_new} руб.</div>`;
+    
     var stockHtml = p.stock === 'stock' ? '<span style="color:#22c55e; font-size:12px;">● В наличии</span>' : '<span style="color:#f87171; font-size:12px;">● Под заказ</span>';
 
     wrap.innerHTML = `
       <div class="modal-card-layout">
         <div class="modal-image-wrap">
-          <div class="modal-badge">Акция</div>
+          ${badgeHtml}
           <img src="${img}" alt="${p.name}">
         </div>
         <div class="modal-info-wrap">
@@ -1524,17 +1586,20 @@
           </div>
           <div class="modal-specs">
             Производитель: <span>${p.brand}</span><br>
-            Типоразмер: <span>${p.width}/${p.diam}</span><br>
-            ${p.desc}
+            Назначение: <span>${p.desc}</span><br>
+            Типоразмер: <span>${p.width}/${p.diam}</span>
           </div>
           <div class="modal-price-block">
             ${priceHtml}
+            <div id="modal-total-price" style="font-size: 14px; color: #9ca3af; margin-top: 4px; border-top: 1px solid rgba(31,41,55,0.5); padding-top: 6px;">
+              Общая сумма: <span style="color: #facc15; font-weight: 700;">${priceNum.toLocaleString('ru')} руб.</span>
+            </div>
           </div>
           <div class="modal-actions">
             <div class="qty-control">
-              <button class="qty-btn" onclick="changeQty(-1)">−</button>
+              <button class="qty-btn" onclick="changeQty(-1, ${priceNum})">−</button>
               <input type="text" class="qty-input" id="qty-input" value="1" readonly>
-              <button class="qty-btn" onclick="changeQty(1)">+</button>
+              <button class="qty-btn" onclick="changeQty(1, ${priceNum})">+</button>
             </div>
             <button class="btn btn-primary modal-buy-btn" onclick="addToCartFromModal(${p.id})">Купить</button>
           </div>
@@ -1549,11 +1614,19 @@
     document.body.style.overflow = 'hidden';
   }
 
-  function changeQty(delta) {
+  // Обновленная функция изменения количества (теперь обновляет и общую сумму)
+  function changeQty(delta, pricePerUnit) {
     var input = document.getElementById('qty-input');
     var val = parseInt(input.value) || 1;
     val = Math.max(1, val + delta);
     input.value = val;
+    
+    // Пересчет и показ общей суммы
+    var totalSpan = document.querySelector('#modal-total-price span');
+    if (totalSpan && pricePerUnit) {
+      var total = val * pricePerUnit;
+      totalSpan.textContent = total.toLocaleString('ru') + ' руб.';
+    }
   }
 
   function addToCartFromModal(id) {
@@ -1564,10 +1637,10 @@
     closeModal();
   }
 
-  // ===== ОСТАЛЬНЫЕ ФУНКЦИИ (МОДАЛКИ, АНИМАЦИИ И Т.Д.) =====
   function openModal(name, desc){
+    document.getElementById('modal-card-wrap').style.display = 'none';
     document.getElementById('modal-product-name').textContent = name;
-    document.getElementById('modal-product-desc').textContent = desc;
+    document.getElementById('modal-product-desc').innerHTML = desc;
     document.getElementById('modal-form-wrap').style.display = '';
     document.getElementById('modal-success').style.display = 'none';
     document.getElementById('modal-name').value = '';
@@ -1591,26 +1664,103 @@
     return cleaned.length >= 10;
   }
 
+  // ===== ОТПРАВКА ЗАЯВКИ (с проверкой имени) =====
   function submitModal() {
     var name = document.getElementById('modal-name').value.trim();
     var phone = document.getElementById('modal-phone').value.trim();
+    var comment = document.getElementById('modal-comment').value.trim();
+    var nameGroup = document.getElementById('name-group');
+    var nameInput = document.getElementById('modal-name');
     var phoneInput = document.getElementById('modal-phone');
-    
-    if (!phone || !validatePhone(phone)) {
-      phoneInput.classList.add('error');
-      phoneInput.focus();
-      setTimeout(function() { phoneInput.classList.remove('error'); }, 2000);
+    var phoneError = document.getElementById('phone-error');
+
+    // Сбрасываем ошибки
+    nameGroup.classList.remove('error');
+    phoneError.style.display = 'none';
+    phoneInput.classList.remove('error');
+
+    // Проверка имени: не пустое и не содержит цифры
+    if (!name) {
+      nameGroup.classList.add('error');
+      nameInput.focus();
       return;
     }
-    document.getElementById('modal-form-wrap').style.display = 'none';
-    document.getElementById('modal-success').style.display = 'block';
-    setTimeout(closeModal, 3500);
+    // Проверяем, есть ли цифры в имени
+    if (/\d/.test(name)) {
+      nameGroup.classList.add('error');
+      // Меняем текст ошибки на более понятный
+      nameGroup.querySelector('.error-message').textContent = 'Имя не может содержать цифры';
+      nameInput.focus();
+      return;
+    }
+
+    // Проверка телефона
+    if (!phone || !validatePhone(phone)) {
+      phoneInput.classList.add('error');
+      phoneError.style.display = 'block';
+      phoneInput.focus();
+      return;
+    }
+
+    // Формируем информацию о товаре
+    var productInfo = '';
+    var productNameEl = document.getElementById('modal-product-name');
+    var modalProductName = productNameEl ? productNameEl.textContent.trim() : '';
+
+    if (modalProductName && modalProductName !== 'Оформление заказа' && modalProductName !== 'Заказать звонок') {
+      productInfo = modalProductName;
+    } else if (cart.length > 0) {
+      var items = cart.map(function(item) {
+        var p = products.find(function(prod) { return prod.id === item.id; });
+        return p ? p.name + ' (' + item.qty + ' шт.) — ' + (item.price * item.qty).toLocaleString('ru') + ' ₽' : '';
+      }).filter(Boolean).join('\n');
+      productInfo = 'Заказ из корзины:\n' + items;
+    } else {
+      productInfo = 'Запрос звонка / консультация';
+    }
+
+    var btn = document.querySelector('#modal-form-wrap .btn-primary');
+    if (btn) { btn.textContent = 'Отправляем...'; btn.disabled = true; }
+
+    fetch('https://formspree.io/f/mgojblow', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        name: name,
+        phone: phone,
+        comment: comment,
+        product: productInfo
+      })
+    })
+    .then(function(r) {
+      // Восстанавливаем кнопку
+      if (btn) { btn.textContent = 'Отправить заявку'; btn.disabled = false; }
+      
+      if (r.ok) {
+        // Очищаем корзину после успешного заказа
+        cart = [];
+        saveCart();
+        
+        document.getElementById('modal-form-wrap').style.display = 'none';
+        document.getElementById('modal-success').style.display = 'block';
+        setTimeout(closeModal, 3500);
+      } else {
+        throw new Error('Ошибка сервера');
+      }
+    })
+    .catch(function() {
+      if (btn) { btn.textContent = 'Отправить заявку'; btn.disabled = false; }
+      showToast('Ошибка отправки. Позвоните нам: +7 (495) 661-91-77', '❌');
+    });
   }
 
+  // Обработка ввода телефона (гибкая маска, не привязанная жестко к +7)
   document.getElementById('modal-phone').addEventListener('input', function(e) {
     var x = this.value.replace(/\D/g, '').match(/(\d{0,1})(\d{0,3})(\d{0,3})(\d{0,2})(\d{0,2})/);
     if (!x) return;
-    this.value = '+' + (x[1] ? '7' : '') + (x[2] ? ' (' + x[2] : '') + (x[3] ? ') ' + x[3] : '') + (x[4] ? '-' + x[4] : '') + (x[5] ? '-' + x[5] : '');
+    // Если первая цифра 7 или 8, оставляем как есть, иначе добавляем +7
+    var code = (x[1] === '7' || x[1] === '8') ? x[1] : '7';
+    this.value = '+' + code + (x[2] ? ' (' + x[2] : '') + (x[3] ? ') ' + x[3] : '') + (x[4] ? '-' + x[4] : '') + (x[5] ? '-' + x[5] : '');
   });
 
   document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
@@ -1618,6 +1768,40 @@
   var scrollBtn = document.getElementById('scroll-top');
   window.addEventListener('scroll', function() { scrollBtn.classList.toggle('visible', window.scrollY > 400); });
 
+  // ===== НОВЫЕ ФУНКЦИИ ДЛЯ ОКНА "КОНТАКТЫ И САМОВЫВОЗ" =====
+  // Координаты точек: [0] Раменское, [1] Дмитровский, [2] Кольчугино, [3] Коломна (Розница)
+  var locationCoords = [
+    '55.45%2C38.3', 
+    '56.28%2C37.54', 
+    '56.31%2C39.38', 
+    '55.1%2C38.82'
+  ];
+
+  // Открыть окно
+  function openLocations() {
+    document.getElementById('locations-overlay').style.display = 'block';
+    document.body.style.overflow = 'hidden';
+    closeMobileMenu(); // Закрыть бургер-меню, если оно было открыто
+  }
+
+  // Закрыть окно
+  function closeLocations() {
+    document.getElementById('locations-overlay').style.display = 'none';
+    document.body.style.overflow = '';
+  }
+
+  // Сменить карту при нажатии на точку
+  function showLocationMap(index) {
+    var iframe = document.getElementById('locations-map-iframe');
+    iframe.src = 'https://yandex.ru/map-widget/v1/?ll=' + locationCoords[index] + '&z=14&pt=' + locationCoords[index];
+    
+    // Подсветка активной точки
+    document.querySelectorAll('.locations-overlay .pickup-point').forEach(function(el, i) {
+      el.classList.toggle('active', i === index);
+    });
+  }
+
+  // ===== АНИМАЦИЯ СТАТИСТИКИ =====
   function animateCounter(element, target, suffix) {
     var current = 0;
     var step = Math.ceil(target / 60);
@@ -1636,20 +1820,21 @@
       var positions = document.getElementById('stat-positions');
       var years = document.getElementById('stat-years');
       var clients = document.getElementById('stat-clients');
+      var hours = document.getElementById('stat-hours');
       if (positions) animateCounter(positions, 1500, '+');
       if (years) animateCounter(years, 6, '');
       if (clients) animateCounter(clients, 340, '');
+      if (hours) animateCounter(hours, 48, '');
     }
   }, {threshold: 0.5});
   if (heroStats) observer.observe(heroStats);
 
-  // Инициализация при загрузке
-  document.addEventListener('DOMContentLoaded', function() {
-    // По умолчанию показываем только акционные шины (id 31-40)
-    var stockProducts = products.filter(function(p) { return p.id >= 31 && p.id <= 40; });
-    renderTable(stockProducts);
+  // Инициализация
+  (function() {
+    applyFilter();
     updateCartUI();
-  });
+  })();
+
 </script>
 </body>
 </html>
